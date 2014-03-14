@@ -8,7 +8,7 @@
 	/*
 	* Kontrollon nese faqja eshte e lejuar te kete qasje nga Administratori
 	*/
-	// o Besfort o bukurosh  : BESFORT + GITHUB = <3
+	// blendi ma i phoortiii n''bootTtt <3
 	if($page->isActivated()){
 		/*
 		* 	Kontrollon nese studenti eshte i kyqur permes funksionit loggedIn();
