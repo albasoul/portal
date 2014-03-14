@@ -18,7 +18,7 @@
 			* 	Krijo objektin studenti me SID te marrur nga $_SESSION['s_id']
 			*/
 			$studenti = new Studenti($_SESSION['s_id']);
-			$page->showPage($studenti);
+			$page->showPage($studenti,$page);
 		}
 		else{
 			if(!empty($_POST)){

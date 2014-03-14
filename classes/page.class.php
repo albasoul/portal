@@ -45,7 +45,7 @@ class Page{
 	/*
 	* Funksioni qe perfshin dokumentin HTML per paraqitjen e faqes
 	*/
-	function showPage($studenti){
+	function showPage($studenti,$page){
 		include('html.pamja.php');
 	}
 
@@ -61,6 +61,18 @@ class Page{
 	*/
 	function hidePage(){
 		include('offline.pamja.php');
+	}
+	function headerNavbar(){
+		global $lidhja;
+		$navQuery = $lidhja->query("SELECT * FROM navbar WHERE enabled=1");
+		if($navQuery->num_rows > 0){
+			foreach($navQuery as $nav){
+				echo '<li><a href="'.$nav['link'].'">'.$nav['emri'].'</a></li>';
+			}
+		}
+		else{
+			return FALSE;
+		}
 	}
 }
 ?>
