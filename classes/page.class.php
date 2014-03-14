@@ -49,21 +49,21 @@ class Page{
 		$emri = $studenti->getEmri;
 		$mbiemri = $studenti->getMbiemri;
 		$foto = $studenti->getFoto;
-		include('html.php');
+		include('html.pamja.php');
 	}
 
 	/*
 	* Funksioni qe perfshin dokumentin HTML per paraqitjen e faqes
 	*/
 	function showLoggIn(){
-		include('login.php');
+		include('login.pamja.php');
 	}
 
 	/*
 	* Funksioni qe perfshin dokumentin HTML per paraqitjen e faqes
 	*/
 	function hidePage(){
-		include('offline.php');
+		include('offline.pamja.php');
 	}
 }
 ?>
