@@ -40,9 +40,9 @@
 	      </ul>
 		  <ul class="nav navbar-nav navbar-right">
           <?php
-		  		if ($_SESSION['ikyqur']==true)
+		  		if ($_SESSION['logged_in']==TRUE)
 		{ 
-		  echo '<li><a href="qkyqja.php"class="glyphicon glyphicon-log-out"> Dilni</a> </li>'; 
+		  echo ' <li><a href="logout.php"class="glyphicon glyphicon-log-out"> Dilni</a> </li>'; 
 		}
 		else {
 		header("Location: login.pamja.php");
