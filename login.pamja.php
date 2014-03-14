@@ -35,7 +35,6 @@
   <body>
 
     <div class="container">
-
       <form class="form-signin" role="form" method="POST" action="">
         <h2 class="form-signin-heading">Please sign in</h2>
         <input type="email" name="email" class="form-control" placeholder="Email address" required autofocus>
