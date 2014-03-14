@@ -22,7 +22,13 @@
 	*/
 	function verifikojeStudentin($e, $p){
 		global $lidhja;
-		$studentQuery = $lidhja->query("SELECT ID FROM studentet WHERE email='$e' AND password='$p' LIMIT 1");
-		# duhet me shtu kodin per me kqyr a ka rezultat edhe me ja dhon sesionit variablat...
+		$studentQuery = $lidhja->query("SELECT SID FROM studentet WHERE email='$e' AND password='$p' LIMIT 1");
+		if($studentQuery->num_rows == 1)
+		{
+			$sinfo = $studentQuery->fetch_assoc(); // Informacionet e studentit
+			$_SESSION['s_id'] = $sinfo['SID'];
+			$_SESSION['logged_in'] = TRUE;
+			return TRUE;
+		}
 	}
 ?>

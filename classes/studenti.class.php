@@ -4,6 +4,8 @@
 *	Te gjitha funksionet per nje student gjinden ketu
 */
 class Studenti{
+	private $ID=0;
+	private $SID=0;
 	private $emri = "panjohur";
 	private $mbiemri = "panjohur";
 	private $email = "email@email.com";
@@ -17,9 +19,12 @@ class Studenti{
 	*/
 	function __construct($sid){
 		global $lidhja;
-		$studentQuery = $lidhja->query("SELECT emri,mbiemri,email,lendet_kaluara,lokacioni,foto FROM studentet WHERE SID=$sid LIMIT 1");
+		$studentQuery = $lidhja->query("SELECT ID,SID,emri,mbiemri,email,lendet_kaluara,lokacioni,foto FROM studentet WHERE SID=$sid LIMIT 1");
 		if($studentQuery->num_rows == 1){
 			$student = $studentQuery->fetch_assoc(); // marrja e informacioneve dhe ruajtja ne $student
+
+			$this->ID = $student['ID'];
+			$this->SID = $student['SID'];
 			$this->emri = $student['emri'];
 			$this->mbiemri = $student['mbiemri'];
 			$this->email = $student['email'];
@@ -65,7 +70,7 @@ class Studenti{
 		return $this->lendet_kaluara;
 	}
 	function loggedIn(){
-		if(!empty($_SESSION['logged_in']) && $_SESSION['logged_in'] === "loggedIn")
+		if(!empty($_SESSION['logged_in']) && $_SESSION['logged_in'] == TRUE)
 		{
 			return True;
 		}
