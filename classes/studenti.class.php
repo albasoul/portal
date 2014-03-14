@@ -10,6 +10,7 @@ class Studenti{
 	private $mbiemri = "panjohur";
 	private $email = "email@email.com";
 	private $lendet_kaluara = array();
+	private $kredi=0;
 	private $lokacioni = "panjohur";
 	private $foto = "img/studente/profil/default.png";
 
@@ -19,7 +20,7 @@ class Studenti{
 	*/
 	function __construct($sid){
 		global $lidhja;
-		$studentQuery = $lidhja->query("SELECT ID,SID,emri,mbiemri,email,lendet_kaluara,lokacioni,foto FROM studentet WHERE SID=$sid LIMIT 1");
+		$studentQuery = $lidhja->query("SELECT ID,SID,emri,mbiemri,email,lendet_kaluara,kredi,lokacioni,foto FROM studentet WHERE SID=$sid LIMIT 1");
 		if($studentQuery->num_rows == 1){
 			$student = $studentQuery->fetch_assoc(); // marrja e informacioneve dhe ruajtja ne $student
 
@@ -29,6 +30,7 @@ class Studenti{
 			$this->mbiemri = $student['mbiemri'];
 			$this->email = $student['email'];
 			$this->lendet_kaluara = explode(",", $student['lendet_kaluara']); // ndarja e ID te lendeve te kaluara ne nje Array 
+			$this->kredi = $student['kredi'];
 			$this->lokacioni = $student['lokacioni'];
 			$this->foto = $student['foto'];
 		}
@@ -68,6 +70,9 @@ class Studenti{
 	*/
 	function getLendetKaluara(){
 		return $this->lendet_kaluara;
+	}
+	function getKredi(){
+		return $this->kredi;
 	}
 	function loggedIn(){
 		if(!empty($_SESSION['logged_in']) && $_SESSION['logged_in'] == TRUE)
