@@ -1,6 +1,9 @@
 <?php
 	# perfshije config.php
 	include('includes/config.php');
+	$test = new Page();
+	
+
 ?>
 
 <!DOCTYPE html>
@@ -25,6 +28,7 @@
   </head>
   <body>
   <div class="container">
+  <?php echo $test->getTitle() .' <br/> <br/>'; ?>
   	<nav class="navbar navbar-default" role="navigation">
 	  <div class="container-fluid">
 	    <!-- Brand and toggle get grouped for better mobile display -->

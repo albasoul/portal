@@ -13,4 +13,9 @@
 	session_start();
 	include('funksionet.php');
 
+	/*
+	* Perfshirja e klasave
+	*/
+	include('classes/page.class.php');
+
 ?>
