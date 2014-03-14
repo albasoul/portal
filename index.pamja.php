@@ -83,40 +83,7 @@
 			    </div>';
 		    	}
 		    ?>
-		    <div class="item">
-		      <img alt="First slide" src="">
-		      <div class="carousel-caption">
-		        <h1>Lajmi 2</h1>
-		        <p>Informacione per lajmin e pare do zgjasin shume dhe jo vetem pak per arsye te ndryshme shkencore.</p>
-		        <p><a href="" class="btn btn-md btn-primary pull-right">Lexo më shumë</a></p>
-		      </div>
 		    </div>
-		    <div class="item">
-		      <img src="">
-		      <div class="carousel-caption">
-		        <h1>Lajmi 3</h1>
-		        <p>Informacione per lajmin e pare do zgjasin shume dhe jo vetem pak per arsye te ndryshme shkencore.</p>
-		        <p><a href="" class="btn btn-md btn-primary pull-right">Lexo më shumë</a></p>
-		      </div>
-		    </div>
-		    <div class="item">
-		      <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI5MDAiIGhlaWdodD0iNTAwIj48cmVjdCB3aWR0aD0iOTAwIiBoZWlnaHQ9IjUwMCIgZmlsbD0iIzc3NyI+PC9yZWN0Pjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHg9IjQ1MCIgeT0iMjUwIiBzdHlsZT0iZmlsbDojN2E3YTdhO2ZvbnQtd2VpZ2h0OmJvbGQ7Zm9udC1zaXplOjU2cHg7Zm9udC1mYW1pbHk6QXJpYWwsSGVsdmV0aWNhLHNhbnMtc2VyaWY7ZG9taW5hbnQtYmFzZWxpbmU6Y2VudHJhbCI+Rmlyc3Qgc2xpZGU8L3RleHQ+PC9zdmc+">
-		      <div class="carousel-caption">
-		        <h1>Lajmi 4</h1>
-		        <p>Informacione per lajmin e pare do zgjasin shume dhe jo vetem pak per arsye te ndryshme shkencore.</p>
-		        <p><a href="" class="btn btn-md btn-primary pull-right">Lexo më shumë</a></p>
-		      </div>
-		    </div>
-		    <div class="item">
-		      <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI5MDAiIGhlaWdodD0iNTAwIj48cmVjdCB3aWR0aD0iOTAwIiBoZWlnaHQ9IjUwMCIgZmlsbD0iIzc3NyI+PC9yZWN0Pjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHg9IjQ1MCIgeT0iMjUwIiBzdHlsZT0iZmlsbDojN2E3YTdhO2ZvbnQtd2VpZ2h0OmJvbGQ7Zm9udC1zaXplOjU2cHg7Zm9udC1mYW1pbHk6QXJpYWwsSGVsdmV0aWNhLHNhbnMtc2VyaWY7ZG9taW5hbnQtYmFzZWxpbmU6Y2VudHJhbCI+Rmlyc3Qgc2xpZGU8L3RleHQ+PC9zdmc+">
-		      <div class="carousel-caption">
-		        <h1>Lajmi 5</h1>
-		        <p>Informacione per lajmin e pare do zgjasin shume dhe jo vetem pak per arsye te ndryshme shkencore.</p>
-		        <p><a href="" class="btn btn-md btn-primary pull-right">Lexo më shumë</a></p>
-		      </div>
-		    </div>
-		  </div>
-
 		  <!-- Controls -->
 		  <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
 		    <span class="glyphicon glyphicon-chevron-left"></span>
