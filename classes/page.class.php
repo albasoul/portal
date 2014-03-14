@@ -74,5 +74,22 @@ class Page{
 			return FALSE;
 		}
 	}
+	function footerLinks(){
+		global $lidhja;
+		$footerLinksQuery = $lidhja->query("SELECT * FROM footer WHERE enabled=1");
+		if($footerLinksQuery->num_rows > 0){
+			foreach ($footerLinksQuery as $foo){
+				if("dil" == strtolower($foo['emri'])){
+					echo '<a href="'.$foo['link'].'"><span class="glyphicon glyphicon-log-out"></span></a> &nbsp;&nbsp;&nbsp;';
+				}
+				else{
+					echo '<a href="'.$foo['link'].'">'.$foo['emri'].'</a> &nbsp;&nbsp;&nbsp;';
+				}
+			}
+		}
+		else{
+			echo '';
+		}
+	}
 }
 ?>
