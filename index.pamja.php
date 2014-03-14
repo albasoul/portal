@@ -57,26 +57,42 @@
     	<div id="carousel-example-generic" class="carousel slide hidden-xs" data-ride="carousel">
 		  <!-- Indicators -->
 		  <ol class="carousel-indicators">
-		    <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-		    <li data-target="#carousel-example-generic" data-slide-to="1"></li>
-		    <li data-target="#carousel-example-generic" data-slide-to="2"></li>
-		    <li data-target="#carousel-example-generic" data-slide-to="3"></li>
-		    <li data-target="#carousel-example-generic" data-slide-to="4"></li>
-
+		  <?php
+		  	for($i=0; $i<5; $i++)
+		  	{
+		  		if($i==0){ echo '<li data-target="#carousel-example-generic" data-slide-to="'.$i.'" class="active"></li>'; }
+		  		else{
+		  			echo '<li data-target="#carousel-example-generic" data-slide-to="'.$i.'"></li>';
+		  		}
+		  		
+		  	}
+		  ?>
 		  </ol>
-
+<?php $a = "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI5MDAiIGhlaWdodD0iNTAwIj48cmVjdCB3aWR0aD0iOTAwIiBoZWlnaHQ9IjUwMCIgZmlsbD0iIzc3NyI+PC9yZWN0Pjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHg9IjQ1MCIgeT0iMjUwIiBzdHlsZT0iZmlsbDojN2E3YTdhO2ZvbnQtd2VpZ2h0OmJvbGQ7Zm9udC1zaXplOjU2cHg7Zm9udC1mYW1pbHk6QXJpYWwsSGVsdmV0aWNhLHNhbnMtc2VyaWY7ZG9taW5hbnQtYmFzZWxpbmU6Y2VudHJhbCI+Rmlyc3Qgc2xpZGU8L3RleHQ+PC9zdmc+"; ?>
 		  <!-- Wrapper for slides -->
 		  <div class="carousel-inner">
-		    <div class="item active">
-		      <img alt="First slide" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI5MDAiIGhlaWdodD0iNTAwIj48cmVjdCB3aWR0aD0iOTAwIiBoZWlnaHQ9IjUwMCIgZmlsbD0iIzc3NyI+PC9yZWN0Pjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHg9IjQ1MCIgeT0iMjUwIiBzdHlsZT0iZmlsbDojN2E3YTdhO2ZvbnQtd2VpZ2h0OmJvbGQ7Zm9udC1zaXplOjU2cHg7Zm9udC1mYW1pbHk6QXJpYWwsSGVsdmV0aWNhLHNhbnMtc2VyaWY7ZG9taW5hbnQtYmFzZWxpbmU6Y2VudHJhbCI+Rmlyc3Qgc2xpZGU8L3RleHQ+PC9zdmc+">
-		      <div class="carousel-caption col-md-4">
-		        <h1>Lajmi 1</h1>
-		        <p>Informacione per lajmin e pare do zgjasin shume dhe jo vetem pak per arsye te ndryshme shkencore.</p>
-		        <p><a href="" class="btn btn-md btn-primary pull-right">Lexo më shumë</a></p>
-		      </div>
-		    </div>
+		    <?php 
+		    	for($i=0; $i<5; $i++)
+		    	{
+		    		# shtohet 1 if per me bo lajmin e par "0", me bo active, me dal i pari nlist..
+		    		if($i ==0 ) {
+		    			echo '<div class="item active">';
+		    		}
+		    		else{
+		    			echo '<div class="item">';
+		    		}
+		    		echo '
+			      <img alt="First slide" src="">
+			      <div class="carousel-caption col-md-4">
+			        <h1>Lajmi 1</h1>
+			        <p>Informacione per lajmin e pare do zgjasin shume dhe jo vetem pak per arsye te ndryshme shkencore.</p>
+			        <p><a href="" class="btn btn-md btn-primary pull-right">Lexo më shumë</a></p>
+			      </div>
+			    </div>';
+		    	}
+		    ?>
 		    <div class="item">
-		      <img alt="First slide" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI5MDAiIGhlaWdodD0iNTAwIj48cmVjdCB3aWR0aD0iOTAwIiBoZWlnaHQ9IjUwMCIgZmlsbD0iIzc3NyI+PC9yZWN0Pjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHg9IjQ1MCIgeT0iMjUwIiBzdHlsZT0iZmlsbDojN2E3YTdhO2ZvbnQtd2VpZ2h0OmJvbGQ7Zm9udC1zaXplOjU2cHg7Zm9udC1mYW1pbHk6QXJpYWwsSGVsdmV0aWNhLHNhbnMtc2VyaWY7ZG9taW5hbnQtYmFzZWxpbmU6Y2VudHJhbCI+Rmlyc3Qgc2xpZGU8L3RleHQ+PC9zdmc+">
+		      <img alt="First slide" src="">
 		      <div class="carousel-caption">
 		        <h1>Lajmi 2</h1>
 		        <p>Informacione per lajmin e pare do zgjasin shume dhe jo vetem pak per arsye te ndryshme shkencore.</p>
@@ -84,7 +100,7 @@
 		      </div>
 		    </div>
 		    <div class="item">
-		      <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI5MDAiIGhlaWdodD0iNTAwIj48cmVjdCB3aWR0aD0iOTAwIiBoZWlnaHQ9IjUwMCIgZmlsbD0iIzc3NyI+PC9yZWN0Pjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHg9IjQ1MCIgeT0iMjUwIiBzdHlsZT0iZmlsbDojN2E3YTdhO2ZvbnQtd2VpZ2h0OmJvbGQ7Zm9udC1zaXplOjU2cHg7Zm9udC1mYW1pbHk6QXJpYWwsSGVsdmV0aWNhLHNhbnMtc2VyaWY7ZG9taW5hbnQtYmFzZWxpbmU6Y2VudHJhbCI+Rmlyc3Qgc2xpZGU8L3RleHQ+PC9zdmc+">
+		      <img src="">
 		      <div class="carousel-caption">
 		        <h1>Lajmi 3</h1>
 		        <p>Informacione per lajmin e pare do zgjasin shume dhe jo vetem pak per arsye te ndryshme shkencore.</p>

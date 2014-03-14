@@ -1,4 +1,6 @@
 <?php
+	# e kqyrim lokacionin, kjo behet duke e marr linkun, dhe e marrim vetem emrin e fajllit psh: http://localhost/index.php. ne e marrim vetem fjalen "index"
+	$lokacioni =substr(substr($_SERVER["SCRIPT_NAME"],strrpos($_SERVER["SCRIPT_NAME"],"/")+1),0,-4);
 	# perfshije config.php
 	include('includes/config.php');
 	$page = new Page();
@@ -8,7 +10,6 @@
 	/*
 	* Kontrollon nese faqja eshte e lejuar te kete qasje nga Administratori
 	*/
-	
 	if($page->isActivated()){
 		/*
 		* 	Kontrollon nese studenti eshte i kyqur permes funksionit loggedIn();
@@ -18,7 +19,10 @@
 			* 	Krijo objektin studenti me SID te marrur nga $_SESSION['s_id']
 			*/
 			$studenti = new Studenti($_SESSION['s_id']);
-			$page->showPage($studenti,$page);
+			if($lokacioni == "index"){
+				$page->showIndex($studenti,$page);
+			}
+			
 		}
 		else{
 			if(!empty($_POST)){

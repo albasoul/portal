@@ -45,8 +45,8 @@ class Page{
 	/*
 	* Funksioni qe perfshin dokumentin HTML per paraqitjen e faqes
 	*/
-	function showPage($studenti,$page){
-		include('html.pamja.php');
+	function showIndex($studenti,$page){
+		include('index.pamja.php');
 	}
 
 	/*
