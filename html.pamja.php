@@ -110,9 +110,9 @@
 		<div class="row">
 
 			<div class="col-md-3 user-info">
-					<img class="img-circle" src="https://www.permajet.com/themes/default/images/uploads/default.png" />
-					<p class="emri"><?php echo $emri . ' '. $mbiemri;  ?></p>
-					<p>Gjithsej kredi: <em>32</em></p>
+					<img class="img-circle" src="<?php echo $studenti->getFoto(); ?>" />
+					<p class="emri"><?php echo $studenti->getEmri() . ' '. $studenti->getMbiemri();  ?></p>
+					<p>Gjithsej kredi: <em><?php echo $studenti->getKredi(); ?></em></p>
 					<hr class="hidden-xs">
 					<table class="table table-hover text-left">
 					<thead><tr><th>Emri</th><th>Kredi</th></tr></thead>
