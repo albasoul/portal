@@ -20,6 +20,9 @@
 			$page->showPage();
 		}
 		else{
+			if(!empty($_POST)){
+				
+			}
 			/*
 			* 	Nese nuk eshte i kyqur studenti, tregoja faqjen per kyqje
 			*/
