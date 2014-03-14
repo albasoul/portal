@@ -21,6 +21,8 @@
 	*	Kontrollon Email dhe Fjalekalimin
 	*/
 	function verifikojeStudentin($e, $p){
-		
+		global $lidhja;
+		$studentQuery = $lidhja->query("SELECT ID FROM studentet WHERE email='$e' AND password='$p' LIMIT 1");
+		# duhet me shtu kodin per me kqyr a ka rezultat edhe me ja dhon sesionit variablat...
 	}
 ?>
