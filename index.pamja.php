@@ -39,15 +39,7 @@
 	      <?php $page->headerNavbar(); ?>
 	      </ul>
 		  <ul class="nav navbar-nav navbar-right">
-          <?php
-		  		if ($_SESSION['logged_in']==TRUE)
-		{ 
-		  echo ' <li><a href="logout.php"class="glyphicon glyphicon-log-out"> Dilni</a> </li>'; 
-		}
-		else {
-		header("Location: login.pamja.php");
-		}
-		?>
+			<li><a href="logout.php"class="glyphicon glyphicon-log-out"> Dilni</a> </li>
 		</ul>
 	    </div><!-- /.navbar-collapse -->
 	  </div><!-- /.container-fluid -->
