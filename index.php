@@ -8,7 +8,7 @@
 	/*
 	* Kontrollon nese faqja eshte e lejuar te kete qasje nga Administratori
 	*/
-	// ja shtova komentin!!
+	// ta qifsha komentin ?? :p
 	if($page->isActivated()){
 		/*
 		* 	Kontrollon nese studenti eshte i kyqur permes funksionit loggedIn();
