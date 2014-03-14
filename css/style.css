@@ -1,0 +1,65 @@
+.carousel-inner > .item > img,
+.carousel-inner > .item > a > img {
+  height: 300px;
+  margin-left:15%;
+  max-width: 350px;
+}
+.carousel-caption {
+  position: absolute;
+  right: 20%;
+  top:0;
+  bottom: 20px;
+  left: 50%;
+  z-index: 10;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  color: #222;
+  text-align: left;
+  text-shadow: 0 0px 0px rgba(0, 0, 0, .6);
+  font: 110%/1.625 open_sansregular,HelveticaNeue,Helvetica,Arial,sans-serif;
+  
+}
+.carousel {
+}
+.user-info{
+	text-align: center;
+	font: 110%/1.625 open_sansregular,HelveticaNeue,Helvetica,Arial,sans-serif;
+}
+.user-info > img{
+	width:70%;
+	padding:10px;
+}
+.user-info .emri{
+	font-size: 20px;
+	font-weight: bold;
+}
+.carousel-indicators li {
+  background-color: #ff9000 \9;
+  background-color: rgba(0, 0, 0, 0);
+  border: 1px solid #111;
+}
+.carousel-indicators .active {
+  background-color: #333;
+}
+.gazeta-news{
+	font: 120%/1.625 open_sansregular,HelveticaNeue,Helvetica,Arial,sans-serif;
+	color:#3e433e;
+}
+.lendet{
+	font: 120%/1.625 open_sansregular,HelveticaNeue,Helvetica,Arial,sans-serif;
+	color:#3e433e;
+}
+.ligjeratat{
+	font: 120%/1.625 open_sansregular,HelveticaNeue,Helvetica,Arial,sans-serif;
+	color:#3e433e;
+}
+.lajmet{
+	font: 120%/1.625 open_sansregular,HelveticaNeue,Helvetica,Arial,sans-serif;
+	color:#3e433e;
+}
+.jumbotron{
+	padding:10px;
+}
+.jumbotron h1{
+	font-size:30px;
+}
