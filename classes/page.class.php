@@ -74,6 +74,7 @@ class Page{
 			return FALSE;
 		}
 	}
+	# o ARDIT oo :P
 	function footerLinks(){
 		global $lidhja;
 		$footerLinksQuery = $lidhja->query("SELECT * FROM footer WHERE enabled=1");
