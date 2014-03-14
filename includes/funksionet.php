@@ -10,11 +10,17 @@
 	# kontrollon nese dokumenti 'funksionet.php' ka qasje ne menyre direkte
 	# nese ka qasje ne menyre direkte dergoje tek faqja =index.php=
 	#
-$a=substr($_SERVER["SCRIPT_NAME"],strrpos($_SERVER["SCRIPT_NAME"],"/")+1);
- if($a === "funksionet.php"){
-	header('Location: ../index.php');
-	die();
-}
+	$a=substr($_SERVER["SCRIPT_NAME"],strrpos($_SERVER["SCRIPT_NAME"],"/")+1);
+	 if($a === "funksionet.php"){
+		header('Location: ../index.php');
+		die();
+	}
 
-
+	/*
+	*	Verifikimi i studentit per kyqje
+	*	Kontrollon Email dhe Fjalekalimin
+	*/
+	function verifikojeStudentin($e, $p){
+		
+	}
 ?>

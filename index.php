@@ -23,6 +23,14 @@
 			if(!empty($_POST)){
 				$email = $lidhja->real_escape_string($_POST['email']);
 				$pass  = $lidhja->real_escape_string($_POST['password']);
+				if(verifikojeStudentin($email,$pass)){
+					header('Location: index.php');
+					die();
+				}
+				else{
+					header('Location: index.php?g=LogginFailed');
+					die();
+				}
 			}
 			else{
 				/*
