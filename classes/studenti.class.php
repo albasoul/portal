@@ -70,6 +70,18 @@ class Studenti{
 		return $this->email;
 	}
 	/*
+	* 	Kthen drejtimin e studentit, ID e drejtimit jo emrin
+	*/
+	function getDrejtimi(){
+		return $this->drejtimi;
+	}
+	/*
+	* 	Kthen semestrin e studentit
+	*/
+	function getSemestri(){
+		return $this->semestri;
+	}
+	/*
 	* 	Kthen ID e te gjitha lendeve te cilat i ka kaluar studenti
 	*/
 	function getLendetKaluara(){
