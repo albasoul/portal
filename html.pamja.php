@@ -38,6 +38,17 @@
 	      <ul class="nav navbar-nav">
 	      <?php $page->headerNavbar(); ?>
 	      </ul>
+		  <ul class="nav navbar-nav navbar-right">
+          <?php
+		  		if ($_SESSION['ikyqur']==true)
+		{ 
+		  echo '<li><a href="qkyqja.php"class="glyphicon glyphicon-log-out"> Dilni</a> </li>'; 
+		}
+		else {
+		header("Location: login.pamja.php");
+		}
+		?>
+		</ul>
 	    </div><!-- /.navbar-collapse -->
 	  </div><!-- /.container-fluid -->
 	</nav>
