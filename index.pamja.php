@@ -69,7 +69,7 @@
 		    $i=0;
 		    	foreach($lajmetQuery as $l)
 		    	{	
-		    		$lajmi = new Lajmi($l['id']);
+		    		$lajmi = new Lajmi($l['id']); // e thirrim klasen Lajmi, per me kriju 1 objekt te lajmit, edhe i thirrim funksionet, gettitulli,etj..
 		    		# shtohet 1 if per me bo lajmin e par "0", me bo active, me dal i pari nlist..
 		    		if($i == 0 ) {
 		    			echo '<div class="item active">';
