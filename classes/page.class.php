@@ -46,9 +46,9 @@ class Page{
 	* Funksioni qe perfshin dokumentin HTML per paraqitjen e faqes
 	*/
 	function showPage($studenti){
-		$emri = $studenti->getEmri;
-		$mbiemri = $studenti->getMbiemri;
-		$foto = $studenti->getFoto;
+		$emri = $studenti->getEmri();
+		$mbiemri = $studenti->getMbiemri();
+		$foto = $studenti->getFoto();
 		include('html.pamja.php');
 	}
 
