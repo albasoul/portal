@@ -65,7 +65,7 @@
 		  <div class="carousel-inner">
 		    <?php 
 		    global $lidhja;
-		    $lajmetQuery = $lidhja->query("SELECT id FROM lajmet ORDER BY data DESC LIMIT 5");
+		    $lajmetQuery = $lidhja->query("SELECT id FROM lajmet ORDER BY data DESC LIMIT 5"); // i marrim 5 lajmet e fundit, sipas dates
 		    $i=0;
 		    	foreach($lajmetQuery as $l)
 		    	{	
