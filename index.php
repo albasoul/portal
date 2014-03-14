@@ -5,12 +5,24 @@
 	if(empty($_SESSION['s_id'])){
 		$_SESSION['s_id']=0;
 	}
-	$studenti = new Studenti($_SESSION['s_id']);
+	/*
+	* Kontrollon nese faqja eshte e lejuar te kete qasje nga Administratori
+	*/
 	if($page->isActivated()){
-		if($studenti->loggedIn()){
+		/*
+		* 	Kontrollon nese studenti eshte i kyqur permes funksionit loggedIn();
+		*/
+		if(Studenti::loggedIn()){
+			/*
+			* 	Krijo objektin studenti me SID te marrur nga $_SESSION['s_id']
+			*/
+			$studenti = new Studenti($_SESSION['s_id']);
 			$page->showPage();
 		}
 		else{
+			/*
+			* 	Nese nuk eshte i kyqur studenti, tregoja faqjen per kyqje
+			*/
 			$page->showLoggIn();
 		}
 	}
