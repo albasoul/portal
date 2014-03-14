@@ -21,12 +21,15 @@
 		}
 		else{
 			if(!empty($_POST)){
-				
+				$email = $lidhja->real_escape_string($_POST['email']);
+				$pass  = $lidhja->real_escape_string($_POST['password']);
 			}
-			/*
-			* 	Nese nuk eshte i kyqur studenti, tregoja faqjen per kyqje
-			*/
-			$page->showLoggIn();
+			else{
+				/*
+				* 	Nese nuk eshte i kyqur studenti, tregoja faqjen per kyqje
+				*/
+				$page->showLoggIn();
+			}
 		}
 	}
 	else{
