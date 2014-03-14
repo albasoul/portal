@@ -17,5 +17,6 @@
 	* Perfshirja e klasave
 	*/
 	include('classes/page.class.php');
+	include('classes/studenti.class.php');
 
 ?>
