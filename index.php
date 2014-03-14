@@ -1,6 +1,6 @@
 <?php
-
-
+	# perfshije config.php
+	include('includes/config.php');
 ?>
 
 <!DOCTYPE html>
