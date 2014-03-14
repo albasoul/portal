@@ -42,5 +42,28 @@ class Page{
 		return $this->active;
 	}
 
+	/*
+	* Funksioni qe perfshin dokumentin HTML per paraqitjen e faqes
+	*/
+	function showPage($studenti){
+		$emri = $studenti->getEmri;
+		$mbiemri = $studenti->getMbiemri;
+		$foto = $studenti->getFoto;
+		include('html.php');
+	}
+
+	/*
+	* Funksioni qe perfshin dokumentin HTML per paraqitjen e faqes
+	*/
+	function showLoggIn(){
+		include('login.php');
+	}
+
+	/*
+	* Funksioni qe perfshin dokumentin HTML per paraqitjen e faqes
+	*/
+	function hidePage(){
+		include('offline.php');
+	}
 }
 ?>
