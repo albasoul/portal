@@ -64,23 +64,28 @@
 		  <!-- Wrapper for slides -->
 		  <div class="carousel-inner">
 		    <?php 
-		    	for($i=0; $i<5; $i++)
-		    	{
+		    global $lidhja;
+		    $lajmetQuery = $lidhja->query("SELECT id FROM lajmet ORDER BY data DESC LIMIT 5");
+		    $i=0;
+		    	foreach($lajmetQuery as $l)
+		    	{	
+		    		$lajmi = new Lajmi($l['id']);
 		    		# shtohet 1 if per me bo lajmin e par "0", me bo active, me dal i pari nlist..
-		    		if($i ==0 ) {
+		    		if($i == 0 ) {
 		    			echo '<div class="item active">';
 		    		}
 		    		else{
 		    			echo '<div class="item">';
 		    		}
 		    		echo '
-			      <img alt="First slide" src="'.$a.'">
+			      <img alt="" src="'.$lajmi->getFoto().'">
 			      <div class="carousel-caption col-md-4">
-			        <h1>Lajmi 1</h1>
-			        <p>Informacione per lajmin e pare do zgjasin shume dhe jo vetem pak per arsye te ndryshme shkencore.</p>
-			        <p><a href="" class="btn btn-md btn-primary pull-right">Lexo më shumë</a></p>
+			        <h1>'. $lajmi->getTitulli(). '</h1>
+			        <p>'.$lajmi->getBody().'</p>
+			        <p><a href="'.$lajmi->getLink().'" class="btn btn-md btn-primary pull-right">Lexo më shumë</a></p>
 			      </div>
 			    </div>';
+			    $i++;
 		    	}
 		    ?>
 		    </div>
@@ -92,6 +97,7 @@
 		    <span class="glyphicon glyphicon-chevron-right"></span>
 		  </a>
 		</div>
+		<div class="clearfix"></div><br/>
 		<div class="row">
 
 			<div class="col-md-3 user-info">
