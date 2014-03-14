@@ -74,7 +74,7 @@
 		    			echo '<div class="item">';
 		    		}
 		    		echo '
-			      <img alt="First slide" src="">
+			      <img alt="First slide" src="'.$a.'">
 			      <div class="carousel-caption col-md-4">
 			        <h1>Lajmi 1</h1>
 			        <p>Informacione per lajmin e pare do zgjasin shume dhe jo vetem pak per arsye te ndryshme shkencore.</p>
