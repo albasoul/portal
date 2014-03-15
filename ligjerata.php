@@ -9,7 +9,6 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="shortcut icon" href="assets/ico/favicon.jpg">
     <title>Portal 1.0</title>
 
     <!-- Bootstrap -->
@@ -56,7 +55,7 @@
 		</div>
 		<div class="row">
 			<div class="col-md-12">
-				<iframe src="http://docs.google.com/viewer?url=http%3A%2F%2Fresearch.google.com%2Farchive%2Fbigtable-osdi06.pdf&embedded=true" width="100%" height="700px" style="border: none;"></iframe>
+				<iframe src="https://docs.google.com/viewer?url=http://research.google.com/archive/bigtable-osdi06.pdf&amp;embedded=true" width="100%" height="700px" style="border: none;"></iframe>
 			</div>
 		</div>
 		<br/>
