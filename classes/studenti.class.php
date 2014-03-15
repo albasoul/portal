@@ -3,6 +3,7 @@
 *	Klasa per krijimin e studenteve
 *	Te gjitha funksionet per nje student gjinden ketu
 */
+
 class Studenti{
 	private $ID=0;
 	private $SID=0;
@@ -12,7 +13,7 @@ class Studenti{
 	private $drejtimi = 0;
 	private $semestri = 0;
 	private $viti=0;
-	private $lendet_kaluara = array();
+	public $lendet_kaluara;
 	private $kredi=0;
 	private $lokacioni = "panjohur";
 	private $foto = "img/studente/profil/default.png";
@@ -101,10 +102,19 @@ class Studenti{
 		return $this->viti;
 	}
 	/*
-	* 	Kthen ID e te gjitha lendeve te cilat i ka kaluar studenti
+	* 	Kontrollon a e ka kaluar ate lende te cakutar me $l_id
 	*/
-	function getLendetKaluara(){
-		return $this->lendet_kaluara;
+	function getLendaKaluara($l_id){
+		$total = count($this->lendet_kaluara);
+		$a = array();
+		for($i=0; $i<$total; $i++){
+			$vlera = $this->lendet_kaluara[$i];
+			list($lenda, $nota) = explode(":", $vlera);
+			if($l_id == $lenda){
+				return $nota;
+			}
+		}
+		return false;
 	}
 	function getKredi(){
 		return $this->kredi;

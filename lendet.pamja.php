@@ -117,36 +117,37 @@ echo '<tr>
 					</table>
 			</div>
 			<div class="col-md-8 col-md-offset-1 lendet">
-			<hr>
-				<h2>L&euml;nd&euml;t e vitit 2</h2>
-				
-				<table class="table">
-					<thead><tr><th>Emri</th><th>Kredi</th><th>Semestri</th><th>Nota</th><th>Data</th></tr></thead>
-					<tbody>
-						<tr><td>Programimi i aplikacioneve për serverë</td><td>6</td><td>4</td><td></td><td></td></tr>
-						<tr><td>Menaxhimi i kualitetit në TI</td><td>3</td><td>4</td><td></td><td></td></tr>
-						<tr><td>Menaxhimi i projekteve</td><td>6</td><td>4</td><td></td><td></td></tr>
-						<tr><td>Matematikë 2</td><td>6</td><td>4</td><td></td><td></td></tr>
-						<tr><td>Anglisht 4</td><td>3</td><td>4</td><td></td><td></td></tr>
-						<tr><td>Dizajnim softueri</td><td>6</td><td>3</td><td><strong>8</strong></td><td>12-02-2014</td></tr>
-						<tr><td>Serveri Windows</td><td>3</td><td>3</td><td><strong>10</strong></td><td>12-02-2014</td></tr>
-						<tr><td>Teknologjit&euml; e servereve</td><td>6</td><td>3</td><td>/</td><td>12-02-2014</td></tr>
-						<tr><td>Skriptimi</td><td>6</td><td>3</td><td><strong>10</strong></td><td>12-02-2014</td></tr>
-						<tr><td>Aplikimi i bazave te te dhenave</td><td>6</td><td>3</td><td><strong>10</strong></td><td>12-02-2014</td></tr>
-					</tbody>
-				</table>
 				<hr>
-				<h2>L&euml;nd&euml;t e vitit 1</h2>
-				<table class="table">
-					<thead><tr><th>Emri</th><th>Kredi</th><th>Semestri</th><th>Nota</th><th>Data</th></tr></thead>
-					<tbody>
-						<tr><td>Dizajnim softueri</td><td>6</td><td>3</td><td><strong>8</strong></td><td>12-02-2014</td></tr>
-						<tr><td>Serveri Windows</td><td>3</td><td>3</td><td><strong>10</strong></td><td>12-02-2014</td></tr>
-						<tr><td>Teknologjit&euml; e servereve</td><td>6</td><td>3</td><td>/</td><td>12-02-2014</td></tr>
-						<tr><td>Skriptimi</td><td>6</td><td>3</td><td><strong>10</strong></td><td>12-02-2014</td></tr>
-						<tr><td>Aplikimi i bazave te te dhenave</td><td>6</td><td>3</td><td><strong>10</strong></td><td>12-02-2014</td></tr>
-					</tbody>
-				</table>
+				<?php 
+					/*
+					* Lendet per qdo semester
+					*/
+					for ($i=$studenti->getSemestri(); $i > 0 ; $i--) { 
+						$lendet = $lidhja->query("SELECT * FROM lendet WHERE semestri=$i");
+						if($lendet->num_rows){
+							echo '<h2>L&euml;nd&euml;t e semestrit '.$i.'</h2>';
+							echo '
+							<table class="table">
+								<thead><tr><th>Emri</th><th>Kredi</th><th>Semestri</th><th>Nota</th><th>Data</th></tr></thead>
+								<tbody>
+								';
+							foreach($lendet as $l){
+								$lenda = new Lenda($l['id']);
+								if($studenti->getLendaKaluara($l['id'])){
+										$nota = $studenti->getLendaKaluara($l['id']); //Nese ka kaluar merrja noten dhe ruje tek $nota.
+									echo '<tr><td>'.$lenda->getEmri().'</td><td>'.$lenda->getKredi().'</td><td>'.$lenda->getSemestri().'</td><td>'.$nota.'</td><td></td></tr>';
+								}
+								else{
+									echo '<tr><td>'.$lenda->getEmri().'</td><td>'.$lenda->getKredi().'</td><td>'.$lenda->getSemestri().'</td><td></td><td></td></tr>';
+								}
+							}
+							echo '</tbody>
+							</table>';
+						}
+					}
+				?>
+				
+				
 			</div>
 		</div>
 		<!-- FOOTER -->
