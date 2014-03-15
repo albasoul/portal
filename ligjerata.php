@@ -89,9 +89,8 @@ else{
 							  <h4><small>Formati: </small>'.$ligjerata->getExtension().'</h4>
 							  <h4><small>Madh&euml;sia: </small>'.$ligjerata->getMadhesia().'</h4>
 							</div>';
-					echo '	
-								
-							';
+					echo '<iframe src="lexoLigjerat.php?id='.$id.'" width="100%" height="780" style="border: none;">
+					</iframe>';
 				}
 			?>
 			</div>

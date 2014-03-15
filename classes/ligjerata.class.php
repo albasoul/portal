@@ -63,6 +63,13 @@ class Ligjerata{
 	    }
 	    return sprintf($retstring, $size, $sys['prefix'][$i]);
 	}
+	/*
+	* 	Funksion per me paraqit PDF ne ekran
+	*	Perdoret libraria ne includes/pdf FPDF, eshte falas
+	*/
+	function paraqitePDF(){
+		
+	}
 }
 
 
