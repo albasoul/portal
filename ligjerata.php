@@ -29,7 +29,6 @@ else{
 }
 
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -86,7 +85,7 @@ else{
 		  <p>'.$ligjerata->getAlias().' - '. $ligjerata->getEmri() .'</p>
 		</div>';
 				echo '<div class="col-md-12">
-				<iframe src="https://docs.google.com/viewer?url=http://research.google.com/archive/bigtable-osdi06.pdf&amp;embedded=true" width="100%" height="700px" style="border: none;"></iframe>
+				<iframe src="https://docs.google.com/viewer?url='.$ligjerata->getLink().'&amp;embedded=true" width="100%" height="700px" style="border: none;"></iframe>
 			</div>';
 			}
 		?>
