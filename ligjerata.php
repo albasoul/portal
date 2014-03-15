@@ -77,16 +77,20 @@ else{
 		<div class="row">
 		<?php
 			if(!$lejo){
-				echo '<div class="alert alert-danger col-md-4 col-md-offset-4 text-center">&Ccedilasja nuk lejohet. <a href="index.php?faqja=lendet" class="btn btn-link">Kthehu mbrapa.</a></div>';
+				echo '	<div class="alert alert-danger col-md-4 col-md-offset-4 text-center">&Ccedilasja nuk lejohet.
+				 <a href="index.php?faqja=lendet" class="btn btn-link">Kthehu mbrapa.</a>
+				</div>';
 			}
 			else{
-				echo '<div class="jumbotron text-center">
-		  <h1>'.$lenda->getEmri().' - <em>'. $profesori->getEmri() . ' ' . $profesori->getMbiemri().'</em></h1>
-		  <p>'.$ligjerata->getAlias().' - '. $ligjerata->getEmri() .'</p>
-		</div>';
-				echo '<div class="col-md-12">
-				<iframe src="https://docs.google.com/viewer?url='.$ligjerata->getLink().'&amp;embedded=true" width="100%" height="700px" style="border: none;"></iframe>
-			</div>';
+				echo '	<div class="jumbotron text-center">
+						  <h1>'.$lenda->getEmri().' - <em>'. $profesori->getEmri() . ' ' . $profesori->getMbiemri().'</em></h1>
+						  <p>'.$ligjerata->getAlias().' - '. $ligjerata->getEmri() .'</p>
+						  <h4><small>Formati: </small>'.$ligjerata->getExtension().'</h4>
+						  <h4><small>Madh&euml;sia: </small> 32MB</h4>
+						</div>';
+				echo '	<div class="col-md-12">
+							<iframe src="https://docs.google.com/viewer?url='.$ligjerata->getLink().'&amp;embedded=true" width="100%" height="700px" style="border: none;"></iframe>
+						</div>';
 			}
 		?>
 		</div>
