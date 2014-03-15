@@ -12,7 +12,7 @@
 			$lokacioni = "lendet";
 		}
 		elseif($faqja ==="lenda"){
-			if(!empty($_GET['id'])){
+			if(!empty($_GET['id']) && $_GET['id'] >0){
 				$lokacioni = "lenda";
 			}
 			else{
@@ -40,7 +40,6 @@
 			*/
 			$studenti = new Studenti($_SESSION['s_id']);
 			$page->showPamja($studenti,$page,$lokacioni);
-			
 		}
 		else{
 			if(!empty($_POST)){

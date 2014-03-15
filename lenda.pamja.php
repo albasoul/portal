@@ -7,7 +7,7 @@ global $lidhja;
 $l_id = $lidhja->real_escape_string($_GET['id']);
 $drejtimi = $studenti->getDrejtimi();
 $semestri = $studenti->getSemestri();
-$lenda = $lidhja->query("SELECT * FROM lendet WHERE id=$l_id AND semestri<=$semestri AND drejtimi=$drejtimi");
+$lenda = $lidhja->query("SELECT * FROM lendet WHERE id=$l_id AND semestri<=$semestri AND drejtimi=$drejtimi") or die('<p>Kerkesa refuzohet.</p><a href="index.php">Kthehuni mbrapa.</a>');
 if($lenda->num_rows){
 	$lenda = new Lenda($l_id);
 	$lejo = TRUE;
@@ -61,9 +61,14 @@ else{
 	</nav>
 	</div>
     <div class="container">
-    	<div class="jumbotron text-center">
-		  <h1>Programimi i aplikacioneve per servere - <em>Ilir Bytyqi</em></h1>
-		</div>
+    <?php 
+    if($lejo){
+    	$prof = new Profesor($lenda->getProfID());
+    	echo' <div class="jumbotron text-center">
+		  <h1>'. $lenda->getEmri() .'<em> '.$prof->getEmri().' '.$prof->getMbiemri().'</em></h1>
+		</div>';
+    }
+    ?>
 		<div class="row">
 			<div class="col-md-3 user-info">
 					<img class="img-circle" src="<?php echo $studenti->getFoto(); ?>" />

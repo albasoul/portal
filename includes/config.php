@@ -20,5 +20,6 @@
 	include('classes/studenti.class.php');
 	include('classes/lajmi.class.php');
 	include('classes/lenda.class.php');
+	include('classes/profesor.class.php');
 
 ?>
