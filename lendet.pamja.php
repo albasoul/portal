@@ -108,7 +108,7 @@
 						foreach($lendet as $l){
 							$lenda = new Lenda($l['id']);
 echo '<tr>
-							<td><a href="lenda.php?id='.$l['id'].'">'.$lenda->getEmri().'</a></td>
+							<td><a href="index.php?faqja=lenda&id='.$l['id'].'">'.$lenda->getEmri().'</a></td>
 								<td>'.$lenda->getKredi().'</td>
 							</tr>';
 						}?>

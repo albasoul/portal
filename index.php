@@ -1,22 +1,28 @@
 <?php
+	# perfshije config.php
+	include('includes/config.php');
 	# e kqyrim lokacionin, kjo behet duke e marr linkun, dhe e marrim vetem emrin e fajllit psh: http://localhost/index.php. ne e marrim vetem fjalen "index"
 	#test : $lokacioni =substr(substr($_SERVER["SCRIPT_NAME"],strrpos($_SERVER["SCRIPT_NAME"],"/")+1),0,-4);
 	if(!empty($_GET['faqja'])){
-		if($_GET['faqja']==="index"){
+		$faqja = $lidhja->real_escape_string($_GET['faqja']);
+		if($faqja ==="index"){
 			$lokacioni = "index";
 		}
-		elseif($_GET['faqja']==="lendet"){
+		elseif($faqja ==="lendet"){
 			$lokacioni = "lendet";
 		}
-		else{
-			$lokacioni = "index";
+		elseif($faqja ==="lenda"){
+			if(!empty($_GET['id'])){
+				$lokacioni = "lenda";
+			}
+			else{
+				$lokacioni = "lendet";
+			}
 		}
 	}
 	else{
 		$lokacioni = "index";
 	}
-	# perfshije config.php
-	include('includes/config.php');
 	$page = new Page();
 	if(empty($_SESSION['s_id'])){
 		$_SESSION['s_id']=0;

@@ -52,6 +52,9 @@ class Page{
 		elseif($lokacioni ==="lendet"){
 			include('lendet.pamja.php');
 		}
+		elseif($lokacioni ==="lenda"){
+			include('lenda.pamja.php');
+		}
 		else{
 			include('login.pamja.php');
 		}
