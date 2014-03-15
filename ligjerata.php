@@ -8,7 +8,8 @@ if(!empty($_GET['id']) && $_GET['id'] > 0){
 	$ligjerata = new Ligjerata($id); // Krijojm 1 ligjerat permes Klases per ligjerata
 	$lenda = new Lenda($ligjerata->getLID()); // Krijojm Lenden nga klasa lenda.class
 	$studenti = new Studenti($_SESSION['s_id']); // Krijojm Studentin nga klasa studenti.class
-	$profesori = new Profesor($lenda->getProfID());
+	$profesori = new Profesor($lenda->getProfID()); // Krijojm Profesorin nga klasa profesor.class
+	$page = new Page(); // Krijojm objektin $page nga klasa Page.
 	/*
 	* Kontrollojm se a eshte ajo ligjerate e asaj ne lende, ne drejtimin e njejt me studentin ose ne semestrat qe studenti i ka kalu
 	*/
@@ -66,9 +67,7 @@ else{
 	    <!-- Collect the nav links, forms, and other content for toggling -->
 	    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 	      <ul class="nav navbar-nav">
-	        <li class="active"><a href="lendet.php">Lendet</a></li>
-	        <li><a href="gazeta.php">Gazeta</a></li>
-	        <li><a href="lajmet.php">Lajmet</a></li>
+	        <?php $page->headerNavbar(); ?>
 	      </ul>
 	    </div><!-- /.navbar-collapse -->
 	  </div><!-- /.container-fluid -->
@@ -94,12 +93,12 @@ else{
 		</div>
 		<br/>
 		<!-- FOOTER -->
-		<div class="well well-md text-center">
-			<span class="pull-left"><a href="#">Administrata</a>&nbsp;&nbsp;&nbsp;<a href="#">Ndihm&euml;</a></span>
+		<div class="well well-md text-left">
+			<span><?php echo $page->getFooter(); ?></span>
 			<div class="visible-xs"><div class="clearfix"></div></div>
-			<span>Copyright &copy;2014</span>
-			<div class="visible-xs"><div class="clearfix"></div></div>
-			<span class="pull-right"><a href="#">Kontakti</a>&nbsp;&nbsp;&nbsp;<a href="#"><span class="glyphicon glyphicon-log-out"></span></a></span>
+			<span class="pull-right">
+				<?php $page->footerLinks(); ?>
+			</span>
 		</div>
     </div>
 
