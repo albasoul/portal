@@ -9,6 +9,7 @@ $drejtimi = $studenti->getDrejtimi();
 $semestri = $studenti->getSemestri();
 $lenda = $lidhja->query("SELECT * FROM lendet WHERE id=$l_id AND semestri<=$semestri AND drejtimi=$drejtimi");
 if($lenda->num_rows){
+	$lenda = new Lenda($l_id);
 	$lejo = TRUE;
 }
 else{
@@ -48,7 +49,7 @@ else{
 	        <span class="icon-bar"></span>
 	        <span class="icon-bar"></span>
 	      </button>
-	      <a class="navbar-brand" href="index.php">"Ukshin Hoti"</a>
+	      <a class="navbar-brand" href="index.php"><?php echo $page->getTitle(); ?></a>
 	    </div>
 	    <!-- Collect the nav links, forms, and other content for toggling -->
 	    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
