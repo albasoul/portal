@@ -1,5 +1,25 @@
 <?php
-
+	# perfshije config.php
+	include('includes/config.php');
+if(!empty($_GET['id']) && $_GET['id'] > 0){
+	$id = $lidhja->real_escape_string($_GET['id']);
+	$ligjerata = new Ligjerata($id);
+	$lenda = new Lenda($ligjerata->getLID());
+	$studenti = new Studenti($_SESSION['s_id']);
+	if($lenda->getDrejtimi() != $studenti->getDrejtimi()){
+		$lejo = FALSE;
+	}
+	elseif( !($lenda->getSemestri() <= $studenti->getSemestri()) ) {
+		$lejo = FALSE;
+	}
+	else{
+		$lejo = TRUE;
+	}
+}
+else{
+	header('Location: index.php');
+	die();
+}
 
 ?>
 
@@ -54,9 +74,16 @@
 		  <p>Ligjerata 1 - Hyrje ne Aplikim</p>
 		</div>
 		<div class="row">
-			<div class="col-md-12">
+		<?php
+			if($lejo){
+				echo '<p>&Ccedilasja nuk lejohet. <a href="index.php?faqja=lendet" class="btn btn-link">Kthehu mbrapa.</a></p>';
+			}
+			else{
+				echo '<div class="col-md-12">
 				<iframe src="https://docs.google.com/viewer?url=http://research.google.com/archive/bigtable-osdi06.pdf&amp;embedded=true" width="100%" height="700px" style="border: none;"></iframe>
-			</div>
+			</div>';
+			}
+		?>
 		</div>
 		<br/>
 		<!-- FOOTER -->
