@@ -1,6 +1,20 @@
 <?php
 	# e kqyrim lokacionin, kjo behet duke e marr linkun, dhe e marrim vetem emrin e fajllit psh: http://localhost/index.php. ne e marrim vetem fjalen "index"
-	$lokacioni =substr(substr($_SERVER["SCRIPT_NAME"],strrpos($_SERVER["SCRIPT_NAME"],"/")+1),0,-4);
+	#test : $lokacioni =substr(substr($_SERVER["SCRIPT_NAME"],strrpos($_SERVER["SCRIPT_NAME"],"/")+1),0,-4);
+	if(!empty($_GET['faqja'])){
+		if($_GET['faqja']==="index"){
+			$lokacioni = "index";
+		}
+		elseif($_GET['faqja']==="lendet"){
+			$lokacioni = "lendet";
+		}
+		else{
+			$lokacioni = "index";
+		}
+	}
+	else{
+		$lokacioni = "index";
+	}
 	# perfshije config.php
 	include('includes/config.php');
 	$page = new Page();
@@ -19,9 +33,7 @@
 			* 	Krijo objektin studenti me SID te marrur nga $_SESSION['s_id']
 			*/
 			$studenti = new Studenti($_SESSION['s_id']);
-			if($lokacioni == "index"){
-				$page->showPamja($studenti,$page,$lokacioni);
-			}
+			$page->showPamja($studenti,$page,$lokacioni);
 			
 		}
 		else{
