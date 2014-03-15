@@ -126,12 +126,12 @@ echo '<tr>
 			</div>
 		</div>
 		<!-- FOOTER -->
-		<div class="well well-md text-center">
-			<span class="pull-left"><a href="#">Administrata</a>&nbsp;&nbsp;&nbsp;<a href="#">Ndihm&euml;</a></span>
+		<div class="well well-md text-left">
+			<span><?php echo $page->getFooter(); ?></span>
 			<div class="visible-xs"><div class="clearfix"></div></div>
-			<span>Copyright &copy;2014</span>
-			<div class="visible-xs"><div class="clearfix"></div></div>
-			<span class="pull-right"><a href="#">Kontakti</a>&nbsp;&nbsp;&nbsp;<a href="#"><span class="glyphicon glyphicon-log-out"></span></a></span>
+			<span class="pull-right">
+				<?php $page->footerLinks(); ?>
+			</span>
 		</div>
     </div>
 
