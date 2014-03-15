@@ -86,7 +86,7 @@ else{
 						  <h1>'.$lenda->getEmri().' - <em>'. $profesori->getEmri() . ' ' . $profesori->getMbiemri().'</em></h1>
 						  <p>'.$ligjerata->getAlias().' - '. $ligjerata->getEmri() .'</p>
 						  <h4><small>Formati: </small>'.$ligjerata->getExtension().'</h4>
-						  <h4><small>Madh&euml;sia: </small> 32MB</h4>
+						  <h4><small>Madh&euml;sia: </small>'.$ligjerata->getMadhesia().'</h4>
 						</div>';
 				echo '	<div class="col-md-12">
 							<iframe src="https://docs.google.com/viewer?url='.$ligjerata->getLink().'&amp;embedded=true" width="100%" height="700px" style="border: none;"></iframe>

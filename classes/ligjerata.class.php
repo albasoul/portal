@@ -4,6 +4,7 @@ class Ligjerata{
 	private $alias = "panjohur";
 	private $link = "panjohur";
 	private $l_id = 0;
+	private $size = 0;
 
 	function __construct($id){
 		global $lidhja;
@@ -16,6 +17,7 @@ class Ligjerata{
 			$this->alias = $ligjerata['alias'];
 			$this->link = $ligjerata['link'];
 			$this->l_id = $ligjerata['id_l'];
+			$this->size = filesize($ligjerata['link']);
 		}
 	}
 	function getEmri(){
@@ -42,8 +44,9 @@ class Ligjerata{
 		return substr($this->link, strrpos($this->link, ".")+1,strlen($this->link));
 	}
 	//funksion i gatshem per mi kthy Byte ne MB
-	function madhesia($size, $max = null, $system = 'si', $retstring = '%01.2f %s')
-	{
+	function getMadhesia($max = null, $system = 'si', $retstring = '%01.2f %s')
+	{	
+		$size = $this->size;
 	    $systems['si']['prefix'] = array('B', 'KB', 'MB', 'GB', 'TB', 'PB');
 	    $systems['si']['size']   = 1000;
 	    $systems['bi']['prefix'] = array('B', 'KiB', 'MiB', 'GiB', 'TiB', 'PiB');
