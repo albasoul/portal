@@ -36,9 +36,7 @@
 	    <!-- Collect the nav links, forms, and other content for toggling -->
 	    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 	      <ul class="nav navbar-nav">
-	        <li class="active"><a href="lendet.php">Lendet</a></li>
-	        <li><a href="gazeta.php">Gazeta</a></li>
-	        <li><a href="lajmet.php">Lajmet</a></li>
+	        <?php $page->headerNavbar(); ?>
 	      </ul>
 	    </div><!-- /.navbar-collapse -->
 	  </div><!-- /.container-fluid -->
@@ -98,33 +96,23 @@
 		<div class="clearfix"></div><br/>
 		<div class="row">
 			<div class="col-md-3 user-info">
-					<img class="img-circle" src="https://www.permajet.com/themes/default/images/uploads/default.png" />
-					<p class="emri">Blendi Gashi</p>
-					<p>Gjithsej kredi: <em>32</em></p>
-					<p>Lëndët në këtë semestër:</p>
+					<img class="img-circle" src="<?php echo $studenti->getFoto(); ?>" />
+					<p class="emri"><?php echo $studenti->getEmri() . ' '. $studenti->getMbiemri();  ?></p>
+					<p>Gjithsej kredi: <em><?php echo $studenti->getKredi(); ?></em></p>
+					<hr class="hidden-xs">
 					<table class="table table-hover text-left">
 					<thead><tr><th>Emri</th><th>Kredi</th></tr></thead>
-					<tbody>
-						<tr>
-							<td><a href="lenda.php"><strong>Programimi i aplikacioneve për serverë</strong></a></td>
-							<td>6</td>
-						</tr>
-						<tr>
-							<td><a href="lenda.php">Menaxhimi i kualitetit në TI</a></td>
-							<td>3</td>
-						</tr>
-						<tr>
-							<td><a href="lenda.php"><strong>Menaxhimi i projekteve</strong></a></td>
-							<td>6</td>
-						</tr>
-						<tr>
-							<td><a href="lenda.php"><strong>Matematikë 2</strong></a></td>
-							<td>6</td>
-						</tr>
-						<tr>
-							<td><a href="lenda.php">Anglisht 4</a></td>
-							<td>3</td>
-						</tr>
+					<tbody><?php 
+						# lendet vetem te atij semestri qe eshte edhe studenti..
+						$lendet = getLendetMeSemester($studenti->getSemestri());
+						foreach($lendet as $l){
+							$lenda = new Lenda($l['id']);
+echo '<tr>
+							<td><a href="lenda.php?id='.$l['id'].'">'.$lenda->getEmri().'</a></td>
+								<td>'.$lenda->getKredi().'</td>
+							</tr>';
+						}?>
+
 					</tbody>
 					</table>
 			</div>

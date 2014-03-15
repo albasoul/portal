@@ -98,7 +98,6 @@
 		</div>
 		<div class="clearfix"></div><br/>
 		<div class="row">
-
 			<div class="col-md-3 user-info">
 					<img class="img-circle" src="<?php echo $studenti->getFoto(); ?>" />
 					<p class="emri"><?php echo $studenti->getEmri() . ' '. $studenti->getMbiemri();  ?></p>
