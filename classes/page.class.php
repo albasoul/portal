@@ -45,8 +45,16 @@ class Page{
 	/*
 	* Funksioni qe perfshin dokumentin HTML per paraqitjen e faqes
 	*/
-	function showIndex($studenti,$page){
-		include('index.pamja.php');
+	function showPamja($studenti,$page,$lokacioni){
+		if($lokacioni ==="index"){
+			include('index.pamja.php');
+		}
+		elseif($lokacioni ==="lendet"){
+			include('lendet.pamja.php');
+		}
+		else{
+			include('login.pamja.php');
+		}
 	}
 
 	/*

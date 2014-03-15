@@ -11,6 +11,7 @@ class Studenti{
 	private $email = "email@email.com";
 	private $drejtimi = 0;
 	private $semestri = 0;
+	private $viti=0;
 	private $lendet_kaluara = array();
 	private $kredi=0;
 	private $lokacioni = "panjohur";
@@ -80,6 +81,24 @@ class Studenti{
 	*/
 	function getSemestri(){
 		return $this->semestri;
+	}
+	/*
+	* 	Funksion i vogel qe kallxon ncilin vit osht studenti
+	*/
+	function getViti(){
+		if($this->semestri ==1 OR $this->semestri==2){
+			$this->viti = 1;
+		}
+		elseif($this->semestri ==3 OR $this->semestri==4){
+			$this->viti=2;
+		}
+		elseif($this->semestri==5 OR $this->semestri==6){
+			$this->viti=3;
+		}
+		else{
+			$this->viti=4;
+		}
+		return $this->viti;
 	}
 	/*
 	* 	Kthen ID e te gjitha lendeve te cilat i ka kaluar studenti

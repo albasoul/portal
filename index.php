@@ -20,7 +20,7 @@
 			*/
 			$studenti = new Studenti($_SESSION['s_id']);
 			if($lokacioni == "index"){
-				$page->showIndex($studenti,$page);
+				$page->showPamja($studenti,$page,$lokacioni);
 			}
 			
 		}
