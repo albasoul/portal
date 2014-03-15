@@ -8,7 +8,7 @@ if(!empty($_GET['id']) && $_GET['id'] > 0){
 	$ligjerata = new Ligjerata($id); // Krijojm 1 ligjerat permes Klases per ligjerata
 	$lenda = new Lenda($ligjerata->getLID()); // Krijojm Lenden nga klasa lenda.class
 	$studenti = new Studenti($_SESSION['s_id']); // Krijojm Studentin nga klasa studenti.class
-
+	$profesori = new Profesor($lenda->getProfID());
 	/*
 	* Kontrollojm se a eshte ajo ligjerate e asaj ne lende, ne drejtimin e njejt me studentin ose ne semestrat qe studenti i ka kalu
 	*/
@@ -75,16 +75,17 @@ else{
 	</nav>
 	</div>
     <div class="container">
-    	<div class="jumbotron text-center">
-		  <h1>Programimi i aplikacioneve per servere - <em>Ilir Bytyqi</em></h1>
-		  <p>Ligjerata 1 - Hyrje ne Aplikim</p>
-		</div>
+    	
 		<div class="row">
 		<?php
 			if(!$lejo){
 				echo '<div class="alert alert-danger col-md-4 col-md-offset-4 text-center">&Ccedilasja nuk lejohet. <a href="index.php?faqja=lendet" class="btn btn-link">Kthehu mbrapa.</a></div>';
 			}
 			else{
+				echo '<div class="jumbotron text-center">
+		  <h1>'.$lenda->getEmri().' - <em>'. $profesori->getEmri() . ' ' . $profesori->getMbiemri().'</em></h1>
+		  <p>'.$ligjerata->getAlias().' - '. $ligjerata->getEmri() .'</p>
+		</div>';
 				echo '<div class="col-md-12">
 				<iframe src="https://docs.google.com/viewer?url=http://research.google.com/archive/bigtable-osdi06.pdf&amp;embedded=true" width="100%" height="700px" style="border: none;"></iframe>
 			</div>';
