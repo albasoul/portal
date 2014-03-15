@@ -1,8 +1,8 @@
 <?php
 class Lenda{
 	private $emri = "panjohur";
-	private $drejtimi = "panjohur";
-	private $semestri = "panjohur";
+	private $drejtimi = 0;
+	private $semestri = 0;
 	private $kredi = 0;
 	private $p_id = 0;
 	

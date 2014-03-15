@@ -1,19 +1,25 @@
 <?php
 	# perfshije config.php
 	include('includes/config.php');
+
+	//marrim ID e ligjerates
 if(!empty($_GET['id']) && $_GET['id'] > 0){
 	$id = $lidhja->real_escape_string($_GET['id']);
-	$ligjerata = new Ligjerata($id);
-	$lenda = new Lenda($ligjerata->getLID());
-	$studenti = new Studenti($_SESSION['s_id']);
-	if($lenda->getDrejtimi() != $studenti->getDrejtimi()){
+	$ligjerata = new Ligjerata($id); // Krijojm 1 ligjerat permes Klases per ligjerata
+	$lenda = new Lenda($ligjerata->getLID()); // Krijojm Lenden nga klasa lenda.class
+	$studenti = new Studenti($_SESSION['s_id']); // Krijojm Studentin nga klasa studenti.class
+
+	/*
+	* Kontrollojm se a eshte ajo ligjerate e asaj ne lende, ne drejtimin e njejt me studentin ose ne semestrat qe studenti i ka kalu
+	*/
+	if($lenda->getDrejtimi() != $studenti->getDrejtimi()){ // kontrollojm lenden se a eshte ne drejtimin e njejt me studentin 
 		$lejo = FALSE;
 	}
-	elseif( !($lenda->getSemestri() <= $studenti->getSemestri()) ) {
+	elseif( !($lenda->getSemestri() <= $studenti->getSemestri()) ) { // kontrollojm lenden se a eshte ne semestrin e njejt, ose me te vogel te studentit
 		$lejo = FALSE;
 	}
 	else{
-		$lejo = TRUE;
+		$lejo = TRUE; // nese lenda
 	}
 }
 else{
@@ -75,8 +81,8 @@ else{
 		</div>
 		<div class="row">
 		<?php
-			if($lejo){
-				echo '<p>&Ccedilasja nuk lejohet. <a href="index.php?faqja=lendet" class="btn btn-link">Kthehu mbrapa.</a></p>';
+			if(!$lejo){
+				echo '<div class="alert alert-danger col-md-4 col-md-offset-4 text-center">&Ccedilasja nuk lejohet. <a href="index.php?faqja=lendet" class="btn btn-link">Kthehu mbrapa.</a></div>';
 			}
 			else{
 				echo '<div class="col-md-12">

@@ -21,5 +21,6 @@
 	include('classes/lajmi.class.php');
 	include('classes/lenda.class.php');
 	include('classes/profesor.class.php');
+	include('classes/ligjerata.class.php');
 
 ?>
