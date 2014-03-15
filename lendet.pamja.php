@@ -122,29 +122,39 @@ echo '<tr>
 					/*
 					* Lendet per qdo semester
 					*/
-					for ($i=$studenti->getSemestri(); $i > 0 ; $i--) { 
+					for ($i=$studenti->getSemestri(); $i > 0 ; $i--) {  // Ja nisim prej semestrit ma t'madh, dmth $i = $semestri i studentit e tani e zvoglojm $i
 						$lendet = $lidhja->query("SELECT * FROM lendet WHERE semestri=$i");
-						if($lendet->num_rows){
-							echo '<h2>L&euml;nd&euml;t e semestrit '.$i.'</h2>';
+						// Nese ka lende ne ate semester paraqitet forma me poshte
+						// mujm me bo edhe: $lendet->num_rows > 0
+						// e kom bo vetem: $lendet->num_rows, se kjo kthen numer pozitive nese ka rezultate, e qdo numer pozitiv osht True
+						// nese kthen numer negativ, dmth 0, at'her False..
+						if($lendet->num_rows){ 
+							echo '<h2>L&euml;nd&euml;t e semestrit '.$i.'</h2>'; // Lendet e semestrit 4, Lendet e semestrit 3, etj.. 
+							//
+							//	per qdo Semester krijohet nga 1 tabel e re <table>.....
+							//
 							echo '
 							<table class="table">
 								<thead><tr><th>Emri</th><th>Kredi</th><th>Semestri</th><th>Nota</th><th>Data</th></tr></thead>
 								<tbody>
 								';
-							foreach($lendet as $l){
-								$lenda = new Lenda($l['id']);
-								if($studenti->getLendaKaluara($l['id'])){
-										$nota = $studenti->getLendaKaluara($l['id']); //Nese ka kaluar merrja noten dhe ruje tek $nota.
-									echo '<tr><td>'.$lenda->getEmri().'</td><td>'.$lenda->getKredi().'</td><td>'.$lenda->getSemestri().'</td><td>'.$nota.'</td><td></td></tr>';
-								}
-								else{
-									echo '<tr><td>'.$lenda->getEmri().'</td><td>'.$lenda->getKredi().'</td><td>'.$lenda->getSemestri().'</td><td></td><td></td></tr>';
-								}
-							}
+								//
+								//	e shtijm ket Foreach mbrenda <table> </table>.. mos mu perserit tabela, vetem rreshtat mbrenda, dmth <tr></tr>
+								//
+									foreach($lendet as $l){ // Per secilen lende e bojm kodin ma posht
+										$lenda = new Lenda($l['id']);
+										if($nota = $studenti->getLendaKaluara($l['id'])){ //Nese ka kaluar merrja noten dhe ruje tek $nota.
+											echo '<tr><td>'.$lenda->getEmri().'</td><td>'.$lenda->getKredi().'</td><td>'.$lenda->getSemestri().'</td><td>'.$nota['nota'].'</td><td>'.$nota['data'].'</td></tr>';
+										}
+										else{
+											echo '<tr><td>'.$lenda->getEmri().'</td><td>'.$lenda->getKredi().'</td><td>'.$lenda->getSemestri().'</td><td></td><td></td></tr>';
+										}
+									}
+
 							echo '</tbody>
 							</table>';
-						}
-					}
+						} // perfundon IF
+					} // perfundon FOR loop per semestra
 				?>
 				
 				

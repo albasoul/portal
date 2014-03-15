@@ -13,7 +13,6 @@ class Studenti{
 	private $drejtimi = 0;
 	private $semestri = 0;
 	private $viti=0;
-	public $lendet_kaluara;
 	private $kredi=0;
 	private $lokacioni = "panjohur";
 	private $foto = "img/studente/profil/default.png";
@@ -24,7 +23,7 @@ class Studenti{
 	*/
 	function __construct($sid){
 		global $lidhja;
-		$studentQuery = $lidhja->query("SELECT ID,SID,emri,mbiemri,email,drejtimi,semestri,lendet_kaluara,kredi,lokacioni,foto FROM studentet WHERE SID=$sid LIMIT 1");
+		$studentQuery = $lidhja->query("SELECT ID,SID,emri,mbiemri,email,drejtimi,semestri,kredi,lokacioni,foto FROM studentet WHERE SID=$sid LIMIT 1");
 		if($studentQuery->num_rows == 1){
 			$student = $studentQuery->fetch_assoc(); // marrja e informacioneve dhe ruajtja ne $student
 
@@ -35,7 +34,6 @@ class Studenti{
 			$this->email = $student['email'];
 			$this->drejtimi = $student['drejtimi'];
 			$this->semestri = $student['semestri'];
-			$this->lendet_kaluara = explode(",", $student['lendet_kaluara']); // ndarja e ID te lendeve te kaluara ne nje Array 
 			$this->kredi = $student['kredi'];
 			$this->lokacioni = $student['lokacioni'];
 			$this->foto = $student['foto'];
@@ -105,16 +103,18 @@ class Studenti{
 	* 	Kontrollon a e ka kaluar ate lende te cakutar me $l_id
 	*/
 	function getLendaKaluara($l_id){
-		$total = count($this->lendet_kaluara);
-		$a = array();
-		for($i=0; $i<$total; $i++){
-			$vlera = $this->lendet_kaluara[$i];
-			list($lenda, $nota) = explode(":", $vlera);
-			if($l_id == $lenda){
-				return $nota;
-			}
+		global $lidhja;
+		$sid= $this->SID;
+		$notaQuery = $lidhja->query("SELECT * FROM notat WHERE sid=$sid AND lid=$l_id");
+		// e kontrollon ne tabelen Nota a ekziston ai student me ate lende,
+		// nese po, e kthen variablen $nota, qe permban note,daten,sid,id e lendes dmth (krejt).
+		if($notaQuery->num_rows){
+			$nota = $notaQuery->fetch_assoc();
+			return $nota;
 		}
-		return false;
+		else{
+			return FALSE;
+		}
 	}
 	function getKredi(){
 		return $this->kredi;
