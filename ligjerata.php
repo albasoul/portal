@@ -62,7 +62,7 @@ else{
 	        <span class="icon-bar"></span>
 	        <span class="icon-bar"></span>
 	      </button>
-	      <a class="navbar-brand" href="index.php">"Ukshin Hoti"</a>
+	      <a class="navbar-brand" href="index.php"><?php echo $page->getTitle(); ?></a>
 	    </div>
 	    <!-- Collect the nav links, forms, and other content for toggling -->
 	    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
