@@ -107,27 +107,17 @@
 					<hr class="hidden-xs">
 					<table class="table table-hover text-left">
 					<thead><tr><th>Emri</th><th>Kredi</th></tr></thead>
-					<tbody>
-						<tr>
-							<td><a href="#"><strong>Programimi i aplikacioneve për serverë</strong></a></td>
-							<td>6</td>
-						</tr>
-						<tr>
-							<td><a href="#">Menaxhimi i kualitetit në TI</a></td>
-							<td>3</td>
-						</tr>
-						<tr>
-							<td><a href="#"><strong>Menaxhimi i projekteve</strong></a></td>
-							<td>6</td>
-						</tr>
-						<tr>
-							<td><a href="#"><strong>Matematikë 2</strong></a></td>
-							<td>6</td>
-						</tr>
-						<tr>
-							<td><a href="#">Anglisht 4</a></td>
-							<td>3</td>
-						</tr>
+					<tbody><?php 
+						# lendet vetem te atij semestri qe eshte edhe studenti..
+						$lendet = getLendetMeSemester($studenti->getSemestri());
+						foreach($lendet as $l){
+							$lenda = new Lenda($l['id']);
+echo '<tr>
+							<td><a href="lenda.php?id='.$l['id'].'">'.$lenda->getEmri().'</a></td>
+								<td>'.$lenda->getKredi().'</td>
+							</tr>';
+						}?>
+
 					</tbody>
 					</table>
 			</div>

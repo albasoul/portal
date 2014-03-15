@@ -19,5 +19,6 @@
 	include('classes/page.class.php');
 	include('classes/studenti.class.php');
 	include('classes/lajmi.class.php');
+	include('classes/lenda.class.php');
 
 ?>

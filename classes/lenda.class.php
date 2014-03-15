@@ -18,8 +18,20 @@ class Lenda{
 			$this->p_id = $lenda['p_id'];
 		}
 	}
-
+	function getEmri(){
+		return $this->emri;
+	}
+	function getDrejtimi(){
+		return $this->drejtimi;
+	}
+	function getSemestri(){
+		return $this->semestri;
+	}
+	function getKredi(){
+		return $this->kredi;
+	}
+	function getProfID(){
+		return $this->p_id;
+	}
 }
-
-
 ?>

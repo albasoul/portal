@@ -31,4 +31,12 @@
 			return TRUE;
 		}
 	}
+	/*
+	* Funksioni qe kthen te gjitha lendet (si array) me semestrin e caktuar, kthen vetem ID e lendeve
+	*/
+	function getLendetMeSemester($semestri){
+		global $lidhja;
+		$lendetQuery = $lidhja->query("SELECT id FROM lendet WHERE semestri=$semestri");
+		return $lendetQuery;
+	}
 ?>
