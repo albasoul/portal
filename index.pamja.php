@@ -196,7 +196,6 @@ echo '<tr>
 		</div>
 		<!-- FOOTER -->
 		<div class="well well-md text-left">
-			
 			<span><?php echo $page->getFooter(); ?></span>
 			<div class="visible-xs"><div class="clearfix"></div></div>
 			<span class="pull-right">
