@@ -465,7 +465,7 @@ class FPDF_TPL extends FPDF {
         //Arial italic 8
         $this->SetFont('Arial','I',8);
         //Page number
-        $this->Cell(0,10,'Ky dokument mbrohet nga Universiteti i Prizrenit - "Ukshin Hoti".',0,1,'C');
-        $this->Cell(0,0,'Ndalohet kopjimi.',0,0,'C');
+        $this->Cell(0,20,'Ky dokument mbrohet nga Universiteti i Prizrenit - "Ukshin Hoti".',0,1,'C');
+        $this->Cell(0,-13,'Ndalohet kopjimi.',0,0,'C');
     }
 }
