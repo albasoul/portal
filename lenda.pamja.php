@@ -102,7 +102,7 @@ echo '<tr>
 							$ligjerata = new Ligjerata($l['id']);
 							echo '
 								<a href="ligjerata.php?id='.$ligjerata->getID().'" class="list-group-item">
-								    <h4 class="list-group-item-heading">L1 - Hyrje ne aplikime</h4>
+								    <h4 class="list-group-item-heading">'.$ligjerata->getAlias().' - '.$ligjerata->getEmri().'</h4>
 									<p class="list-group-item-text text-right"><em class="text-danger">'.$ligjerata->getExtension().'</em> <small class="text-info">'.$ligjerata->getMadhesia().'</small></p>
 								</a>';
 						}
