@@ -20,6 +20,9 @@ class Lenda{
 			$this->p_id = $lenda['p_id'];
 		}
 	}
+	function getID(){
+		return $this->id;
+	}
 	function getEmri(){
 		return $this->emri;
 	}

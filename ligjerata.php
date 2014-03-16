@@ -82,7 +82,13 @@ else{
 					</div>';
 				}
 				else{
-					echo '	<div class="jumbotron text-center">
+					echo '	
+					<ol class="breadcrumb">
+					  <li><a href="index.php?faqja=lendet">Lendet</a></li>
+					  <li><a href="index.php?faqja=lenda&id='.$lenda->getID().'">'.$lenda->getEmri().'</a></li>
+					  <li class="active">'.$ligjerata->getEmri().'</li>
+					</ol>
+					<div class="jumbotron text-center">
 							  <h1>'.$lenda->getEmri().' - <em>'. $profesori->getEmri() . ' ' . $profesori->getMbiemri().'</em></h1>
 							  <p>'.$ligjerata->getAlias().' - '. $ligjerata->getEmri() .'</p>
 							  <h4><small>Formati: </small>'.$ligjerata->getExtension().'</h4>
