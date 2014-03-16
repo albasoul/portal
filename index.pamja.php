@@ -5,8 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="shortcut icon" href="assets/ico/favicon.jpg">
-    <title>Portal 1.0</title>
-
+    <title><?php echo $page->getTitle(); ?></title>
     <!-- Bootstrap -->
     <link href="css/bootstrap.css" rel="stylesheet">
     <!-- Stili i veqant -->
@@ -76,11 +75,15 @@
 		    		else{
 		    			echo '<div class="item">';
 		    		}
-		    		echo '
-			      <img alt="" src="'.$lajmi->getFoto().'">
-			      <div class="carousel-caption col-md-4">
+		    		if($lajmi->getFoto()){
+		    			echo '<img alt="" src="'.$lajmi->getFoto().'">';
+		    		}
+		    		else{
+		    			echo '<img alt="" src="http://www.transportenvironment.org/sites/te/files/styles/large/public/defaults/news_default.png">';
+		    		}
+			  echo '<div class="carousel-caption col-md-4">
 			        <h1>'. $lajmi->getTitulli(). '</h1>
-			        <p>'.$lajmi->getBody().'</p>
+			        <p>'.$lajmi->getPershkrimi().'</p>
 			        <p><a href="'.$lajmi->getLink().'" class="btn btn-md btn-primary pull-right">Lexo më shumë</a></p>
 			      </div>
 			    </div>';
