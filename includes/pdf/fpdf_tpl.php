@@ -457,4 +457,15 @@ class FPDF_TPL extends FPDF {
             parent::_out($s);
         }
     }
+    //Page footer // TESTIM ....
+    function Footer()
+    {
+        //Position at 1.5 cm from bottom
+        $this->SetY(-15);
+        //Arial italic 8
+        $this->SetFont('Arial','I',8);
+        //Page number
+        $this->Cell(0,10,'Ky dokument mbrohet nga Universiteti i Prizrenit - "Ukshin Hoti".',0,1,'C');
+        $this->Cell(0,0,'Ndalohet kopjimi.',0,0,'C');
+    }
 }
