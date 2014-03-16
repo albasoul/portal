@@ -1,8 +1,22 @@
 <?php
-
-
+	# perfshije config.php
+	include('includes/config.php');
+if(!empty($_GET['faqja'])){
+	$faqja = $lidhja->real_escape_string($_GET['faqja'])-1;
+}
+else{
+	$faqja = 0;
+}
+$perFaqe = 10; // Rezultatet per faqe , duhet me bo naj funksion qe me ndryshu kto prej Administratorit
+$momentale = $faqja * 10;
+$lajmetQuery = $lidhja->query("SELECT id FROM lajmet ORDER BY data DESC LIMIT $momentale,$perFaqe") or die("Kontrolloni databasen per lajmet!");
+if($lajmetQuery->num_rows){
+	$kaLajme = TRUE;
+}
+else{
+	$kaLajme = FALSE;
+}
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -52,6 +66,28 @@
     <div class="container">
 		<div class="row">
 			<div class="col-md-8 col-md-offset-1 lajmet">
+			<?php
+				foreach($lajmetQuery as $lajmet){
+					$lajmi = new Lajmi($lajmet['id']);
+					echo '<div class="panel panel-default">
+							<div class="panel-heading">
+								<h3 class="panel-title">'.$lajmi->getTitulli().'<span class="pull-right"><small>'.$lajmi->getData().'</small></span></h3>
+							</div>';
+					echo 	'<div class="panel-body">';
+						if($lajmi->getFoto()){
+							echo '<div class="col-md-4"><img src="'.$lajmi->getFoto().'" class="img-responsive"/></div>';
+							echo '<div class="col-md-8"><p>'.$lajmi->getPershkrimi().'</p></div>';
+						}
+						else{
+							echo '<div class="col-md-12"><p>'.$lajmi->getPershkrimi().'</p></div>';
+						}
+					echo '	</div>';
+					if($lajmi->getBody()){
+								echo '<div class="panel-footer text-center"><a href="#" >Lexo m&euml; shum&euml;</a></div>';
+					}
+					echo'  </div>';
+				}
+			?>
 				<div class="panel panel-default">
 				  <div class="panel-heading">
 				    <h3 class="panel-title">Titulli i lajmit <span class="pull-right">14-03-2014</span></h3>
@@ -64,7 +100,7 @@
 				  		<p>Informacione per lajmin e pare .. Lorem ipsum esta dolor amigo camooigo!<br/> Estadios apureto wtf i'm talking about?!</p>
 				  	</div>
 				  </div>
-				  <div class="panel-footer text-center"><a href="#" >Lexo m&euml; shum&euml;</a></div>
+				  
 				</div>
 				<div class="panel panel-default">
 				  <div class="panel-heading">
