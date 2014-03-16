@@ -70,20 +70,22 @@ class Ligjerata{
 	}
 	/*
 	* Ky funksion e merr ID dhe e kontrollon a ekziston ajo ligjerat
-	* Nese ekziston ligjerata, e merr vetem emrin e ligjerates dhe e kthen
+	* Nese ekziston ligjerata, e krijon variablen $info si Array
+	* Ne $infp[0]  ruan ID e ligjerates
+	* Ne $info[1]  ruan emrin e ligjerates
+	* Pastaj e kthen kete array, dhe i perdorim keto te dhena
 	*/
 	function kaLigjerat($id,$v){
 		global $lidhja;
-		if($v === "p"){
+		if($v === "p"){ // Nese kerkohet 1 ligjerat e kaluar
 			$ligjerat = $lidhja->query("SELECT id,emri FROM ligjeratat WHERE id<$id ORDER BY id DESC LIMIT 1");
 		}
-		elseif($v === "l"){
+		elseif($v === "l"){ // Nese kerkohet ligjerata e ardhshme
 			$ligjerat = $lidhja->query("SELECT id,emri FROM ligjeratat WHERE id>$id LIMIT 1");
 		}
 		else{
 			return FALSE;
 		}
-		
 		if($ligjerat->num_rows){
 			$l = $ligjerat->fetch_assoc();
 			$info = array();
