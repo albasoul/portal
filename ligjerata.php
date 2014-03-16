@@ -96,6 +96,20 @@ else{
 							</div>';
 					echo '<iframe src="lexoLigjerat.php?id='.$id.'" width="100%" height="780" style="border: none;">
 					</iframe>';
+					echo '<ul class="pager">';
+					if($ligjerata->kaLigjerat()){
+						echo '<li class="previous"><a href="#">&larr; Older</a></li>';
+					}
+					else{
+						echo '<li class="previous disabled"><a>&larr; Older</a></li>';
+					}
+					if($ligjerata->kaLigjerat()){
+						echo '<li class="next"><a href="#">Newer &rarr;</a></li>';
+					}
+					else{
+						echo '<li class="next disabled"><a>Newer &rarr;</a></li>';
+					}
+					echo '</ul>';
 				}
 			?>
 			</div>

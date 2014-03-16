@@ -68,6 +68,9 @@ class Ligjerata{
 	    }
 	    return sprintf($retstring, $size, $sys['prefix'][$i]);
 	}
+	function kaLigjerat(){
+		return FALSE;
+	}
 }
 
 
