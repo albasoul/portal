@@ -88,30 +88,6 @@ else{
 					echo'  </div>';
 				}
 			?>
-				<div class="panel panel-default">
-				  <div class="panel-heading">
-				    <h3 class="panel-title">Titulli i lajmit <span class="pull-right">14-03-2014</span></h3>
-				  </div>
-				  <div class="panel-body">
-				  	<div class="col-md-4">
-				  		<img src="https://www.permajet.com/themes/default/images/uploads/default.png" class="img-responsive"/>
-				  	</div>
-				  	<div class="col-md-8">
-				  		<p>Informacione per lajmin e pare .. Lorem ipsum esta dolor amigo camooigo!<br/> Estadios apureto wtf i'm talking about?!</p>
-				  	</div>
-				  </div>
-				  
-				</div>
-				<div class="panel panel-default">
-				  <div class="panel-heading">
-				    <h3 class="panel-title">Titulli i lajmit <span class="pull-right">14-03-2014</span></h3>
-				  </div>
-				  <div class="panel-body">
-				  	<div class="col-md-12">
-				  		<p>Informacione per lajmin e pare .. Lorem ipsum esta dolor amigo camooigo!<br/> Estadios apureto wtf i'm talking about?!</p>
-				  	</div>
-				  </div>
-				</div>
 			</div>
 			<div class="col-md-2">
 				<div class="panel panel-default">
