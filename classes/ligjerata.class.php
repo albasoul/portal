@@ -1,5 +1,6 @@
 <?php
 class Ligjerata{
+	private $id = 0;
 	private $emri = "panjohur";
 	private $alias = "panjohur";
 	private $link = "panjohur";
@@ -9,16 +10,20 @@ class Ligjerata{
 	function __construct($id){
 		global $lidhja;
 		$id = $lidhja->real_escape_string($id);
-		$ligjerataQuery = $lidhja->query("SELECT emri,alias,link,id_l FROM ligjeratat WHERE id=$id");
+		$ligjerataQuery = $lidhja->query("SELECT id,emri,alias,link,id_l FROM ligjeratat WHERE id=$id");
 		if($ligjerataQuery->num_rows){
 			$ligjerata = $ligjerataQuery->fetch_assoc();
 
+			$this->id = $ligjerata['id'];
 			$this->emri = $ligjerata['emri'];
 			$this->alias = $ligjerata['alias'];
 			$this->link = $ligjerata['link'];
 			$this->l_id = $ligjerata['id_l'];
 			$this->size = filesize($ligjerata['link']);
 		}
+	}
+	function getID(){
+		return $this->id;
 	}
 	function getEmri(){
 		return $this->emri;

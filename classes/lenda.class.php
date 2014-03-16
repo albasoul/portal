@@ -1,5 +1,6 @@
 <?php
 class Lenda{
+	private $id=0;
 	private $emri = "panjohur";
 	private $drejtimi = 0;
 	private $semestri = 0;
@@ -8,9 +9,10 @@ class Lenda{
 	
 	function __construct($id){
 		global $lidhja;
-		$lendaQuery = $lidhja->query("SELECT emri,drejtimi,semestri,kredi,p_id FROM lendet WHERE id=$id");
+		$lendaQuery = $lidhja->query("SELECT id,emri,drejtimi,semestri,kredi,p_id FROM lendet WHERE id=$id");
 		if($lendaQuery->num_rows > 0){
 			$lenda = $lendaQuery->fetch_assoc();
+			$this->id = $lenda['id'];
 			$this->emri = $lenda['emri'];
 			$this->drejtimi = $lenda['drejtimi'];
 			$this->semestri = $lenda['semestri'];
@@ -32,6 +34,17 @@ class Lenda{
 	}
 	function getProfID(){
 		return $this->p_id;
+	}
+	function getLigjeratat(){
+		global $lidhja;
+		$id = $this->id;
+		$ligjeratat = $lidhja->query("SELECT * FROM ligjeratat WHERE id_l=$id");
+		if($ligjeratat->num_rows){
+			return $ligjeratat;
+		}
+		else{
+			return FALSE;
+		}
 	}
 }
 ?>

@@ -1,6 +1,5 @@
 <?php
 global $lidhja;
-
 /*
 * Duhet me kontrollu qe studenti te mos kyqet te naj land tjeter perveq semestrave te tij..........
 */
@@ -65,7 +64,7 @@ else{
     if($lejo){
     	$prof = new Profesor($lenda->getProfID());
     	echo' <div class="jumbotron text-center">
-		  <h1>'. $lenda->getEmri() .'<em> '.$prof->getEmri().' '.$prof->getMbiemri().'</em></h1>
+		  <h1>'. $lenda->getEmri() .' - <em> '.$prof->getEmri().' '.$prof->getMbiemri().'</em></h1>
 		</div>';
     }
     ?>
@@ -79,12 +78,12 @@ else{
 					<thead><tr><th>Emri</th><th>Kredi</th></tr></thead>
 					<tbody><?php 
 						# lendet vetem te atij semestri qe eshte edhe studenti..
-						$lendet = getLendetMeSemester($studenti->getSemestri());
-						foreach($lendet as $l){
-							$lenda = new Lenda($l['id']);
+						$lendetSemestrit = getLendetMeSemester($studenti->getSemestri());
+						foreach($lendetSemestrit as $l){
+							$lendet = new Lenda($l['id']);
 echo '<tr>
-							<td><a href="index.php?faqja=lenda&id='.$l['id'].'">'.$lenda->getEmri().'</a></td>
-								<td>'.$lenda->getKredi().'</td>
+							<td><a href="index.php?faqja=lenda&id='.$l['id'].'">'.$lendet->getEmri().'</a></td>
+								<td>'.$lendet->getKredi().'</td>
 							</tr>';
 						}?>
 
@@ -95,34 +94,25 @@ echo '<tr>
 			<?php if(!$lejo){ 
 				echo '<p> Nuk ju lejohet te keni qasje ne lende te drejtimeve/semestrave t&euml; tjer&euml;.</p>';
 			} 
-			else {?>
-				<div class="list-group">
-				  <a href="ligjerata.php" class="list-group-item">
-				    <h4 class="list-group-item-heading">L1 - Hyrje ne aplikime</h4>
-				    <p class="list-group-item-text text-right"><em class="text-danger">16-03-2014</em> <small class="text-info">2.3MB</small></p>
-				  </a>
-				  <a href="ligjerata.php" class="list-group-item">
-				    <h4 class="list-group-item-heading">L2 - Hyrje ne aplikime</h4>
-				    <p class="list-group-item-text text-right"><em class="text-danger">15-03-2014</em> <small class="text-info">2.1MB</small></p>
-				  </a>
-				  <a href="ligjerata.php" class="list-group-item">
-				    <h4 class="list-group-item-heading">L3 - Hyrje ne aplikime</h4>
-				    <p class="list-group-item-text text-right"><em class="text-danger">14-03-2014</em> <small class="text-info">3.3MB</small></p>
-				  </a>
-				  <a href="ligjerata.php" class="list-group-item">
-				    <h4 class="list-group-item-heading">L4 - Hyrje ne aplikime</h4>
-				    <p class="list-group-item-text text-right"><em class="text-danger">13-03-2014</em> <small class="text-info">5.3MB</small></p>
-				  </a>
-				  <a href="ligjerata.php" class="list-group-item">
-				    <h4 class="list-group-item-heading">L5 - Hyrje ne aplikime</h4>
-				    <p class="list-group-item-text text-right"><em class="text-danger">12-03-2014</em> <small class="text-info">1.3MB</small></p>
-				  </a>
-				  <a href="ligjerata.php" class="list-group-item">
-				    <h4 class="list-group-item-heading">L6 - Hyrje ne aplikime</h4>
-				    <p class="list-group-item-text text-right"><em class="text-danger">11-03-2014</em> <small class="text-info">2.1MB</small></p>
-				  </a>
-				</div>
-			<?php } ?>
+			else {
+				if($lenda->getLigjeratat()){
+					$ligjeratat = $lenda->getLigjeratat();
+					echo '<div class="list-group">';
+						foreach($ligjeratat as $l){
+							$ligjerata = new Ligjerata($l['id']);
+							echo '
+								<a href="ligjerata.php?id='.$ligjerata->getID().'" class="list-group-item">
+								    <h4 class="list-group-item-heading">L1 - Hyrje ne aplikime</h4>
+									<p class="list-group-item-text text-right"><em class="text-danger">'.$ligjerata->getExtension().'</em> <small class="text-info">'.$ligjerata->getMadhesia().'</small></p>
+								</a>';
+						}
+					echo '</div>';
+				}
+				else{
+					echo '<div class="alert alert-info">Nuk ka ligj&euml;rata n&euml; k&euml;t&euml; l&euml;nd&euml;.</div>';
+				}
+			}
+			?>
 			</div>
 		</div>
 		<!-- FOOTER -->
