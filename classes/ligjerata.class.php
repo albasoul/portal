@@ -68,8 +68,32 @@ class Ligjerata{
 	    }
 	    return sprintf($retstring, $size, $sys['prefix'][$i]);
 	}
-	function kaLigjerat(){
-		return FALSE;
+	/*
+	* Ky funksion e merr ID dhe e kontrollon a ekziston ajo ligjerat
+	* Nese ekziston ligjerata, e merr vetem emrin e ligjerates dhe e kthen
+	*/
+	function kaLigjerat($id,$v){
+		global $lidhja;
+		if($v === "p"){
+			$ligjerat = $lidhja->query("SELECT id,emri FROM ligjeratat WHERE id<$id ORDER BY id DESC LIMIT 1");
+		}
+		elseif($v === "l"){
+			$ligjerat = $lidhja->query("SELECT id,emri FROM ligjeratat WHERE id>$id LIMIT 1");
+		}
+		else{
+			return FALSE;
+		}
+		
+		if($ligjerat->num_rows){
+			$l = $ligjerat->fetch_assoc();
+			$info = array();
+			$info[0] = $l['id'];
+			$info[1] = $l['emri'];
+			return $info;
+		}
+		else{
+			return FALSE;
+		}
 	}
 }
 

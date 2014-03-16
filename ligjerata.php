@@ -97,17 +97,17 @@ else{
 					echo '<iframe src="lexoLigjerat.php?id='.$id.'" width="100%" height="780" style="border: none;">
 					</iframe>';
 					echo '<ul class="pager">';
-					if($ligjerata->kaLigjerat()){
-						echo '<li class="previous"><a href="#">&larr; Older</a></li>';
+					if($info = $ligjerata->kaLigjerat($ligjerata->getID(),"p")) { // "p" = posht
+						echo '<li class="previous"><a href="ligjerata.php?id='.$info[0].'">&larr; '.$info[1].'</a></li>';
 					}
 					else{
-						echo '<li class="previous disabled"><a>&larr; Older</a></li>';
+						echo '<li class="previous disabled"><a>&larr;</a></li>';
 					}
-					if($ligjerata->kaLigjerat()){
-						echo '<li class="next"><a href="#">Newer &rarr;</a></li>';
+					if($info = $ligjerata->kaLigjerat($ligjerata->getID(),"l")) { // "l" = lart
+						echo '<li class="next"><a href="ligjerata.php?id='.$info[0].'">'.$info[1].' &rarr;</a></li>';
 					}
 					else{
-						echo '<li class="next disabled"><a>Newer &rarr;</a></li>';
+						echo '<li class="next disabled"><a>&rarr;</a></li>';
 					}
 					echo '</ul>';
 				}
