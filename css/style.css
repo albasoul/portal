@@ -4,6 +4,9 @@ body{
 .navbar{
 	border-radius: 0;	
 }
+.navbar-default{
+	background-color: #fff;
+}
 .navbar-nav li > a{
 	text-align: center;
 	font-size: 1.4375em;
