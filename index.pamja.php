@@ -30,22 +30,22 @@
 	        <span class="icon-bar"></span>
 	        <span class="icon-bar"></span>
 	      </button>
-	      <a class="navbar-brand" href="index.php" class="text-center"><?php echo $page->getTitle(); ?></a>
+	      <a class="navbar-brand" href="index.php"><?php echo $page->getTitle(); ?></a>
 	    </div>
 	    <!-- Collect the nav links, forms, and other content for toggling -->
 	    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 	      <ul class="nav navbar-nav">
-	      <?php $page->headerNavbar(); ?>
+	     	<?php $page->headerNavbar(); ?>
 	      </ul>
-		  <ul class="nav navbar-nav navbar-right">
-			<li><a href="logout.php" class="glyphicon glyphicon-log-out"></a></li>
-		</ul>
+		  	<ul class="nav navbar-nav navbar-right">
+				<li><a href="logout.php" class="glyphicon glyphicon-log-out"></a></li>
+			</ul>
 	    </div><!-- /.navbar-collapse -->
 	  </div><!-- /.container-fluid -->
 	</nav>
 	</div>
     <div class="container">
-    	<div id="carousel-example-generic" class="carousel slide hidden-xs hidden-md" data-ride="carousel">
+    	<div id="carousel-example-generic" class="carousel slide hidden-xs hidden-sm" data-ride="carousel">
 		  <!-- Indicators -->
 		  <ol class="carousel-indicators">
 		  <?php

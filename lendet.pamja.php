@@ -5,13 +5,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="shortcut icon" href="assets/ico/favicon.jpg">
-    <title>Portal 1.0</title>
-
+    <title><?php echo $page->getTitle(); ?></title>
     <!-- Bootstrap -->
     <link href="css/bootstrap.css" rel="stylesheet">
     <!-- Stili i veqant -->
     <link href="css/style.css" rel="stylesheet">
-
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -20,6 +18,7 @@
     <![endif]-->
   </head>
   <body>
+  <br/>
   <div class="container">
   	<nav class="navbar navbar-default" role="navigation">
 	  <div class="container-fluid">
@@ -38,12 +37,15 @@
 	      <ul class="nav navbar-nav">
 	        <?php $page->headerNavbar(); ?>
 	      </ul>
+	      	<ul class="nav navbar-nav navbar-right">
+				<li><a href="logout.php" class="glyphicon glyphicon-log-out"></a></li>
+			</ul>
 	    </div><!-- /.navbar-collapse -->
 	  </div><!-- /.container-fluid -->
 	</nav>
 	</div>
     <div class="container">
-		<div id="carousel-example-generic" class="carousel slide hidden-xs" data-ride="carousel">
+		<div id="carousel-example-generic" class="carousel slide hidden-xs hidden-sm" data-ride="carousel">
 		  <!-- Indicators -->
 		  <ol class="carousel-indicators">
 		  <?php
@@ -53,7 +55,6 @@
 		  		else{
 		  			echo '<li data-target="#carousel-example-generic" data-slide-to="'.$i.'"></li>';
 		  		}
-		  		
 		  	}
 		  ?>
 		  </ol>
@@ -73,13 +74,17 @@
 		    		else{
 		    			echo '<div class="item">';
 		    		}
-		    		echo '
-			      <img alt="" src="'.$lajmi->getFoto().'">
-			      <div class="carousel-caption col-md-4">
-			        <h3>'. $lajmi->getTitulli(). '</h3>
-			        <p>'.substr($lajmi->getBody(),0,200).' ... <a href="'.$lajmi->getID().'" class="text-danger">Lexo më shumë</a></p>
-			      </div>
-			    </div>';
+		    		if($lajmi->getFoto()){
+		    			echo '<img alt="" class="img-responsive" src="'.$lajmi->getFoto().'">';
+		    		}
+		    		else{
+		    			echo '<img alt="" src="http://www.transportenvironment.org/sites/te/files/styles/large/public/defaults/news_default.png">';
+		    		}
+				  echo '<div class="carousel-caption col-md-4">
+				        <h3>'. $lajmi->getTitulli(). '</h3>
+				        <p>'.substr($lajmi->getBody(),0,200).' ... <a href="'.$lajmi->getID().'" class="text-danger">Lexo më shumë</a></p>
+				      </div>
+				    </div>';
 			    $i++;
 		    	}
 		    ?>
@@ -95,7 +100,7 @@
 		<div class="clearfix"></div><br/>
 		<div class="row">
 			<div class="col-md-3 user-info">
-					<img class="img-circle" src="<?php echo $studenti->getFoto(); ?>" />
+					<img class="img-circle hidden-sm hidden-xs" src="<?php echo $studenti->getFoto(); ?>" />
 					<p class="emri"><?php echo $studenti->getEmri() . ' '. $studenti->getMbiemri();  ?></p>
 					<p>Gjithsej kredi: <em><?php echo $studenti->getKredi(); ?></em></p>
 					<hr class="hidden-xs">
@@ -114,6 +119,17 @@ echo '<tr>
 
 					</tbody>
 					</table>
+					<div class="lajmet-fundit hidden-md hidden-lg">
+					<label>Lajmet e fundit:</label>
+						<div class="list-group">
+						<?php
+							foreach($lajmetQuery as $l){
+								$lajmi = new Lajmi($l['id']);
+								echo '<a href="'.$lajmi->getID().'" class="list-group-item">'. substr($lajmi->getTitulli(),0,90). '...</a>';
+							}
+						?>
+						</div>
+					</div>
 			</div>
 			<div class="col-md-8 col-md-offset-1 lendet">
 				<hr>

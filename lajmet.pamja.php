@@ -20,7 +20,7 @@ $page = new Page();
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="shortcut icon" href="assets/ico/favicon.jpg">
-    <title>Portal 1.0</title>
+    <title<?php echo $page->getTitle(); ?></title>
 
     <!-- Bootstrap -->
     <link href="css/bootstrap.css" rel="stylesheet">
