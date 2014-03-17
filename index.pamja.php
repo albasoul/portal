@@ -55,7 +55,6 @@
 		  		else{
 		  			echo '<li data-target="#carousel-example-generic" data-slide-to="'.$i.'"></li>';
 		  		}
-		  		
 		  	}
 		  ?>
 		  </ol>
@@ -82,9 +81,8 @@
 		    			echo '<img alt="" src="http://www.transportenvironment.org/sites/te/files/styles/large/public/defaults/news_default.png">';
 		    		}
 			  echo '<div class="carousel-caption col-md-4">
-			        <h1>'. $lajmi->getTitulli(). '</h1>
-			        <p>'.$lajmi->getPershkrimi().'</p>
-			        <p><a href="'.$lajmi->getLink().'" class="btn btn-md btn-primary pull-right">Lexo më shumë</a></p>
+			        <h3>'. $lajmi->getTitulli(). '</h3>
+			        <p>'.substr($lajmi->getBody(),0,200).' ... <a href="'.$lajmi->getID().'" class="text-danger">Lexo më shumë</a></p>
 			      </div>
 			    </div>';
 			    $i++;

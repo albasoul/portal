@@ -7,15 +7,12 @@ if(!empty($_GET['faqja'])){
 else{
 	$faqja = 0;
 }
-$perFaqe = 10; // Rezultatet per faqe , duhet me bo naj funksion qe me ndryshu kto prej Administratorit
-$momentale = $faqja * 10;
-$lajmetQuery = $lidhja->query("SELECT id FROM lajmet ORDER BY data DESC LIMIT $momentale,$perFaqe") or die("Kontrolloni databasen per lajmet!");
-if($lajmetQuery->num_rows){
-	$kaLajme = TRUE;
-}
-else{
-	$kaLajme = FALSE;
-}
+$perFaqe = 3; // Rezultatet per faqe , duhet me bo naj funksion qe me ndryshu kto prej Administratorit
+$momentale = $faqja * $perFaqe;
+$lajmetID = Lajmi::getLajmetID($momentale,$perFaqe); // marrim ID e te gjitha lendeve, nese ska, behet FALSE!
+$total = Lajmi::totalLajmet(); // numri total i lajmeve
+$faqet = ceil($total/$perFaqe);
+$page = new Page();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -50,14 +47,12 @@ else{
 	        <span class="icon-bar"></span>
 	        <span class="icon-bar"></span>
 	      </button>
-	      <a class="navbar-brand" href="index.php">"Ukshin Hoti"</a>
+	      <a class="navbar-brand" href="index.php"><?php echo $page->getTitle(); ?></a>
 	    </div>
 	    <!-- Collect the nav links, forms, and other content for toggling -->
 	    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 	      <ul class="nav navbar-nav">
-	        <li class="active"><a href="lendet.php">Lendet</a></li>
-	        <li><a href="gazeta.php">Gazeta</a></li>
-	        <li><a href="lajmet.php">Lajmet</a></li>
+	        <?php $page->headerNavbar(); ?>
 	      </ul>
 	    </div><!-- /.navbar-collapse -->
 	  </div><!-- /.container-fluid -->
@@ -67,7 +62,8 @@ else{
 		<div class="row">
 			<div class="col-md-8 col-md-offset-1 lajmet">
 			<?php
-				foreach($lajmetQuery as $lajmet){
+			if($lajmetID){
+				foreach($lajmetID as $lajmet){
 					$lajmi = new Lajmi($lajmet['id']);
 					echo '<div class="panel panel-default">
 							<div class="panel-heading">
@@ -76,17 +72,21 @@ else{
 					echo 	'<div class="panel-body">';
 						if($lajmi->getFoto()){
 							echo '<div class="col-md-4"><img src="'.$lajmi->getFoto().'" class="img-responsive"/></div>';
-							echo '<div class="col-md-8"><p>'.$lajmi->getPershkrimi().'</p></div>';
+							echo '<div class="col-md-8"><p>'.substr($lajmi->getBody(),0,200).'...</p></div>';
 						}
 						else{
-							echo '<div class="col-md-12"><p>'.$lajmi->getPershkrimi().'</p></div>';
+							echo '<div class="col-md-12"><p>'.substr($lajmi->getBody(),0,200).'</p></div>';
 						}
 					echo '	</div>';
-					if($lajmi->getBody()){
+					if($lajmi->getBody() && strlen($lajmi->getBody())>200) {
 								echo '<div class="panel-footer text-center"><a href="#" >Lexo m&euml; shum&euml;</a></div>';
 					}
 					echo'  </div>';
 				}
+				echo '<ul class="pagination">';
+				for($i=1; $i<=$faqet;$i++) echo' <li><a href="lajmet.php?faqja='.$i.'">'.$i.'</a></li>';
+				echo '</ul>';
+			}
 			?>
 			</div>
 			<div class="col-md-2">
