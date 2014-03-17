@@ -81,7 +81,7 @@ class Page{
 		$navQuery = $lidhja->query("SELECT * FROM navbar WHERE enabled=1");
 		if($navQuery->num_rows > 0){
 			foreach($navQuery as $nav){
-				echo '<li><a href="'.$nav['link'].'">'.$nav['emri'].'</a></li>';
+				echo '<li><a href="'.$nav['link'].'" class="text-primary">'.$nav['emri'].'</a></li>';
 			}
 		}
 		else{

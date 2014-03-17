@@ -20,7 +20,7 @@
   <body>
   <br/>
   <div class="container">
-  	<nav class="navbar navbar-inverse" role="navigation">
+  	<nav class="navbar navbar-default" role="navigation">
 	  <div class="container-fluid">
 	    <!-- Brand and toggle get grouped for better mobile display -->
 	    <div class="navbar-header">
@@ -30,7 +30,7 @@
 	        <span class="icon-bar"></span>
 	        <span class="icon-bar"></span>
 	      </button>
-	      <a class="navbar-brand" href="index.php"><?php echo $page->getTitle(); ?></a>
+	      <a class="navbar-brand" href="index.php" class="text-center"><?php echo $page->getTitle(); ?></a>
 	    </div>
 	    <!-- Collect the nav links, forms, and other content for toggling -->
 	    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -38,14 +38,14 @@
 	      <?php $page->headerNavbar(); ?>
 	      </ul>
 		  <ul class="nav navbar-nav navbar-right">
-			<li><a href="logout.php"class="glyphicon glyphicon-log-out"> Dilni</a> </li>
+			<li><a href="logout.php" class="glyphicon glyphicon-log-out"></a></li>
 		</ul>
 	    </div><!-- /.navbar-collapse -->
 	  </div><!-- /.container-fluid -->
 	</nav>
 	</div>
     <div class="container">
-    	<div id="carousel-example-generic" class="carousel slide hidden-xs" data-ride="carousel">
+    	<div id="carousel-example-generic" class="carousel slide hidden-xs hidden-md" data-ride="carousel">
 		  <!-- Indicators -->
 		  <ol class="carousel-indicators">
 		  <?php
@@ -75,16 +75,16 @@
 		    			echo '<div class="item">';
 		    		}
 		    		if($lajmi->getFoto()){
-		    			echo '<img alt="" src="'.$lajmi->getFoto().'">';
+		    			echo '<img alt="" class="img-responsive" src="'.$lajmi->getFoto().'">';
 		    		}
 		    		else{
 		    			echo '<img alt="" src="http://www.transportenvironment.org/sites/te/files/styles/large/public/defaults/news_default.png">';
 		    		}
-			  echo '<div class="carousel-caption col-md-4">
-			        <h3>'. $lajmi->getTitulli(). '</h3>
-			        <p>'.substr($lajmi->getBody(),0,200).' ... <a href="'.$lajmi->getID().'" class="text-danger">Lexo më shumë</a></p>
-			      </div>
-			    </div>';
+				  echo '<div class="carousel-caption col-md-4">
+				        <h3>'. $lajmi->getTitulli(). '</h3>
+				        <p>'.substr($lajmi->getBody(),0,200).' ... <a href="'.$lajmi->getID().'" class="text-danger">Lexo më shumë</a></p>
+				      </div>
+				    </div>';
 			    $i++;
 		    	}
 		    ?>
@@ -97,10 +97,11 @@
 		    <span class="glyphicon glyphicon-chevron-right"></span>
 		  </a>
 		</div>
+		
 		<div class="clearfix"></div><br/>
 		<div class="row">
 			<div class="col-md-3 user-info">
-					<img class="img-circle" src="<?php echo $studenti->getFoto(); ?>" />
+					<img class="img-circle hidden-sm hidden-xs" src="<?php echo $studenti->getFoto(); ?>" />
 					<p class="emri"><?php echo $studenti->getEmri() . ' '. $studenti->getMbiemri();  ?></p>
 					<p>Gjithsej kredi: <em><?php echo $studenti->getKredi(); ?></em></p>
 					<hr class="hidden-xs">
@@ -119,6 +120,17 @@ echo '<tr>
 
 					</tbody>
 					</table>
+					<div class="lajmet-fundit hidden-md hidden-lg">
+					<label>Lajmet e fundit:</label>
+						<div class="list-group">
+						<?php
+							foreach($lajmetQuery as $l){
+								$lajmi = new Lajmi($l['id']);
+								echo '<a href="'.$lajmi->getID().'" class="list-group-item">'. substr($lajmi->getTitulli(),0,90). '...</a>';
+							}
+						?>
+						</div>
+					</div>
 			</div>
 			<div class="col-md-8 col-md-offset-1 gazeta-news">
 				<ul class="list-group">
