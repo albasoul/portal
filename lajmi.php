@@ -64,7 +64,7 @@
 		<div class="clearfix"></div><br/>
 		<div class="row">
 			<div class="col-md-8 lajmi">
-				<div class="panel panel-primary">
+				<div class="panel panel-success">
 					<div class="panel-heading">
 						<h3 class="panel-title"><?php echo $lajmi->getTitulli() ?></h3>
 						<p><span class="pull-right"><em><?php echo rregulloDaten($lajmi->getData()); ?></em></span></p>
@@ -83,6 +83,22 @@
 				</div>
 			</div>
 			<div class="col-md-4">
+				<?php
+					$lajmet = $lidhja->query("SELECT id FROM lajmet ORDER BY data DESC LIMIT 10");
+					if($lajmet->num_rows){
+						echo '<div class="list-group" id="lajmetShtese">';
+						foreach($lajmet as $l){
+							$lajmi2 = new Lajmi($l['id']);
+							if($lajmi->getID() == $lajmi2->getID()){
+								echo '<a href="lajmi.php?id='.$lajmi2->getID().'" class="list-group-item active">'.substr($lajmi2->getTitulli(), 0,100).'...</a>';
+							}
+							else{
+								echo '<a href="lajmi.php?id='.$lajmi2->getID().'" class="list-group-item">'.substr($lajmi2->getTitulli(), 0,100).'...</a>';
+							}
+						}
+						echo '</div>';
+					}
+				?>
 			</div>
 		</div>
 		<!-- FOOTER -->
