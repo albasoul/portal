@@ -79,7 +79,7 @@ $page = new Page();
 							echo '<div class="col-md-8"><p>'.substr($lajmi->getBody(),0,200).'...</p></div>';
 						}
 						else{
-							echo '<div class="col-md-12"><p>'.substr($lajmi->getBody(),0,200).'</p></div>';
+							echo '<div class="col-md-12"><p>'.substr($lajmi->getBody(),0,200).'...</p></div>';
 						}
 					echo '	</div>';
 					if($lajmi->getBody() && strlen($lajmi->getBody())>200) {
