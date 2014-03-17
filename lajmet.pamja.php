@@ -1,8 +1,7 @@
 <?php
-	# perfshije config.php
-	include('includes/config.php');
-if(!empty($_GET['faqja'])){
-	$faqja = $lidhja->real_escape_string($_GET['faqja'])-1;
+global $lidhja;
+if(!empty($_GET['faqe'])){
+	$faqja = $lidhja->real_escape_string($_GET['faqe'])-1;
 }
 else{
 	$faqja = 0;
@@ -37,7 +36,7 @@ $page = new Page();
   </head>
   <body>
   <div class="container">
-  	<nav class="navbar navbar-default" role="navigation">
+  	<nav class="navbar navbar-inverse" role="navigation">
 	  <div class="container-fluid">
 	    <!-- Brand and toggle get grouped for better mobile display -->
 	    <div class="navbar-header">
@@ -65,9 +64,10 @@ $page = new Page();
 			if($lajmetID){
 				foreach($lajmetID as $lajmet){
 					$lajmi = new Lajmi($lajmet['id']);
-					echo '<div class="panel panel-default">
+					echo '<div class="panel panel-primary">
 							<div class="panel-heading">
-								<h3 class="panel-title">'.$lajmi->getTitulli().'<span class="pull-right"><small>'.$lajmi->getData().'</small></span></h3>
+								<h3 class="panel-title">'.$lajmi->getTitulli().'</h3>
+								<p><span class="pull-right"><em>'.rregulloDaten($lajmi->getData()).'</em></span></p>
 							</div>';
 					echo 	'<div class="panel-body">';
 						if($lajmi->getFoto()){
@@ -84,7 +84,7 @@ $page = new Page();
 					echo'  </div>';
 				}
 				echo '<ul class="pagination">';
-				for($i=1; $i<=$faqet;$i++) echo' <li><a href="lajmet.php?faqja='.$i.'">'.$i.'</a></li>';
+				for($i=1; $i<=$faqet;$i++) echo' <li><a href="index.php?faqja=lajmet&faqe='.$i.'">'.$i.'</a></li>';
 				echo '</ul>';
 			}
 			?>

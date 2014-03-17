@@ -19,6 +19,9 @@
 				$lokacioni = "lendet";
 			}
 		}
+		elseif($faqja === "lajmet"){
+			$lokacioni = "lajmet";
+		}
 	}
 	else{
 		$lokacioni = "index";

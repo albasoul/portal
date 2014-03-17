@@ -21,7 +21,7 @@
   </head>
   <body>
   <div class="container">
-  	<nav class="navbar navbar-default" role="navigation">
+  	<nav class="navbar navbar-inverse" role="navigation">
 	  <div class="container-fluid">
 	    <!-- Brand and toggle get grouped for better mobile display -->
 	    <div class="navbar-header">
@@ -76,9 +76,8 @@
 		    		echo '
 			      <img alt="" src="'.$lajmi->getFoto().'">
 			      <div class="carousel-caption col-md-4">
-			        <h1>'. $lajmi->getTitulli(). '</h1>
-			        <p>'.$lajmi->getBody().'</p>
-			        <p><a href="'.$lajmi->getLink().'" class="btn btn-md btn-primary pull-right">Lexo më shumë</a></p>
+			        <h3>'. $lajmi->getTitulli(). '</h3>
+			        <p>'.substr($lajmi->getBody(),0,200).' ... <a href="'.$lajmi->getID().'" class="text-danger">Lexo më shumë</a></p>
 			      </div>
 			    </div>';
 			    $i++;
@@ -144,7 +143,7 @@ echo '<tr>
 									foreach($lendet as $l){ // Per secilen lende e bojm kodin ma posht
 										$lenda = new Lenda($l['id']);
 										if($nota = $studenti->getLendaKaluara($l['id'])){ //Nese ka kaluar merrja noten dhe ruje tek $nota.
-											echo '<tr><td>'.$lenda->getEmri().'</td><td>'.$lenda->getKredi().'</td><td>'.$lenda->getSemestri().'</td><td>'.$nota['nota'].'</td><td>'.$nota['data'].'</td></tr>';
+											echo '<tr><td>'.$lenda->getEmri().'</td><td>'.$lenda->getKredi().'</td><td>'.$lenda->getSemestri().'</td><td>'.$nota['nota'].'</td><td>'.rregulloDaten($nota['data']).'</td></tr>';
 										}
 										else{
 											echo '<tr><td>'.$lenda->getEmri().'</td><td>'.$lenda->getKredi().'</td><td>'.$lenda->getSemestri().'</td><td></td><td></td></tr>';

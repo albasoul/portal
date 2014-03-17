@@ -39,4 +39,50 @@
 		$lendetQuery = $lidhja->query("SELECT id FROM lendet WHERE semestri=$semestri");
 		return $lendetQuery;
 	}
+
+	/*
+	* Funksioni qe e rregullon paraqitjen e dates
+	*/
+	function rregulloDaten($d){
+		$viti = date("Y", strtotime($d));
+		$muaji = date("m", strtotime($d));
+		$dita = date("d", strtotime($d));
+		if($muaji == 1){
+			$data = $dita . " Janar " . $viti;
+		}
+		elseif($muaji == 2){
+			$data = $dita . " Shkurt " . $viti;
+		}
+		elseif($muaji == 3){
+			$data = $dita . " Mars " . $viti;
+		}
+		elseif($muaji == 4){
+			$data = $dita . " Prill " . $viti;
+		}
+		elseif($muaji == 5){
+			$data = $dita . " Maj " . $viti;
+		}
+		elseif($muaji == 6){
+			$data = $dita . " Qershor " . $viti;
+		}
+		elseif($muaji == 7){
+			$data = $dita . " Korrik " . $viti;
+		}
+		elseif($muaji == 8){
+			$data = $dita . " Gusht " . $viti;
+		}
+		elseif($muaji == 9){
+			$data = $dita . " Shtator " . $viti;
+		}
+		elseif($muaji == 10){
+			$data = $dita . " Tetor " . $viti;
+		}
+		elseif($muaji == 11){
+			$data = $dita . " N&euml;ntor " . $viti;
+		}
+		elseif($muaji == 12){
+			$data = $dita . " Dhjetor " . $viti;
+		}
+		return $data;
+	}
 ?>

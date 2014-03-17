@@ -10,7 +10,6 @@
     <link href="css/bootstrap.css" rel="stylesheet">
     <!-- Stili i veqant -->
     <link href="css/style.css" rel="stylesheet">
-
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -19,8 +18,9 @@
     <![endif]-->
   </head>
   <body>
+  <br/>
   <div class="container">
-  	<nav class="navbar navbar-default" role="navigation">
+  	<nav class="navbar navbar-inverse" role="navigation">
 	  <div class="container-fluid">
 	    <!-- Brand and toggle get grouped for better mobile display -->
 	    <div class="navbar-header">

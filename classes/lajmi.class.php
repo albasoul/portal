@@ -62,7 +62,7 @@ class Lajmi{
 	*/
 	function getLajmetID($momentale,$perFaqe){
 		global $lidhja;
-		$lajmet = $lidhja->query("SELECT id FROM lajmet ORDER BY data DESC LIMIT $momentale,$perFaqe");
+		$lajmet = $lidhja->query("SELECT id FROM lajmet ORDER BY data DESC LIMIT $momentale,$perFaqe") or die($lidhja->error);
 		if($lajmet->num_rows){
 			return $lajmet;
 		}
