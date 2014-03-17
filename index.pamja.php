@@ -82,7 +82,7 @@
 		    		}
 				  echo '<div class="carousel-caption col-md-4">
 				        <h3>'. $lajmi->getTitulli(). '</h3>
-				        <p>'.substr($lajmi->getBody(),0,200).' ... <a href="'.$lajmi->getID().'" class="text-danger">Lexo më shumë</a></p>
+				        <p>'.substr($lajmi->getBody(),0,200).' ... <a href="lajmi.php?id='.$lajmi->getID().'" class="text-danger">Lexo më shumë</a></p>
 				      </div>
 				    </div>';
 			    $i++;
