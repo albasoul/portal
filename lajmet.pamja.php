@@ -103,6 +103,9 @@ $page = new Page();
 				for($i=1; $i<=$faqet;$i++) echo' <li><a href="index.php?faqja=lajmet&faqe='.$i.'">'.$i.'</a></li>';
 				echo '</ul>';
 			}
+			else{
+				echo '<div class="alert alert-info">Nuk ka lajme!</div>';
+			}
 			?>
 			</div>
 			<div class="col-md-2">
@@ -111,8 +114,8 @@ $page = new Page();
 				 	<h3>Arkiva</h3>
 						<ul class="list-unstyled">
 							<li><a class="btn btn-link" href="#">Janar</a></li>
-							<li><a class="btn btn-link" href="index.php?faqja=lajmet&viti<?php echo $viti; ?>&muaji=2">Shkurt</a></li>
-							<li><a class="btn btn-link" href="index.php?faqja=lajmet&viti<?php echo $viti; ?>&muaji=3">Mars</a></li>
+							<li><a class="btn btn-link" href="index.php?faqja=lajmet&viti=<?php echo $viti; ?>&muaji=2">Shkurt</a></li>
+							<li><a class="btn btn-link" href="index.php?faqja=lajmet&viti=<?php echo $viti; ?>&muaji=3">Mars</a></li>
 							<li><a class="btn btn-link" href="#">Prill</a></li>
 							<li><a class="btn btn-link" href="#">Maj</a></li>
 							<li><a class="btn btn-link" href="#">Qershor</a></li>
@@ -121,9 +124,9 @@ $page = new Page();
 						<hr/>
 						<h3>Viti</h3>
 						<ul class="list-unstyled">
-							<li><a class="btn btn-link" href="index.php?faqja=lajmet">2014</a></li>
-							<li><a class="btn btn-link" href="#">2013</a></li>
-							<li><a class="btn btn-link" href="#">2012</a></li>
+							<li><a class="btn btn-link" href="index.php?faqja=lajmet&viti=2014">2014</a></li>
+							<li><a class="btn btn-link" href="index.php?faqja=lajmet&viti=2013">2013</a></li>
+							<li><a class="btn btn-link" href="index.php?faqja=lajmet&viti=2012">2012</a></li>
 						</ul>
 					</div>
 				</div>
