@@ -95,7 +95,7 @@ $page = new Page();
 						}
 					echo '	</div>';
 					if($lajmi->getBody() && strlen($lajmi->getBody())>200) {
-								echo '<div class="panel-footer text-center"><a href="#" >Lexo m&euml; shum&euml;</a></div>';
+								echo '<div class="panel-footer text-center"><a href="lajmi.php?id='.$lajmi->getID().'" >Lexo m&euml; shum&euml;</a></div>';
 					}
 					echo'  </div>';
 				}
