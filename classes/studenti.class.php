@@ -42,6 +42,12 @@ class Studenti{
 	/*
 	* 	Kthen emrin e studentit
 	*/
+	function getID(){
+		return $this->ID;
+	}
+	function getSID(){
+		return $this->SID;
+	}
 	function getEmri(){
 		return $this->emri;
 	}
