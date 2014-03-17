@@ -100,6 +100,15 @@ body{
 	font: 120%/1.625 open_sansregular,HelveticaNeue,Helvetica,Arial,sans-serif;
 	color:#3e433e;
 }
+.lajmet .panel{
+	border: 10px solid #fff;
+	border-radius:0;
+}
+.lajmet .panel-footer{
+	background-color:#fff;
+	border:none;
+	font-style: italic;
+}
 .jumbotron{
 	padding:10px;
 }
