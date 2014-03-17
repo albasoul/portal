@@ -131,8 +131,7 @@ echo '<tr>
 						</div>
 					</div>
 			</div>
-			<div class="col-md-8 col-md-offset-1 lendet">
-				<hr>
+			<div class="col-md-8 col-md-offset-1 lendet panel panel-default">
 				<?php 
 					/*
 					* Lendet per qdo semester
@@ -144,7 +143,7 @@ echo '<tr>
 						// e kom bo vetem: $lendet->num_rows, se kjo kthen numer pozitive nese ka rezultate, e qdo numer pozitiv osht True
 						// nese kthen numer negativ, dmth 0, at'her False..
 						if($lendet->num_rows){ 
-							echo '<h2>L&euml;nd&euml;t e semestrit '.$i.'</h2>'; // Lendet e semestrit 4, Lendet e semestrit 3, etj.. 
+							echo '<h2 class="bg-primary">L&euml;nd&euml;t e semestrit '.$i.'</h2>'; // Lendet e semestrit 4, Lendet e semestrit 3, etj.. 
 							//
 							//	per qdo Semester krijohet nga 1 tabel e re <table>.....
 							//
