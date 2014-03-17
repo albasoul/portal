@@ -43,7 +43,7 @@ class Ligjerata{
 		*	P.sh.: ligjerata.pdf
 		*	Se pari kqyre madhesia: strlen($link) => 13
 		* 	Pastaj kqyret pika(.) nga ana e djatht(fundi), strrpos($link, ".") => 9 (dmth ne poziten 9 osht pika)
-		*								e bojm ktu +1 qe mos me marr edhe piken, por prej pozites 10 me fillu
+		*	e bojm ktu +1 qe mos me marr edhe piken, por prej pozites 10 me fillu
 		*	Pastaj permes substr($link, 9+1,13) e marrim perfundimin e fajllit, dmth pas pikes(.), ne kete rast del => pdf
 		*/
 		return substr($this->link, strrpos($this->link, ".")+1,strlen($this->link));
@@ -98,6 +98,4 @@ class Ligjerata{
 		}
 	}
 }
-
-
 ?>
