@@ -7,18 +7,20 @@ class Page{
 	private $title;
 	private $footer;
 	private $active;
+	private $logoLink;
 	function __construct(){
 		global $lidhja;
 	##################################################
 	#    Marrja e te dhenave nga databasa per faqen	 #
 	##################################################
-		$pageQuery = $lidhja->query('SELECT title,footer,activated FROM page_info');
+		$pageQuery = $lidhja->query('SELECT title,footer,activated,logo FROM page_info');
 		if($pageQuery->num_rows == 1){
 			$pageInfo = $pageQuery->fetch_assoc();
 		}
 		$this->title = $pageInfo['title'];
 		$this->footer = $pageInfo['footer'];
 		$this->active = FALSE;
+		$this->logoLink = $pageInfo['logo'];
 		# nese eshte 1 beje faqen aktive #
 		if($pageInfo['activated'] == 1){ $this->active = TRUE; }
 		else{ $this->active = FALSE; }
@@ -28,6 +30,9 @@ class Page{
 	*/
 	function getTitle(){
 		return $this->title;
+	}
+	function getLogo(){
+		return $this->logoLink;
 	}
 	/*
 	* Funksioni per me marr footer e faqes

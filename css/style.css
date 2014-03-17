@@ -4,6 +4,10 @@ body{
 .navbar{
 	border-radius: 0;	
 }
+.navbar-brand img{
+	max-width: 18%;
+	float:left;
+}
 .navbar-default{
 	background-color: #fff;
 }
@@ -18,7 +22,7 @@ body{
   background-color: #428bca;
 }
 .navbar-default .navbar-brand{
-	max-width:220px;
+	max-width:260px;
 	color:#428bca;
 	font-size: 20px;
 	margin:0;
@@ -103,6 +107,15 @@ body{
 .lajmet{
 	font: 120%/1.625 open_sansregular,HelveticaNeue,Helvetica,Arial,sans-serif;
 	color:#3e433e;
+}
+#lajmetShtese{
+	font: 100%/1.925 open_sansregular,HelveticaNeue,Helvetica,Arial,sans-serif;
+	color:#3e433e;
+}
+#lajmetShtese .list-group-item{
+	height:60px;
+	padding: 7px 20px;
+	font: 115%/1.125 open_sansregular,HelveticaNeue,Helvetica,Arial,sans-serif;
 }
 .lajmet .panel{
 	border: 10px solid #fff;
