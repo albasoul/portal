@@ -6,9 +6,21 @@ if(!empty($_GET['faqe'])){
 else{
 	$faqja = 0;
 }
+if(!empty($_GET['viti'])){
+	$viti = $lidhja->real_escape_string($_GET['viti']);
+}
+else{
+	$viti = date('Y');
+}
+if(!empty($_GET['muaji'])){
+	$muaji = $lidhja->real_escape_string($_GET['muaji']);
+}
+else{
+	$muaji = date('m');
+}
 $perFaqe = 3; // Rezultatet per faqe , duhet me bo naj funksion qe me ndryshu kto prej Administratorit
 $momentale = $faqja * $perFaqe;
-$lajmetID = Lajmi::getLajmetID($momentale,$perFaqe); // marrim ID e te gjitha lendeve, nese ska, behet FALSE!
+$lajmetID = Lajmi::getLajmetID($momentale,$perFaqe,$viti,$muaji); // marrim ID e te gjitha lendeve, nese ska, behet FALSE!
 $total = Lajmi::totalLajmet(); // numri total i lajmeve
 $faqet = ceil($total/$perFaqe);
 $page = new Page();
@@ -99,8 +111,8 @@ $page = new Page();
 				 	<h3>Arkiva</h3>
 						<ul class="list-unstyled">
 							<li><a class="btn btn-link" href="#">Janar</a></li>
-							<li><a class="btn btn-link" href="#">Shkurt</a></li>
-							<li><a class="btn btn-link" href="#">Mars</a></li>
+							<li><a class="btn btn-link" href="index.php?faqja=lajmet&viti<?php echo $viti; ?>&muaji=2">Shkurt</a></li>
+							<li><a class="btn btn-link" href="index.php?faqja=lajmet&viti<?php echo $viti; ?>&muaji=3">Mars</a></li>
 							<li><a class="btn btn-link" href="#">Prill</a></li>
 							<li><a class="btn btn-link" href="#">Maj</a></li>
 							<li><a class="btn btn-link" href="#">Qershor</a></li>
@@ -109,7 +121,7 @@ $page = new Page();
 						<hr/>
 						<h3>Viti</h3>
 						<ul class="list-unstyled">
-							<li><a class="btn btn-link" href="#">2014</a></li>
+							<li><a class="btn btn-link" href="index.php?faqja=lajmet">2014</a></li>
 							<li><a class="btn btn-link" href="#">2013</a></li>
 							<li><a class="btn btn-link" href="#">2012</a></li>
 						</ul>
