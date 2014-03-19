@@ -26,10 +26,10 @@ class Lajmi{
 		return $this->id;
 	}
 	function getTitulli(){
-		return $this->titulli;
+		return utf8_encode($this->titulli);
 	}
 	function getBody(){
-		return $this->body;
+		return utf8_encode($this->body);
 	}
 	function getData(){
 		return $this->data;
