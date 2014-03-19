@@ -18,11 +18,7 @@ if(!empty($_GET['muaji'])){
 else{
 	$muaji = date('m');
 }
-$perFaqe = 3; // Rezultatet per faqe , duhet me bo naj funksion qe me ndryshu kto prej Administratorit
-$momentale = $faqja * $perFaqe;
-$lajmetID = Lajmi::getLajmetID($momentale,$perFaqe,$viti,$muaji); // marrim ID e te gjitha lendeve, nese ska, behet FALSE!
-$total = Lajmi::totalLajmet(); // numri total i lajmeve
-$faqet = ceil($total/$perFaqe);
+$lajmetID = Lajmi::getLajmetID($viti,$muaji); // marrim ID e te gjitha lendeve, nese ska, behet FALSE!
 $page = new Page();
 ?>
 <!DOCTYPE html>
@@ -81,17 +77,17 @@ $page = new Page();
 				foreach($lajmetID as $lajmet){
 					$lajmi = new Lajmi($lajmet['id']);
 					echo '<div class="panel panel-primary">
-							<div class="panel-heading">
+							<div class="panel-heading" style="padding-bottom: 0px; ">
 								<h3 class="panel-title">'.$lajmi->getTitulli().'</h3>
-								<p><span class="pull-right"><em>'.rregulloDaten($lajmi->getData()).'</em></span></p>
+								<p class="text-right" style="margin-bottom: 0px; "><em>'.rregulloDaten($lajmi->getData()).'</em></p>
 							</div>';
 					echo 	'<div class="panel-body">';
 						if($lajmi->getFoto()){
 							echo '<div class="col-md-4"><img src="'.$lajmi->getFoto().'" class="img-responsive"/></div>';
-							echo '<div class="col-md-8"><p>'.substr($lajmi->getBody(),0,200).'...</p></div>';
+							echo '<div class="col-md-8" style="margin-top: -15px; "><p class="lajmi-rend">'.substr($lajmi->getBody(),0,200).'...</p></div>';
 						}
 						else{
-							echo '<div class="col-md-12"><p>'.substr($lajmi->getBody(),0,200).'...</p></div>';
+							echo '<div class="col-md-12" style="margin-top: -15px; "><p class="lajmi-rend">'.substr($lajmi->getBody(),0,250).'...</p></div>';
 						}
 					echo '	</div>';
 					if($lajmi->getBody() && strlen($lajmi->getBody())>200) {
@@ -99,9 +95,6 @@ $page = new Page();
 					}
 					echo'  </div>';
 				}
-				echo '<ul class="pagination">';
-				for($i=1; $i<=$faqet;$i++) echo' <li><a href="index.php?faqja=lajmet&faqe='.$i.'">'.$i.'</a></li>';
-				echo '</ul>';
 			}
 			else{
 				echo '<div class="alert alert-info">Nuk ka lajme!</div>';

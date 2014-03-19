@@ -66,7 +66,7 @@
 			<div class="col-md-8 lajmi">
 				<div class="panel panel-success">
 					<div class="panel-heading">
-						<h3 class="panel-title"><?php echo $lajmi->getTitulli(); ?></h3>
+						<h3 class="panel-title"><strong><?php echo $lajmi->getTitulli(); ?></strong></h3>
 						<p><span class="pull-right"><em><?php echo rregulloDaten($lajmi->getData()); ?></em></span></p>
 					</div>
 					<div class="panel-body">

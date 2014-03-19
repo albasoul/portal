@@ -26,7 +26,7 @@ class Ligjerata{
 		return $this->id;
 	}
 	function getEmri(){
-		return $this->emri;
+		return html_entity_decode($this->emri);
 	}
 	function getAlias(){
 		return $this->alias;

@@ -49,13 +49,13 @@ class Studenti{
 		return $this->SID;
 	}
 	function getEmri(){
-		return $this->emri;
+		return html_entity_decode($this->emri);
 	}
 	/*
 	* 	Kthen mbiemrin e studentit
 	*/
 	function getMbiemri(){
-		return $this->mbiemri;
+		return html_entity_decode($this->mbiemri);
 	}
 	/*
 	* 	Kthen lokacionin e fotografise se profilit te studentit
@@ -67,7 +67,7 @@ class Studenti{
 	* 	Kthen lokacionin e studentit
 	*/
 	function getLokacioni(){
-		return $this->lokacioni;
+		return html_entity_decode($this->lokacioni);
 	}
 	/*
 	* 	Kthen emailin e studentit

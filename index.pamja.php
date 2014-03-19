@@ -81,8 +81,8 @@
 		    			echo '<img alt="" src="http://www.transportenvironment.org/sites/te/files/styles/large/public/defaults/news_default.png">';
 		    		}
 				  echo '<div class="carousel-caption col-md-4">
-				        <h3>'. $lajmi->getTitulli(). '</h3>
-				        <p>'.substr($lajmi->getBody(),0,200).' ... <a href="lajmi.php?id='.$lajmi->getID().'" class="text-danger">Lexo më shumë</a></p>
+				        <a href="lajmi.php?id='.$lajmi->getID().'"><h3>'. $lajmi->getTitulli(). '</h3></a>
+				        <p>'.substr($lajmi->getBody(),0,145).'...</p>
 				      </div>
 				    </div>';
 			    $i++;

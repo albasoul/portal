@@ -19,16 +19,16 @@ class Profesor{
 		}
 	}
 	function getEmri(){
-		return $this->emri;
+		return html_entity_decode($this->emri);
 	}
 	function getMbiemri(){
-		return $this->mbiemri;
+		return html_entity_decode($this->mbiemri);
 	}
 	function getEmail(){
 		return $this->email;
 	}
 	function getLokacioni(){
-		return $this->lokacioni;
+		return html_entity_decode($this->lokacioni);
 	}
 	function getFoto(){
 		return $this->foto;

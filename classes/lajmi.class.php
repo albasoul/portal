@@ -60,14 +60,14 @@ class Lajmi{
 	*	Dmth krejt mvaret nga variabla $momentale, dhe nga variabla $perFaqe qe tregon numrin e lajmeve qe do mirren nga databasa
 	*	Ketu mirren vetem ID, pasta ne forloop i krijom lajmet me class Lajmi permes ketyre ID te marra.
 	*/
-	function getLajmetID($momentale,$perFaqe,$v,$m){
+	function getLajmetID($v,$m){
 		global $lidhja;
 		if(!empty($v)) {
 			if(!empty($m)){
-				$lajmet = $lidhja->query("SELECT id FROM lajmet WHERE YEAR(data)=$v AND MONTH(data)=$m ORDER BY data DESC LIMIT $momentale,$perFaqe") or die($lidhja->error);
+				$lajmet = $lidhja->query("SELECT id FROM lajmet WHERE YEAR(data)=$v AND MONTH(data)=$m ORDER BY data DESC") or die($lidhja->error);
 			}
 			else{
-				$lajmet = $lidhja->query("SELECT id FROM lajmet WHERE YEAR(data)=$v ORDER BY data DESC LIMIT $momentale,$perFaqe") or die($lidhja->error);
+				$lajmet = $lidhja->query("SELECT id FROM lajmet WHERE YEAR(data)=$v ORDER BY data DESC") or die($lidhja->error);
 			}
 		}
 		if($lajmet->num_rows){

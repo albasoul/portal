@@ -4,10 +4,10 @@
 #	ka funksione per faqen, si: getTitle(), getFooter(), isActivated();
 #
 class Page{
-	private $title;
-	private $footer;
-	private $active;
-	private $logoLink;
+	private $title = "Titulli faqes";
+	private $footer = "Copyright 2014";
+	private $active = false;
+	private $logoLink = "panjohur";
 	function __construct(){
 		global $lidhja;
 	##################################################
@@ -22,14 +22,15 @@ class Page{
 		$this->active = FALSE;
 		$this->logoLink = $pageInfo['logo'];
 		# nese eshte 1 beje faqen aktive #
-		if($pageInfo['activated'] == 1){ $this->active = TRUE; }
-		else{ $this->active = FALSE; }
+		if($pageInfo['activated'] == 1) {
+			$this->active = TRUE;
+		}
 	}
 	/*
 	* Funksioni per me marr titullin e faqes
 	*/
 	function getTitle(){
-		return $this->title;
+		return html_entity_decode($this->title);
 	}
 	function getLogo(){
 		return $this->logoLink;
@@ -38,7 +39,7 @@ class Page{
 	* Funksioni per me marr footer e faqes
 	*/
 	function getFooter(){
-		return $this->footer;
+		return html_entity_decode($this->footer);
 	}
 	/*
 	* Funksioni per me kqyr a eshte faqja aktive

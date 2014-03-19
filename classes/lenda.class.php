@@ -24,7 +24,7 @@ class Lenda{
 		return $this->id;
 	}
 	function getEmri(){
-		return $this->emri;
+		return html_entity_decode($this->emri);
 	}
 	function getDrejtimi(){
 		return $this->drejtimi;
