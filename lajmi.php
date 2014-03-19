@@ -76,7 +76,7 @@
 							echo '<div class="col-md-8"><p>'.$lajmi->getBody().'</p></div>';
 						}
 						else{
-							echo '<div class="col-md-12"><p>'.nl2br($lajmi->getBody()).'</p></div>';
+							echo '<div class="col-md-12"><p>'.rregulloLajmin($lajmi->getBody()).'</p></div>';
 						}
 					?>
 					</div>

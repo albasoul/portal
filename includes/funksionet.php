@@ -85,4 +85,11 @@
 		}
 		return $data;
 	}
+	function rregulloLajmin($lajmi){
+		$lajmi2 = "";
+		$ndare = explode("\n", $lajmi);
+		foreach($ndare as $n){
+			echo '<p>'.$n.'</p>';
+		}
+	}
 ?>

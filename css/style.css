@@ -1,3 +1,4 @@
+@import url(http://fonts.googleapis.com/css?family=Open+Sans);
 body{
 	background-color: #f9f9f9;
 }
@@ -101,8 +102,8 @@ body{
 	color:#3e433e;
 }
 .lajmi{
-	font: 120%/1.625 open_sansregular,HelveticaNeue,Helvetica,Arial,sans-serif;
-	color:#3e433e;
+	font: 120%/1.725 'Open Sans', sans-serif;
+color: #3e433e;
 }
 .lajmet{
 	font: 120%/1.625 open_sansregular,HelveticaNeue,Helvetica,Arial,sans-serif;
