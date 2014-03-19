@@ -95,8 +95,16 @@ else{
 							  <h4><small>Formati: </small>'.$ligjerata->getExtension().'</h4>
 							  <h4><small>Madh&euml;sia: </small>'.$ligjerata->getMadhesia().'</h4>
 							</div>';
-					echo '<iframe src="lexoLigjerat.php?id='.$id.'" width="100%" height="780" style="border: none;">
-					</iframe>';
+							// leximi i ligjeratave
+							if($ligjerata->getExtension() === "pdf"){
+								echo '<iframe src="lexoLigjerat.php?id='.$id.'" width="100%" height="780" style="border: none;">
+										</iframe>';
+							}
+							else{
+								echo '<iframe src="http://docs.google.com/viewer?url=http://178.175.110.242//portal/'.$ligjerata->getLink().'&embedded=true" width="100%" height="780" style="border: none;">
+								</iframe>';
+							}
+					
 					echo '<ul class="pager">';
 					if($info = $ligjerata->kaLigjerat($ligjerata->getID(),"p")) { // "p" = posht
 						echo '<li class="previous"><a href="ligjerata.php?id='.$info[0].'">&larr; '.$info[1].'</a></li>';
