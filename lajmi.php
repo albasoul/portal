@@ -67,7 +67,7 @@
 				<div class="panel panel-success">
 					<div class="panel-heading">
 						<h3 class="panel-title"><strong><?php echo $lajmi->getTitulli(); ?></strong></h3>
-						<p><span class="pull-right"><em><?php echo rregulloDaten($lajmi->getData()); ?></em></span></p>
+						<p class="text-right" style="margin-bottom:0px;"><em><?php echo rregulloDaten($lajmi->getData()); ?></em></p>
 					</div>
 					<div class="panel-body">
 					<?php 

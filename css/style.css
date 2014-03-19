@@ -103,10 +103,13 @@ body{
 }
 .lajmi{
 	font: 120%/1.725 'Open Sans', sans-serif;
-color: #3e433e;
+	color: #3e433e;
+}
+.lajmi .panel-body{
+
 }
 .lajmet{
-	font: 120%/1.625 open_sansregular,HelveticaNeue,Helvetica,Arial,sans-serif;
+	font: 120%/1.425 'Open Sans', sans-serif;
 	color:#3e433e;
 }
 .lajmet .lajmi-rend{
