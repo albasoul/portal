@@ -75,13 +75,13 @@ class Ligjerata{
 	* Ne $info[1]  ruan emrin e ligjerates
 	* Pastaj e kthen kete array, dhe i perdorim keto te dhena
 	*/
-	function kaLigjerat($id,$v){
+	function kaLigjerat($id,$v,$l_id){
 		global $lidhja;
 		if($v === "p"){ // Nese kerkohet 1 ligjerat e kaluar
-			$ligjerat = $lidhja->query("SELECT id,emri FROM ligjeratat WHERE id<$id ORDER BY id DESC LIMIT 1");
+			$ligjerat = $lidhja->query("SELECT id,emri FROM ligjeratat WHERE id<$id AND id_l=$l_id ORDER BY id DESC LIMIT 1");
 		}
 		elseif($v === "l"){ // Nese kerkohet ligjerata e ardhshme
-			$ligjerat = $lidhja->query("SELECT id,emri FROM ligjeratat WHERE id>$id LIMIT 1");
+			$ligjerat = $lidhja->query("SELECT id,emri FROM ligjeratat WHERE id>$id AND id_l=$l_id LIMIT 1");
 		}
 		else{
 			return FALSE;

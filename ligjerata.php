@@ -106,13 +106,13 @@ else{
 							}
 					
 					echo '<ul class="pager">';
-					if($info = $ligjerata->kaLigjerat($ligjerata->getID(),"p")) { // "p" = posht
+					if($info = $ligjerata->kaLigjerat($ligjerata->getID(),"p",$lenda->getID())) { // "p" = posht
 						echo '<li class="previous"><a href="ligjerata.php?id='.$info[0].'">&larr; '.$info[1].'</a></li>';
 					}
 					else{
 						echo '<li class="previous disabled"><a>&larr;</a></li>';
 					}
-					if($info = $ligjerata->kaLigjerat($ligjerata->getID(),"l")) { // "l" = lart
+					if($info = $ligjerata->kaLigjerat($ligjerata->getID(),"l",$lenda->getID())) { // "l" = lart
 						echo '<li class="next"><a href="ligjerata.php?id='.$info[0].'">'.$info[1].' &rarr;</a></li>';
 					}
 					else{
