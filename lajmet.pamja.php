@@ -106,13 +106,8 @@ $page = new Page();
 				 	<div class="panel-body">
 				 	<h3>Arkiva</h3>
 						<ul class="list-unstyled">
-							<li><a class="btn btn-link" href="#">Janar</a></li>
-							<li><a class="btn btn-link" href="index.php?faqja=lajmet&viti=<?php echo $viti; ?>&muaji=2">Shkurt</a></li>
-							<li><a class="btn btn-link" href="index.php?faqja=lajmet&viti=<?php echo $viti; ?>&muaji=3">Mars</a></li>
-							<li><a class="btn btn-link" href="#">Prill</a></li>
-							<li><a class="btn btn-link" href="#">Maj</a></li>
-							<li><a class="btn btn-link" href="#">Qershor</a></li>
-							<li><a class="btn btn-link" href="#">Korrik</a></li>
+						<!-- Paraqitja e arkives sipas muajve-->
+							<?php paraqitArkiven($viti); ?>
 						</ul>
 						<hr/>
 						<h3>Viti</h3>

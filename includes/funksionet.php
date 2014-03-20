@@ -92,4 +92,51 @@
 			echo '<p>'.$n.'</p>';
 		}
 	}
+	function paraqitArkiven($viti){
+		global $lidhja;
+		$muajt = $lidhja->query("SELECT MONTH(data) as muaji FROM lajmet WHERE YEAR(data)=$viti GROUP BY MONTH(data) ORDER BY MONTH(data) ASC");
+		if($muajt->num_rows){
+			$muaj = $muajt->fetch_assoc();
+			if($muaj['muaji'] == 1){
+				$temp = "Janar";
+			}
+			elseif($muaj['muaji'] == 2){
+				$temp = "Shkurt";
+			}
+			elseif($muaj['muaji'] == 3){
+				$temp = "Mars";
+			}
+			elseif($muaj['muaji'] == 4){
+				$temp =" Prill";
+			}
+			elseif($muaj['muaji'] == 5){
+				$temp = "Maj" ;
+			}
+			elseif($muaj['muaji'] == 6){
+				$temp ="Qershor";
+			}
+			elseif($muaj['muaji'] == 7){
+				$temp = "Korrik";
+			}
+			elseif($muaj['muaji'] == 8){
+				$temp = "Gusht";
+			}
+			elseif($muaj['muaji'] == 9){
+				$temp = "Shtator";
+			}
+			elseif($muaj['muaji'] == 10){
+				$temp ="Tetor";
+			}
+			elseif($muaj['muaji'] == 11){
+				$temp = "N&euml;ntor";
+			}
+			elseif($muaj['muaji'] == 12){
+				$temp ="Dhjetor";
+			}
+		}
+		foreach($muajt as $muaji){
+			$m = $muaji['muaji'];
+			echo '<li><a class="btn btn-link" href="index.php?faqja=lajmet&viti='.$viti.'&muaji='.$m.'">'.$temp.'</a></li>';
+		}
+	}
 ?>
