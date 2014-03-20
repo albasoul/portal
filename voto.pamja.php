@@ -91,8 +91,8 @@
 								echo '<span class="text-danger"><strong>'.$profesor->getEmri().' '.$profesor->getMbiemri().' - '.$lenda->getEmri().'</strong></span>';
 								foreach($pyetjet as $pyetja){
 									echo '<input type="hidden" name="pyetja[]" value="'.$pyetja['pyetja'].'"/>';
-									echo '	<tr><td><label for="nota'.$pyetja['id'].''.$i.'"> '.$pyetja['pyetja'].' </label></td><td></td></tr>
-											<tr><td><input class="form-control" id="nota'.$pyetja['id'].''.$i.'" name="nota'.$pyetja['id'].''.$i.'[]" type="range" min="1" max="5" value="1" step="1" onchange="vlera'.$pyetja['id'].''.$i.'.value=value" /></td>
+									echo '	<tr><td><label for="nota'.$pyetja['id'].''.$i.'"> '.$pyetja['pyetja'].' </label><br/>
+											<input id="nota'.$pyetja['id'].''.$i.'" name="nota'.$pyetja['id'].''.$i.'[]" type="range" min="1" max="5" value="1" step="1" onchange="vlera'.$pyetja['id'].''.$i.'.value=value" /></td>
 											<td><output id="vlera'.$pyetja['id'].''.$i.'">1</output></td></tr>';
 								}
 							}
