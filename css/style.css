@@ -232,14 +232,13 @@ input[type="range"]:hover {
 .pyetja{
 	color:#555;
 	transition: all 0.1s ease-in;
-	font: 110%/1.125 'Open Sans', sans-serif;
-	height:40px;
+	font: 120%/1.125 'Open Sans', sans-serif;
+}
+.voto .table > tbody > tr > td:hover {
+	background-color: #fff;
 }
 td:hover > .pyetja{
 	color:#000000;
-	font: 120%/1.125 'Open Sans', sans-serif;
-	height:40px;
-	margin-bottom:-1px;
 }
 
 input[type="range"]::-webkit-slider-thumb {
