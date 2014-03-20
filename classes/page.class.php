@@ -65,7 +65,7 @@ class Page{
 			include('lajmet.pamja.php');
 		}
 		else{
-			include('login.pamja.php');
+			include('index.pamja.php');
 		}
 	}
 
