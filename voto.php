@@ -12,10 +12,13 @@ if(!empty($_POST)){
 	$i=0;
 	foreach($lendet as $l){
 		$lenda = new Lenda($l['id']);
-		echo utf8_decode($lenda->getEmri()) . ' - ' .$_POST['emri_prof'][$i]. ' :<br/> ' ;
+		$j=0;
 		foreach($pyetjet as $pyetje){
-			print_r($_POST['nota'.$pyetje['id'].''.$i][0]);
+			echo utf8_decode($lenda->getEmri()) . ' - ' .$_POST['emri_prof'][$i]. ' : ' ;
+			echo htmlentities($_POST['pyetja'][$j])	. ' ' ;
+			echo ($_POST['nota'.$pyetje['id'].''.$i][0]);
 			echo '<br/>';
+			$j++;
 		}
 		echo '<br/>';
 		$i++;
