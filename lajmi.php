@@ -72,8 +72,8 @@
 					<div class="panel-body">
 					<?php 
 						if($lajmi->getFoto()){
-							echo '<div class="col-md-4"><img src="'.$lajmi->getFoto().'" class="img-responsive"/></div>';
-							echo '<div class="col-md-8"><p>'.$lajmi->getBody().'</p></div>';
+							echo '<div class="col-md-8 col-md-offset-2"><img src="'.$lajmi->getFoto().'" class="img-responsive img-rounded img-thumbnail"/><p><br/></p></div>';
+							echo '<div class="col-md-12"><p>'.$lajmi->getBody().'</p></div>';
 						}
 						else{
 							echo '<div class="col-md-12"><p>'.rregulloLajmin($lajmi->getBody()).'</p></div>';
