@@ -40,14 +40,20 @@ class Studenti{
 		}
 	}
 	/*
-	* 	Kthen emrin e studentit
+	* 	Kthen ID e studentit ne database qe e ka te regjistruar
 	*/
 	function getID(){
 		return $this->ID;
 	}
+	/*
+	* 	Kthen ID e studentit ne Fakulltet qe e ka te regjistruar : SID
+	*/
 	function getSID(){
 		return $this->SID;
 	}
+	/*
+	* 	Kthen emrin e studentit
+	*/
 	function getEmri(){
 		return html_entity_decode($this->emri);
 	}
