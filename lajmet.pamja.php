@@ -112,9 +112,8 @@ $page = new Page();
 						<hr/>
 						<h3>Viti</h3>
 						<ul class="list-unstyled">
-							<li><a class="btn btn-link" href="index.php?faqja=lajmet&viti=2014">2014</a></li>
-							<li><a class="btn btn-link" href="index.php?faqja=lajmet&viti=2013">2013</a></li>
-							<li><a class="btn btn-link" href="index.php?faqja=lajmet&viti=2012">2012</a></li>
+						<!-- Paraqitja e arkives sipas muajve-->
+							<?php paraqitVitetEArkives(); ?>
 						</ul>
 					</div>
 				</div>

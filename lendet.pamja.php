@@ -45,15 +45,15 @@
 	</nav>
 	</div>
     <div class="container">
-		<div id="carousel-example-generic" class="carousel slide hidden-xs hidden-sm" data-ride="carousel">
+		<div id="portal-slide" class="carousel slide hidden-xs hidden-sm" data-ride="carousel">
 		  <!-- Indicators -->
 		  <ol class="carousel-indicators">
 		  <?php
 		  	for($i=0; $i<5; $i++)
 		  	{
-		  		if($i==0){ echo '<li data-target="#carousel-example-generic" data-slide-to="'.$i.'" class="active"></li>'; }
+		  		if($i==0){ echo '<li data-target="#portal-slide" data-slide-to="'.$i.'" class="active"></li>'; }
 		  		else{
-		  			echo '<li data-target="#carousel-example-generic" data-slide-to="'.$i.'"></li>';
+		  			echo '<li data-target="#portal-slide" data-slide-to="'.$i.'"></li>';
 		  		}
 		  	}
 		  ?>
@@ -81,8 +81,8 @@
 		    			echo '<img alt="" src="http://www.transportenvironment.org/sites/te/files/styles/large/public/defaults/news_default.png">';
 		    		}
 				  echo '<div class="carousel-caption col-md-4">
-				        <h3>'. $lajmi->getTitulli(). '</h3>
-				        <p>'.substr($lajmi->getBody(),0,200).' ... <a href="'.$lajmi->getID().'" class="text-danger">Lexo më shumë</a></p>
+				        <a href="lajmi.php?id='.$lajmi->getID().'"><h3>'. $lajmi->getTitulli(). '</h3></a>
+				        <p>'.substr($lajmi->getBody(),0,145).'...</p>
 				      </div>
 				    </div>';
 			    $i++;
@@ -90,17 +90,17 @@
 		    ?>
 		    </div>
 		  <!-- Controls -->
-		  <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
+		  <a class="left carousel-control" href="#portal-slide" data-slide="prev">
 		    <span class="glyphicon glyphicon-chevron-left"></span>
 		  </a>
-		  <a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
+		  <a class="right carousel-control" href="#portal-slide" data-slide="next">
 		    <span class="glyphicon glyphicon-chevron-right"></span>
 		  </a>
 		</div>
 		<div class="clearfix"></div><br/>
 		<div class="row">
-			<div class="col-md-3 user-info">
-					<img class="img-circle hidden-sm hidden-xs" src="<?php echo $studenti->getFoto(); ?>" />
+			<div class="col-md-3 user-info hidden-xs hidden-sm">
+					<img class="img-circle" src="<?php echo $studenti->getFoto(); ?>" />
 					<p class="emri"><?php echo $studenti->getEmri() . ' '. $studenti->getMbiemri();  ?></p>
 					<p>Gjithsej kredi: <em><?php echo $studenti->getKredi(); ?></em></p>
 					<hr class="hidden-xs">
@@ -119,18 +119,18 @@ echo '<tr>
 
 					</tbody>
 					</table>
-					<div class="lajmet-fundit hidden-md hidden-lg">
+			</div>
+				<div class="lajmet-fundit hidden-md hidden-lg">
 					<label>Lajmet e fundit:</label>
 						<div class="list-group">
 						<?php
 							foreach($lajmetQuery as $l){
 								$lajmi = new Lajmi($l['id']);
-								echo '<a href="'.$lajmi->getID().'" class="list-group-item">'. substr($lajmi->getTitulli(),0,90). '...</a>';
+								echo '<a href="lajmi.php?id='.$lajmi->getID().'" class="list-group-item">'. substr($lajmi->getTitulli(),0,90). '...</a>';
 							}
 						?>
 						</div>
 					</div>
-			</div>
 			<div class="col-md-8 col-md-offset-1 lendet panel panel-default">
 				<?php 
 					/*
@@ -148,8 +148,9 @@ echo '<tr>
 							//	per qdo Semester krijohet nga 1 tabel e re <table>.....
 							//
 							echo '
+							<div class="table-responsive">
 							<table class="table">
-								<thead><tr><th>Emri</th><th>Kredi</th><th>Semestri</th><th>Nota</th><th>Data</th></tr></thead>
+								<thead><tr><th>Emri</th><th class="text-center">Kredi</th><th class="text-center">Semestri</th><th class="text-center">Nota</th><th class="text-right">Data</th></tr></thead>
 								<tbody>
 								';
 								//
@@ -158,15 +159,16 @@ echo '<tr>
 									foreach($lendet as $l){ // Per secilen lende e bojm kodin ma posht
 										$lenda = new Lenda($l['id']);
 										if($nota = $studenti->getLendaKaluara($l['id'])){ //Nese ka kaluar merrja noten dhe ruje tek $nota.
-											echo '<tr><td>'.$lenda->getEmri().'</td><td>'.$lenda->getKredi().'</td><td>'.$lenda->getSemestri().'</td><td>'.$nota['nota'].'</td><td>'.rregulloDaten($nota['data']).'</td></tr>';
+											echo '<tr><td><a href="index.php?faqja=lenda&id='.$lenda->getID().'">'.$lenda->getEmri().'</a></td><td class="text-center">'.$lenda->getKredi().'</td><td class="text-center">'.$lenda->getSemestri().'</td><td class="text-center">'.$nota['nota'].'</td><td class="text-right">'.rregulloDaten($nota['data']).'</td></tr>';
 										}
 										else{
-											echo '<tr><td>'.$lenda->getEmri().'</td><td>'.$lenda->getKredi().'</td><td>'.$lenda->getSemestri().'</td><td></td><td></td></tr>';
+											echo '<tr><td><a href="index.php?faqja=lenda&id='.$lenda->getID().'">'.$lenda->getEmri().'</a></td><td class="text-center">'.$lenda->getKredi().'</td><td class="text-center">'.$lenda->getSemestri().'</td><td></td><td></td></tr>';
 										}
 									}
 
 							echo '</tbody>
-							</table>';
+							</table>
+							</div>';
 						} // perfundon IF
 					} // perfundon FOR loop per semestra
 				?>

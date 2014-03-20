@@ -69,8 +69,8 @@ else{
     }
     ?>
 		<div class="row">
-			<div class="col-md-3 user-info">
-					<img class="img-circle" src="<?php echo $studenti->getFoto(); ?>" />
+			<div class="col-md-3 user-info hidden-xs hidden-sm">
+					<img class="img-circle " src="<?php echo $studenti->getFoto(); ?>" />
 					<p class="emri"><?php echo $studenti->getEmri() . ' '. $studenti->getMbiemri();  ?></p>
 					<p>Gjithsej kredi: <em><?php echo $studenti->getKredi(); ?></em></p>
 					<hr class="hidden-xs">
@@ -92,7 +92,7 @@ echo '<tr>
 			</div>
 			<div class="col-md-8 col-md-offset-1 ligjeratat">
 			<?php if(!$lejo){ 
-				echo '<p> Nuk ju lejohet te keni qasje ne lende te drejtimeve/semestrave t&euml; tjer&euml;.</p>';
+				echo '<p> Nuk ju lejohet &ccedilasja n&euml; lend&euml;.</p>';
 			} 
 			else {
 				if($lenda->getLigjeratat()){
@@ -103,7 +103,7 @@ echo '<tr>
 							echo '
 								<a href="ligjerata.php?id='.$ligjerata->getID().'" class="list-group-item">
 								    <h4 class="list-group-item-heading">'.$ligjerata->getAlias().' - '.$ligjerata->getEmri().'</h4>
-									<p class="list-group-item-text text-right"><em class="text-danger">'.$ligjerata->getExtension().'</em> <small class="text-info">'.$ligjerata->getMadhesia().'</small></p>
+									<p class="list-group-item-text pull-right hidden-xs" style="margin-top:-25px;"><em class="text-danger">'.$ligjerata->getExtension().'</em> <small class="text-info">'.$ligjerata->getMadhesia().'</small></p>
 								</a>';
 						}
 					echo '</div>';

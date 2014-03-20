@@ -1,9 +1,12 @@
 <?php
 	# perfshije config.php
 	include('includes/config.php');
-	if(!empty($_GET['id'])){
+	if(!empty($_GET['id']) && $_GET['id']>0){
 		$id = $lidhja->real_escape_string($_GET['id']);
 		$lajmi = new Lajmi($id);
+		if($lajmi->getTitulli() === "panjohur" OR $lajmi->getBody() === "panjohur"){
+			header('Location: index.php?faqja=lajmet');
+		}
 		$page = new Page();
 	}
 	else{

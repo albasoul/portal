@@ -133,10 +133,25 @@
 			elseif($muaj['muaji'] == 12){
 				$temp ="Dhjetor";
 			}
-		}
-		foreach($muajt as $muaji){
+			foreach($muajt as $muaji){
 			$m = $muaji['muaji'];
 			echo '<li><a class="btn btn-link" href="index.php?faqja=lajmet&viti='.$viti.'&muaji='.$m.'">'.$temp.'</a></li>';
+			}
+		}
+		else{
+			echo '<li class="text-danger"> Nuk ka lajme! </li>';
+		}
+	}
+	function paraqitVitetEArkives(){
+		global $lidhja;
+		$vitet = $lidhja->query("SELECT YEAR(data) as viti FROM lajmet GROUP BY YEAR(data) ORDER BY YEAR(data) DESC");
+		if($vitet->num_rows){
+			foreach($vitet as $viti){
+				echo '<li><a class="btn btn-link" href="index.php?faqja=lajmet&viti='.$viti['viti'].'">'.$viti['viti'].'</a></li>';
+			}
+		}
+		else{
+			echo '<li class="text-danger"> Nuk ka lajme! </li>';
 		}
 	}
 ?>

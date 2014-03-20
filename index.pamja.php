@@ -126,7 +126,7 @@ echo '<tr>
 						<?php
 							foreach($lajmetQuery as $l){
 								$lajmi = new Lajmi($l['id']);
-								echo '<a href="'.$lajmi->getID().'" class="list-group-item">'. substr($lajmi->getTitulli(),0,90). '...</a>';
+								echo '<a href="lajmi.php?id='.$lajmi->getID().'" class="list-group-item">'. substr($lajmi->getTitulli(),0,90). '...</a>';
 							}
 						?>
 						</div>
