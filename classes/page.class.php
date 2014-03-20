@@ -64,6 +64,9 @@ class Page{
 		elseif($lokacioni === "lajmet"){
 			include('lajmet.pamja.php');
 		}
+		elseif($lokacioni === "voto"){
+			include('voto.pamja.php');
+		}
 		else{
 			include('index.pamja.php');
 		}

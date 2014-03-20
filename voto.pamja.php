@@ -1,20 +1,3 @@
-<?php
-global $lidhja;
-/*
-* Duhet me kontrollu qe studenti te mos kyqet te naj land tjeter perveq semestrave te tij..........
-*/
-$l_id = $lidhja->real_escape_string($_GET['id']);
-$drejtimi = $studenti->getDrejtimi();
-$semestri = $studenti->getSemestri();
-$lenda = $lidhja->query("SELECT * FROM lendet WHERE id=$l_id AND semestri<=$semestri AND drejtimi=$drejtimi") or die('<p>Kerkesa refuzohet.</p><a href="index.php">Kthehuni mbrapa.</a>');
-if($lenda->num_rows){
-	$lenda = new Lenda($l_id);
-	$lejo = TRUE;
-}
-else{
-	$lejo = FALSE;
-}
-?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -27,7 +10,6 @@ else{
     <link href="css/bootstrap.css" rel="stylesheet">
     <!-- Stili i veqant -->
     <link href="css/style.css" rel="stylesheet">
-
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -53,24 +35,20 @@ else{
 	    <!-- Collect the nav links, forms, and other content for toggling -->
 	    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 	      <ul class="nav navbar-nav">
-	        <?php $page->headerNavbar(); ?>
+	     	<?php $page->headerNavbar(); ?>
 	      </ul>
+		  	<ul class="nav navbar-nav navbar-right">
+				<li><a href="logout.php" class="glyphicon glyphicon-log-out"></a></li>
+			</ul>
 	    </div><!-- /.navbar-collapse -->
 	  </div><!-- /.container-fluid -->
 	</nav>
 	</div>
-    <div class="container">
-    <?php 
-    if($lejo){
-    	$prof = new Profesor($lenda->getProfID());
-    	echo' <div class="jumbotron text-center">
-		  <h1>'. $lenda->getEmri() .' - <em> '.$prof->getEmri().' '.$prof->getMbiemri().'</em></h1>
-		</div>';
-    }
-    ?>
+    <div class="container">		
+		<div class="clearfix"></div><br/>
 		<div class="row">
-			<div class="col-md-3 user-info hidden-xs hidden-sm">
-					<img class="img-circle " src="<?php echo $studenti->getFoto(); ?>" />
+			<div class="col-md-3 user-info hidden-sm hidden-xs">
+					<img class="img-circle" src="<?php echo $studenti->getFoto(); ?>" />
 					<p class="emri"><?php echo $studenti->getEmri() . ' '. $studenti->getMbiemri();  ?></p>
 					<p>Gjithsej kredi: <em><?php echo $studenti->getKredi(); ?></em></p>
 					<hr class="hidden-xs">
@@ -78,41 +56,54 @@ else{
 					<thead><tr><th>Emri</th><th>Kredi</th></tr></thead>
 					<tbody><?php 
 						# lendet vetem te atij semestri qe eshte edhe studenti..
-						$lendetSemestrit = getLendetMeSemester($studenti->getSemestri(), $studenti->getDrejtimi());
-						foreach($lendetSemestrit as $l){
-							$lendet = new Lenda($l['id']);
-echo '<tr>
-							<td><a href="index.php?faqja=lenda&id='.$l['id'].'">'.$lendet->getEmri().'</a></td>
-								<td>'.$lendet->getKredi().'</td>
+						$lendet = getLendetMeSemester($studenti->getSemestri(), $studenti->getDrejtimi());
+						foreach($lendet as $l){
+							$lenda = new Lenda($l['id']);
+						echo '<tr>
+								<td><a href="index.php?faqja=lenda&id='.$l['id'].'">'.$lenda->getEmri().'</a></td>
+								<td>'.$lenda->getKredi().'</td>
 							</tr>';
 						}?>
 
 					</tbody>
 					</table>
 			</div>
-			<div class="col-md-8 col-md-offset-1 ligjeratat">
-			<?php if(!$lejo){ 
-				echo '<p> Nuk ju lejohet &ccedilasja n&euml; lend&euml;.</p>';
-			} 
-			else {
-				if($lenda->getLigjeratat()){
-					$ligjeratat = $lenda->getLigjeratat();
-					echo '<div class="list-group">';
-						foreach($ligjeratat as $l){
-							$ligjerata = new Ligjerata($l['id']);
-							echo '
-								<a href="ligjerata.php?id='.$ligjerata->getID().'" class="list-group-item">
-								    <h4 class="list-group-item-heading">'.$ligjerata->getAlias().' - '.$ligjerata->getEmri().'</h4>
-									<p class="list-group-item-text pull-right hidden-xs" style="margin-top:-25px;"><em class="text-danger">'.$ligjerata->getExtension().'</em> <small class="text-info">'.$ligjerata->getMadhesia().'</small></p>
-								</a>';
+			<div class="col-md-8 col-md-offset-1 voto">
+				<form class="form" role="form" action="voto.php" method="POST">
+					<?php
+					$i=0;
+						foreach($lendet as $l){
+							/*
+							* Krijojm 2 objektet, per secilen lende, dhe secilin profesore
+							*/
+							$lenda = new Lenda($l['id']);
+							$profesor = new Profesor($lenda->getProfID());
+
+							/*
+							*	Emrat e lendeve dhe emrat/mbiemrat e profesoreve i ruajme ne nje Array
+							*	emri_lendes[] dhe emri_prof[] jane array
+							*/
+							echo '<input type="hidden" name="emri_lendes[]" value="'.$lenda->getEmri().'" />';
+							echo '<input type="hidden" name="emri_prof[]" value="'.$profesor->getEmri().' '.$profesor->getMbiemri().'" />';							
+					echo'<div class="table-responsive">
+							  <table class="table table-condensed">';
+							if($pyetjet = getPyetjet()){
+								echo '<span class="text-danger"><strong>'.$profesor->getEmri().' '.$profesor->getMbiemri().' - '.$lenda->getEmri().'</strong></span>';
+								foreach($pyetjet as $pyetja){
+									echo '	<tr><td><label for="nota'.$pyetja['id'].''.$i.'"> '.$pyetja['pyetja'].' </label></td><td></td></tr>
+											<tr><td><input class="form-control" id="nota'.$pyetja['id'].''.$i.'" name="nota'.$pyetja['id'].''.$i.'[]" type="range" min="1" max="5" value="1" step="1" onchange="vlera'.$pyetja['id'].''.$i.'.value=value" /></td>
+											<td><output id="vlera'.$pyetja['id'].''.$i.'">1</output></td></tr>';
+								}
+							}
+							else{
+								echo 'Nuk ka pyejte.';
+							}
+					echo '</table></div>';
+						$i++;
 						}
-					echo '</div>';
-				}
-				else{
-					echo '<div class="alert alert-info">Nuk ka ligj&euml;rata n&euml; k&euml;t&euml; l&euml;nd&euml;.</div>';
-				}
-			}
-			?>
+					?>
+					<button type="submit" class="btn btn-md btn-default">Ruaj</button>
+				</form>
 			</div>
 		</div>
 		<!-- FOOTER -->
@@ -124,7 +115,6 @@ echo '<tr>
 			</span>
 		</div>
     </div>
-
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->

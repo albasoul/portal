@@ -108,7 +108,7 @@
 					<thead><tr><th>Emri</th><th>Kredi</th></tr></thead>
 					<tbody><?php 
 						# lendet vetem te atij semestri qe eshte edhe studenti..
-						$lendet = getLendetMeSemester($studenti->getSemestri());
+						$lendet = getLendetMeSemester($studenti->getSemestri(), $studenti->getDrejtimi());
 						foreach($lendet as $l){
 							$lenda = new Lenda($l['id']);
 echo '<tr>

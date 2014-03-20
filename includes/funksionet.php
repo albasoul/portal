@@ -34,9 +34,9 @@
 	/*
 	* Funksioni qe kthen te gjitha lendet (si array) me semestrin e caktuar, kthen vetem ID e lendeve
 	*/
-	function getLendetMeSemester($semestri){
+	function getLendetMeSemester($semestri,$s_did){
 		global $lidhja;
-		$lendetQuery = $lidhja->query("SELECT id FROM lendet WHERE semestri=$semestri");
+		$lendetQuery = $lidhja->query("SELECT id FROM lendet WHERE semestri=$semestri AND drejtimi=$s_did");
 		return $lendetQuery;
 	}
 
@@ -146,6 +146,16 @@
 		}
 		else{
 			echo '<li class="text-danger"> Nuk ka lajme! </li>';
+		}
+	}
+	function getPyetjet(){
+		global $lidhja;
+		$pyetjet = $lidhja->query("SELECT * FROM pyetjet") or die("Kontrolloni databasen e pyetjeve.");
+		if($pyetjet->num_rows){
+			return $pyetjet;
+		}
+		else{
+			return FALSE;
 		}
 	}
 ?>
