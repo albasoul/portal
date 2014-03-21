@@ -87,9 +87,9 @@
 							*/
 							echo '<input type="hidden" name="emri_lendes[]" value="'.$lenda->getEmri().'" />';
 							echo '<input type="hidden" name="emri_prof[]" value="'.$profesor->getEmri().' '.$profesor->getMbiemri().'" />';	
-					echo'<table class="table table-hover">';
+					echo'<table class="table table-striped">';
 							if($pyetjet = getPyetjet()){
-								echo '<span class="text-danger"><strong>'.$profesor->getEmri().' '.$profesor->getMbiemri().' - '.$lenda->getEmri().'</strong></span>';
+								echo '<span class="text-danger lenda-prof"><strong>'.$profesor->getEmri().' '.$profesor->getMbiemri().' - '.$lenda->getEmri().'</strong></span>';
 								foreach($pyetjet as $pyetja){
 									echo '<input type="hidden" name="pyetja[]" value="'.$pyetja['pyetja'].'"/>';
 									echo '	<tr><td><span class="pyetja col-md-8"> '.$pyetja['pyetja'].' </span>
