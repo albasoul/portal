@@ -120,7 +120,7 @@
 						}
 					?>
 					<div class="form-group">
-						<button type="submit" class="btn btn-md form-control btn-primary" id="ruaj" data-loading-text="Duke ruajtur...">Ruaj!</button>
+						<button type="submit" class="btn btn-md form-control btn-primary" id="ruaj" data-loading-text="Duke kontrolluar...">Ruaj!</button>
 					</div>
 					<div class="ruajtjeError"></div>
 				</form>
