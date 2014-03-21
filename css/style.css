@@ -215,6 +215,6 @@ p.lajmi-rend  {
 }
 .pyetja{
 	font: 120%/1.725 'Open Sans', sans-serif;
-	color: #3e433e;
-	text-shadow: 1px 1px 1px #C7C7C7;
+	color: #000;
+	text-shadow: 0px 1px 1px #C7C7C7;
 }

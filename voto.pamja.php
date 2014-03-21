@@ -16,6 +16,8 @@
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="js/bootstrap.js"></script>
   </head>
   <body>
   <br/>
@@ -90,22 +92,22 @@
 								echo '<span class="text-danger"><strong>'.$profesor->getEmri().' '.$profesor->getMbiemri().' - '.$lenda->getEmri().'</strong></span>';
 								foreach($pyetjet as $pyetja){
 									echo '<input type="hidden" name="pyetja[]" value="'.$pyetja['pyetja'].'"/>';
-									echo '	<tr><td><label class="pyetja col-md-8" for="nota'.$pyetja['id'].''.$i.'"> '.$pyetja['pyetja'].' </label>
-											<div class="btn-group col-md-4" data-toggle="buttons">
-											  <label class="btn btn-primary">
-											    <input type="radio" id="nota'.$pyetja['id'].''.$i.'[]" name="nota'.$pyetja['id'].''.$i.'[]" value="1">  1
+									echo '	<tr><td><span class="pyetja col-md-8"> '.$pyetja['pyetja'].' </span>
+											<div class="btn-group form-group col-md-4 has-error" data-toggle="buttons">
+											  <label class="btn btn-default">
+											    <input type="radio" class="form-control" id="nota'.$pyetja['id'].''.$i.'[]" name="nota'.$pyetja['id'].''.$i.'[]"  required value="1">  1
 											  </label>
-											  <label class="btn btn-primary">
-											    <input type="radio" id="nota'.$pyetja['id'].''.$i.'[]" name="nota'.$pyetja['id'].''.$i.'[]" value="2">  2
+											  <label class="btn btn-default">
+											    <input type="radio" class="form-control" id="nota'.$pyetja['id'].''.$i.'[]" name="nota'.$pyetja['id'].''.$i.'[]"  required value="2">  2
 											  </label>
-											  <label class="btn btn-primary">
-											    <input type="radio" id="nota'.$pyetja['id'].''.$i.'[]" name="nota'.$pyetja['id'].''.$i.'[]" value="3"> 3
+											  <label class="btn btn-default">
+											    <input type="radio" class="form-control" id="nota'.$pyetja['id'].''.$i.'[]" name="nota'.$pyetja['id'].''.$i.'[]"  required value="3"> 3
 											  </label>
-											  <label class="btn btn-primary">
-											    <input type="radio" id="nota'.$pyetja['id'].''.$i.'[]" name="nota'.$pyetja['id'].''.$i.'[]" value="4"> 4
+											  <label class="btn btn-default">
+											    <input type="radio" class="form-control" id="nota'.$pyetja['id'].''.$i.'[]" name="nota'.$pyetja['id'].''.$i.'[]"  required value="4"> 4
 											  </label>
-											  <label class="btn btn-primary">
-											    <input type="radio" id="nota'.$pyetja['id'].''.$i.'[]" name="nota'.$pyetja['id'].''.$i.'[]" value="5"> 5
+											  <label class="btn btn-default">
+											    <input type="radio" class="form-control" id="nota'.$pyetja['id'].''.$i.'[]" name="nota'.$pyetja['id'].''.$i.'[]"  required value="5"> 5
 											  </label>
 											</div></td></tr>';
 								}
@@ -117,11 +119,14 @@
 						$i++;
 						}
 					?>
-					<button type="submit" class="btn btn-md btn-default">Ruaj</button>
+					<div class="form-group">
+						<button type="submit" class="btn btn-md form-control btn-primary" id="ruaj" data-loading-text="Duke ruajtur...">Ruaj!</button>
+					</div>
+					<div class="ruajtjeError"></div>
 				</form>
 			</div>
 		</div>
-		<!-- FOOTER -->
+ 		<!-- FOOTER -->
 		<div class="well well-md text-left">
 			<span><?php echo $page->getFooter(); ?></span>
 			<div class="visible-xs"><div class="clearfix"></div></div>
@@ -131,8 +136,22 @@
 		</div>
     </div>
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    
     <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="js/bootstrap.js"></script>
+    
+    
+    <script type="text/javascript">
+        $(function(){
+            $('#ruaj').click(function(){
+                  var btn = $(this); 
+                  btn.button('loading');
+				  setTimeout(function () {
+			            btn.button('reset');
+			            $('.ruajtjeError').html('<div class="alert alert-warning text-center"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button><strong>Ju lutemi ti vler&euml;soni t&euml; gjith&euml; profesor&euml;t.</strong></div>');
+			        }, 4000)
+            });
+        });
+    </script>
+    
   </body>
 </html>
