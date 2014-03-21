@@ -92,8 +92,23 @@
 								foreach($pyetjet as $pyetja){
 									echo '<input type="hidden" name="pyetja[]" value="'.$pyetja['pyetja'].'"/>';
 									echo '	<tr><td><label class="pyetja" for="nota'.$pyetja['id'].''.$i.'"> '.$pyetja['pyetja'].' </label><br/>
-											<input id="nota'.$pyetja['id'].''.$i.'" name="nota'.$pyetja['id'].''.$i.'[]" type="range" min="1" max="5" value="1" step="1" onchange="vlera'.$pyetja['id'].''.$i.'.value=value" /></td>
-											<td><output id="vlera'.$pyetja['id'].''.$i.'">1</output></td></tr>';
+											<div class="btn-group" data-toggle="buttons">
+											  <label class="btn btn-primary">
+											    <input type="radio" id="nota'.$pyetja['id'].''.$i.'[]" name="nota'.$pyetja['id'].''.$i.'[]" value="1"> Option 1
+											  </label>
+											  <label class="btn btn-primary">
+											    <input type="radio" id="nota'.$pyetja['id'].''.$i.'[]" name="nota'.$pyetja['id'].''.$i.'[]" value="2"> Option 2
+											  </label>
+											  <label class="btn btn-primary">
+											    <input type="radio" id="nota'.$pyetja['id'].''.$i.'[]" name="nota'.$pyetja['id'].''.$i.'[]" value="3"> Option 3
+											  </label>
+											  <label class="btn btn-primary">
+											    <input type="radio" id="nota'.$pyetja['id'].''.$i.'[]" name="nota'.$pyetja['id'].''.$i.'[]" value="4"> Option 4
+											  </label>
+											  <label class="btn btn-primary">
+											    <input type="radio" id="nota'.$pyetja['id'].''.$i.'[]" name="nota'.$pyetja['id'].''.$i.'[]" value="5"> Option 5
+											  </label>
+											</div></td></tr>';
 								}
 							}
 							else{
