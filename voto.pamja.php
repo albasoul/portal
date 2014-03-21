@@ -49,7 +49,7 @@
     <div class="container">		
 		<div class="clearfix"></div><br/>
 		<div class="row">
-			<div class="col-md-3 user-info hidden-sm hidden-xs">
+			<div class="col-md-3 user-info hidden-sm hidden-xs"> <!-- KTU FILLON paraqitja e anes se majte te antarit -->
 					<img class="img-circle" src="<?php echo $studenti->getFoto(); ?>" />
 					<p class="emri"><?php echo $studenti->getEmri() . ' '. $studenti->getMbiemri();  ?></p>
 					<p>Gjithsej kredi: <em><?php echo $studenti->getKredi(); ?></em></p>
@@ -70,7 +70,7 @@
 					</tbody>
 					</table>
 			</div>
-			<div class="col-md-8 col-md-offset-1 voto">
+			<div class="col-md-8 col-md-offset-1 voto"> <!-- KTU FILLON paraqitja e anes se djathte per votim -->
 				<form class="form" role="form" action="voto.php" method="POST">
 					<?php
 					$i=0;
@@ -87,7 +87,7 @@
 							*/
 							echo '<input type="hidden" name="emri_lendes[]" value="'.$lenda->getEmri().'" />';
 							echo '<input type="hidden" name="emri_prof[]" value="'.$profesor->getEmri().' '.$profesor->getMbiemri().'" />';	
-					echo'<table class="table table-striped">';
+					echo'<table class="table table-">';
 							if($pyetjet = getPyetjet()){
 								echo '<span class="text-danger lenda-prof"><strong>'.$profesor->getEmri().' '.$profesor->getMbiemri().' - '.$lenda->getEmri().'</strong></span>';
 								foreach($pyetjet as $pyetja){
@@ -135,11 +135,12 @@
 			</span>
 		</div>
     </div>
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
-    
-    
+    <!-- 
+    Ky kod Javascript nga Bootstrap sherben per me bo animated butonin "Ruaj!",
+    pas 4000( 4sec ) tek <div ruajtjeError, do te vendoset kodi mbrenda ".html('')" ,
+    kjo i lejon 4 sec kohe severit qe te shikoje a i ka plotesuar te gjitha pyetjet ,
+    kjo funksionon sepse <input type... e kane parametrin "required" 
+    -->
     <script type="text/javascript">
         $(function(){
             $('#ruaj').click(function(){
