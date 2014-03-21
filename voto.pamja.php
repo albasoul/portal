@@ -85,28 +85,27 @@
 							*/
 							echo '<input type="hidden" name="emri_lendes[]" value="'.$lenda->getEmri().'" />';
 							echo '<input type="hidden" name="emri_prof[]" value="'.$profesor->getEmri().' '.$profesor->getMbiemri().'" />';	
-					echo'<div class="table-responsive">
-							  <table class="table table-hover">';
+					echo'<table class="table table-hover">';
 							if($pyetjet = getPyetjet()){
 								echo '<span class="text-danger"><strong>'.$profesor->getEmri().' '.$profesor->getMbiemri().' - '.$lenda->getEmri().'</strong></span>';
 								foreach($pyetjet as $pyetja){
 									echo '<input type="hidden" name="pyetja[]" value="'.$pyetja['pyetja'].'"/>';
-									echo '	<tr><td><label class="pyetja" for="nota'.$pyetja['id'].''.$i.'"> '.$pyetja['pyetja'].' </label><br/>
-											<div class="btn-group" data-toggle="buttons">
+									echo '	<tr><td><label class="pyetja col-md-8" for="nota'.$pyetja['id'].''.$i.'"> '.$pyetja['pyetja'].' </label>
+											<div class="btn-group col-md-4" data-toggle="buttons">
 											  <label class="btn btn-primary">
-											    <input type="radio" id="nota'.$pyetja['id'].''.$i.'[]" name="nota'.$pyetja['id'].''.$i.'[]" value="1"> Option 1
+											    <input type="radio" id="nota'.$pyetja['id'].''.$i.'[]" name="nota'.$pyetja['id'].''.$i.'[]" value="1">  1
 											  </label>
 											  <label class="btn btn-primary">
-											    <input type="radio" id="nota'.$pyetja['id'].''.$i.'[]" name="nota'.$pyetja['id'].''.$i.'[]" value="2"> Option 2
+											    <input type="radio" id="nota'.$pyetja['id'].''.$i.'[]" name="nota'.$pyetja['id'].''.$i.'[]" value="2">  2
 											  </label>
 											  <label class="btn btn-primary">
-											    <input type="radio" id="nota'.$pyetja['id'].''.$i.'[]" name="nota'.$pyetja['id'].''.$i.'[]" value="3"> Option 3
+											    <input type="radio" id="nota'.$pyetja['id'].''.$i.'[]" name="nota'.$pyetja['id'].''.$i.'[]" value="3"> 3
 											  </label>
 											  <label class="btn btn-primary">
-											    <input type="radio" id="nota'.$pyetja['id'].''.$i.'[]" name="nota'.$pyetja['id'].''.$i.'[]" value="4"> Option 4
+											    <input type="radio" id="nota'.$pyetja['id'].''.$i.'[]" name="nota'.$pyetja['id'].''.$i.'[]" value="4"> 4
 											  </label>
 											  <label class="btn btn-primary">
-											    <input type="radio" id="nota'.$pyetja['id'].''.$i.'[]" name="nota'.$pyetja['id'].''.$i.'[]" value="5"> Option 5
+											    <input type="radio" id="nota'.$pyetja['id'].''.$i.'[]" name="nota'.$pyetja['id'].''.$i.'[]" value="5"> 5
 											  </label>
 											</div></td></tr>';
 								}
@@ -114,7 +113,7 @@
 							else{
 								echo 'Nuk ka pyejte.';
 							}
-					echo '</table></div>';
+					echo '</table>';
 						$i++;
 						}
 					?>

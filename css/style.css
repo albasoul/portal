@@ -213,3 +213,8 @@ p.lajmi-rend  {
   border-top-left-radius: 0;
   border-top-right-radius: 0;
 }
+.pyetja{
+	font: 120%/1.725 'Open Sans', sans-serif;
+	color: #3e433e;
+	text-shadow: 1px 1px 1px #C7C7C7;
+}
