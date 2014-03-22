@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 20, 2014 at 10:14 PM
+-- Generation Time: Mar 22, 2014 at 02:10 AM
 -- Server version: 5.6.16
 -- PHP Version: 5.5.9
 
@@ -314,6 +314,22 @@ CREATE TABLE IF NOT EXISTS `studentet` (
 
 INSERT INTO `studentet` (`ID`, `SID`, `emri`, `mbiemri`, `email`, `password`, `drejtimi`, `semestri`, `kredi`, `lokacioni`, `foto`) VALUES
 (1, 1240023, 'Blendi', 'Gashi', 'blendi.gashi@gmail.com', 'blendi', 1, 4, 99, 'Prizren', 'img/studente/profil/default.png');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `votat`
+--
+
+CREATE TABLE IF NOT EXISTS `votat` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `lenda` varchar(256) NOT NULL,
+  `profesori` varchar(256) NOT NULL,
+  `nota` int(1) NOT NULL DEFAULT '3',
+  `data` date NOT NULL,
+  `semestri` int(1) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
