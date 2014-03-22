@@ -148,6 +148,10 @@
 			echo '<li class="text-danger"> Nuk ka lajme! </li>';
 		}
 	}
+	/*
+		Funksioni qe i merr te gjitha pyetjet nga databasa
+		Nese nuk ka pyetje kthen False
+	*/
 	function getPyetjet(){
 		global $lidhja;
 		$pyetjet = $lidhja->query("SELECT * FROM pyetjet") or die("Kontrolloni databasen e pyetjeve.");
