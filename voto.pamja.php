@@ -16,7 +16,7 @@
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="js/jquery.min.js"></script>
     <script src="js/bootstrap.js"></script>
   </head>
   <body>
@@ -89,7 +89,7 @@
 							echo '<input type="hidden" name="emri_prof[]" value="'.$profesor->getEmri().' '.$profesor->getMbiemri().'" />';	
 					echo'<table class="table table-">';
 							if($pyetjet = getPyetjet()){
-								echo '<span class="text-danger lenda-prof"><strong>'.$profesor->getEmri().' '.$profesor->getMbiemri().' - '.$lenda->getEmri().'</strong></span>';
+								echo '<span class="text-danger lenda-prof"><strong>'.$profesor->getMbiemri().' '.$profesor->getMbiemri().' - '.$lenda->getEmri().'</strong></span>';
 								foreach($pyetjet as $pyetja){
 									echo '<input type="hidden" name="pyetja[]" value="'.$pyetja['pyetja'].'"/>';
 									echo '	<tr><td><span class="pyetja col-md-8"> '.$pyetja['pyetja'].' </span>

@@ -13,14 +13,15 @@
 	session_start();
 	include('funksionet.php');
 
+	$vendi_ruajtjes = "portal";
 	/*
 	* Perfshirja e klasave
 	*/
-	include('classes/page.class.php');
-	include('classes/studenti.class.php');
-	include('classes/lajmi.class.php');
-	include('classes/lenda.class.php');
-	include('classes/profesor.class.php');
-	include('classes/ligjerata.class.php');
+	include($_SERVER['DOCUMENT_ROOT'].'/'.$vendi_ruajtjes.'/classes/page.class.php');
+	include($_SERVER['DOCUMENT_ROOT'].'/'.$vendi_ruajtjes.'/classes/studenti.class.php');
+	include($_SERVER['DOCUMENT_ROOT'].'/'.$vendi_ruajtjes.'/classes/lajmi.class.php');
+	include($_SERVER['DOCUMENT_ROOT'].'/'.$vendi_ruajtjes.'/classes/lenda.class.php');
+	include($_SERVER['DOCUMENT_ROOT'].'/'.$vendi_ruajtjes.'/classes/profesor.class.php');
+	include($_SERVER['DOCUMENT_ROOT'].'/'.$vendi_ruajtjes.'/classes/ligjerata.class.php');
 
 ?>
