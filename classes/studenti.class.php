@@ -128,9 +128,15 @@ class Studenti{
 			return FALSE;
 		}
 	}
+	/*
+		Funksioni qe kthen kredit totale te studentit
+	*/
 	function getKredi(){
 		return $this->kredi;
 	}
+	/*
+		Funksioni qe tregon a eshte studenti i kyqur
+	*/
 	function loggedIn(){
 		if(!empty($_SESSION['logged_in']) && $_SESSION['logged_in'] == TRUE)
 		{
@@ -139,6 +145,19 @@ class Studenti{
 		else
 		{
 			return False;
+		}
+	}
+	/*
+		Funksioni qe llogarit numrin e Studenteve te regjistruar, eshte funksion qe ka qasje edhe pa u krijuar nje objekt: Studenti::getTotalStudentet()
+	*/
+	function getTotalStudentet(){
+		global $lidhja;
+		$total = $lidhja->query("SELECT * FROM studentet");
+		if($total->num_rows){
+			return $total->num_rows;
+		}
+		else{
+			return false;
 		}
 	}
 }

@@ -5,7 +5,8 @@
 		$faqja = $lidhja->real_escape_string($_GET['faqja']);
 	}
 	else{
-		$faqja = "index";
+		header('Location: index.php?faqja=index');
+		die();
 	}
 ?>
 <!DOCTYPE html>
@@ -96,7 +97,8 @@
 						include('paraqitja.menaxhimi.pamja.php');
 					}
 					else{
-						include('index.menaxhimi.pamja.php');
+						header('Location: index.php?faqja=index');
+						die();
 					}
 	  			?>
 				</div>

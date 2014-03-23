@@ -33,6 +33,16 @@ class Profesor{
 	function getFoto(){
 		return $this->foto;
 	}
+	function getTotalProfesoret(){
+		global $lidhja;
+		$total = $lidhja->query("SELECT * FROM profesoret");
+		if($total->num_rows){
+			return $total->num_rows;
+		}
+		else{
+			return false;
+		}
+	}
 }
 
 ?>

@@ -49,5 +49,15 @@ class Lenda{
 			return FALSE;
 		}
 	}
+	function getTotalLendet(){
+		global $lidhja;
+		$total = $lidhja->query("SELECT * FROM lendet");
+		if($total->num_rows){
+			return $total->num_rows;
+		}
+		else{
+			return false;
+		}
+	}
 }
 ?>
