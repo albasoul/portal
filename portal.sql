@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 22, 2014 at 02:10 AM
+-- Generation Time: Mar 23, 2014 at 08:25 PM
 -- Server version: 5.6.16
 -- PHP Version: 5.5.9
 
@@ -323,6 +323,7 @@ INSERT INTO `studentet` (`ID`, `SID`, `emri`, `mbiemri`, `email`, `password`, `d
 
 CREATE TABLE IF NOT EXISTS `votat` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
+  `pyetja` varchar(256) NOT NULL,
   `lenda` varchar(256) NOT NULL,
   `profesori` varchar(256) NOT NULL,
   `nota` int(1) NOT NULL DEFAULT '3',
