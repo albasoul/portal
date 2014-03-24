@@ -58,14 +58,14 @@
 	<div class="row">
 	 	<div class="col-md-2 menaxhim-majt">
 		  	<ul class="nav nav-pills nav-stacked">
-				<li class="active text-center"><a href="index.php?faqja=index"><span class="glyphicon glyphicon-home pull-left"></span> Home</a></li>
-				<li class="text-center"><a href="index.php?faqja=menaxhimi"><span class="glyphicon glyphicon-cog pull-left"></span> Menaxhimi</a></li>
-				<li class="text-center"><a href="index.php?faqja=lajmet"><span class="glyphicon glyphicon-bullhorn pull-left"></span> Lajmet</a></li>
-				<li class="text-center"><a href="index.php?faqja=studentet"><span class="glyphicon glyphicon-user pull-left"></span> Student&euml;t</a></li>
-		  		<li class="text-center"><a href="index.php?faqja=lendet"><span class="glyphicon glyphicon-book pull-left"></span> L&euml;nd&euml;t</a></li>
-		  		<li class="text-center"><a href="index.php?faqja=profesoret"><span class="glyphicon glyphicon-user pull-left"></span> Profesor&euml;t</a></li>
-		  		<li class="text-center"><a href="index.php?faqja=vleresimi"><span class="glyphicon glyphicon-stats pull-left"></span> Vler&euml;simi</a></li>
-		  		<li class="text-center"><a href="index.php?faqja=paraqitja"><span class="glyphicon glyphicon-th-list pull-left"></span> Paraqitja</a></li>
+				<li class="<?php if($faqja === "index") echo "active"; ?> text-center"><a href="index.php?faqja=index"><span class="glyphicon glyphicon-home pull-left"></span> Home</a></li>
+				<li class="<?php if($faqja === "menaxhimi") echo "active"; ?> text-center"><a href="index.php?faqja=menaxhimi"><span class="glyphicon glyphicon-cog pull-left"></span> Menaxhimi</a></li>
+				<li class="<?php if($faqja === "lajmet") echo "active"; ?> text-center"><a href="index.php?faqja=lajmet"><span class="glyphicon glyphicon-bullhorn pull-left"></span> Lajmet</a></li>
+				<li class="<?php if($faqja === "studentet") echo "active"; ?> text-center"><a href="index.php?faqja=studentet"><span class="glyphicon glyphicon-user pull-left"></span> Student&euml;t</a></li>
+		  		<li class="<?php if($faqja === "lendet") echo "active"; ?> text-center"><a href="index.php?faqja=lendet"><span class="glyphicon glyphicon-book pull-left"></span> L&euml;nd&euml;t</a></li>
+		  		<li class="<?php if($faqja === "profesoret") echo "active"; ?> text-center"><a href="index.php?faqja=profesoret"><span class="glyphicon glyphicon-user pull-left"></span> Profesor&euml;t</a></li>
+		  		<li class="<?php if($faqja === "vleresimi") echo "active"; ?> text-center"><a href="index.php?faqja=vleresimi"><span class="glyphicon glyphicon-stats pull-left"></span> Vler&euml;simi</a></li>
+		  		<li class="<?php if($faqja === "paraqitja") echo "active"; ?> text-center"><a href="index.php?faqja=paraqitja"><span class="glyphicon glyphicon-th-list pull-left"></span> Paraqitja</a></li>
 			</ul>
 	 	</div>
 	  	<div class="col-md-9 menaxhim-djathti">
