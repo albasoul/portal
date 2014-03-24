@@ -13,7 +13,7 @@
 		header('Location: index.php?faqja=lajmet');
 		die();
 	}
-	if($page->isActivated != 1){
+	if($page->isActivated() != 1){
 		header('Location: index.php');
 		die();
 	}

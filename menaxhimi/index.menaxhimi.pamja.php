@@ -33,7 +33,7 @@
 						    	$i=1;
 						    	foreach($lajmetFundit as $l){
 						    		$lajmi = new Lajmi($l['id']);
-						    		echo '<li><p><span class="text-primary"><strong>#'.$i++.'</strong></span> <a href="lajmi.php?id='.$lajmi->getID().'">'.$lajmi->getTitulli().'</a></p></li>';
+						    		echo '<li><p><span class="text-primary"><strong>#'.$i++.'</strong></span> <a href="../lajmi.php?id='.$lajmi->getID().'">'.$lajmi->getTitulli().'</a></p></li>';
 						    	}
 						    ?>
 						    </ul>
