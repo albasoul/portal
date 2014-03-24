@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 23, 2014 at 08:25 PM
+-- Generation Time: Mar 24, 2014 at 11:37 PM
 -- Server version: 5.6.16
 -- PHP Version: 5.5.9
 
@@ -222,15 +222,16 @@ CREATE TABLE IF NOT EXISTS `page_info` (
   `title` varchar(256) NOT NULL,
   `footer` varchar(256) NOT NULL,
   `activated` tinyint(1) NOT NULL,
-  `logo` varchar(256) NOT NULL
+  `logo` varchar(256) NOT NULL,
+  `vleresimi` tinyint(4) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `page_info`
 --
 
-INSERT INTO `page_info` (`title`, `footer`, `activated`, `logo`) VALUES
-('Universiteti i Prizrenit "Ukshin Hoti"', 'Copyright &copy; 2014', 1, 'img/fakultet/logo.png');
+INSERT INTO `page_info` (`title`, `footer`, `activated`, `logo`, `vleresimi`) VALUES
+('Universiteti i Prizrenit &quot;Ukshin Hoti&quot;', 'Copyright &copy; 2014', 1, 'img/fakultet/logo.png', 1);
 
 -- --------------------------------------------------------
 
