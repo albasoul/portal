@@ -28,6 +28,10 @@ else{
 	die();
 }
 
+if($page->isActivated != 1){
+		header('Location: index.php');
+		die();
+	}
 ?>
 <!DOCTYPE html>
 <html lang="en">

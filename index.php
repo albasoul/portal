@@ -39,7 +39,7 @@
 	/*
 	* Kontrollon nese faqja eshte e lejuar te kete qasje nga Administratori
 	*/
-	if($page->isActivated()){
+	if($page->isActivated() == 1){
 		/*
 		* 	Kontrollon nese studenti eshte i kyqur permes funksionit loggedIn();
 		*/
@@ -72,6 +72,6 @@
 		}
 	}
 	else{
-		$page->hidePage();
+		$page->hidePage($page);
 	}
 ?>

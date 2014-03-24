@@ -27,7 +27,16 @@
 						    <h3 class="panel-title">Lajmet e fundit</h3>
 						  </div>
 						  <div class="panel-body">
-						    Panel content
+						  	<ul class="list-unstyled">
+						    <?php
+						    	$lajmetFundit = $lidhja->query("SELECT id FROM lajmet ORDER BY data DESC LIMIT 5");
+						    	$i=1;
+						    	foreach($lajmetFundit as $l){
+						    		$lajmi = new Lajmi($l['id']);
+						    		echo '<li><p><span class="text-primary"><strong>#'.$i++.'</strong></span> <a href="lajmi.php?id='.$lajmi->getID().'">'.$lajmi->getTitulli().'</a></p></li>';
+						    	}
+						    ?>
+						    </ul>
 						  </div>
 						  <div class="panel-footer text-right"><a class="pull-left" href=""><span class="glyphicon glyphicon-new-window"></span> Shiko t&euml; gjitha</a><a href="#"><span class="glyphicon glyphicon-plus btn btn-primary"></span></a></div>
 						</div>

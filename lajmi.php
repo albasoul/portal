@@ -13,7 +13,10 @@
 		header('Location: index.php?faqja=lajmet');
 		die();
 	}
-
+	if($page->isActivated != 1){
+		header('Location: index.php');
+		die();
+	}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -62,8 +65,6 @@
 	</nav>
 	</div>
     <div class="container">
-
-		
 		<div class="clearfix"></div><br/>
 		<div class="row">
 			<div class="col-md-8 lajmi">

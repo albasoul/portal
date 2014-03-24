@@ -8,12 +8,13 @@ class Page{
 	private $footer = "Copyright 2014";
 	private $active = false;
 	private $logoLink = "panjohur";
+	private $vleresimi = 0;
 	function __construct(){
 		global $lidhja;
 	##################################################
 	#    Marrja e te dhenave nga databasa per faqen	 #
 	##################################################
-		$pageQuery = $lidhja->query('SELECT title,footer,activated,logo FROM page_info');
+		$pageQuery = $lidhja->query('SELECT title,footer,activated,logo,vleresimi FROM page_info');
 		if($pageQuery->num_rows == 1){
 			$pageInfo = $pageQuery->fetch_assoc();
 		}
@@ -21,6 +22,7 @@ class Page{
 		$this->footer = $pageInfo['footer'];
 		$this->active = FALSE;
 		$this->logoLink = $pageInfo['logo'];
+		$this->vleresimi = $pageInfo['vleresimi'];
 		# nese eshte 1 beje faqen aktive #
 		if($pageInfo['activated'] == 1) {
 			$this->active = TRUE;
@@ -46,6 +48,9 @@ class Page{
 	*/
 	function isActivated(){
 		return $this->active;
+	}
+	function getVleresimi(){
+		return $this->vleresimi;
 	}
 
 	/*
@@ -82,7 +87,7 @@ class Page{
 	/*
 	* Funksioni qe perfshin dokumentin HTML per paraqitjen e faqes
 	*/
-	function hidePage(){
+	function hidePage($page){
 		include('offline.pamja.php');
 	}
 	function headerNavbar(){
@@ -113,6 +118,31 @@ class Page{
 		else{
 			echo '';
 		}
+	}
+	function setTitle($titulli){
+		global $lidhja;
+		$titulli = htmlentities($titulli, ENT_QUOTES, "UTF-8");
+		$lidhja->query("UPDATE page_info SET title='$titulli'");
+	}
+	function deAktivizoFaqen(){
+		global $lidhja;
+		$lidhja->query("UPDATE page_info SET activated=0");
+		return true;
+	}
+	function aktivizoFaqen(){
+		global $lidhja;
+		$lidhja->query("UPDATE page_info SET activated=1");
+		return true;
+	}
+	function aktivizoVotim(){
+		global $lidhja;
+		$lidhja->query("UPDATE page_info SET vleresimi=1");
+		return true;
+	}
+	function deAktivizoVotim(){
+		global $lidhja;
+		$lidhja->query("UPDATE page_info SET vleresimi=0");
+		return true;
 	}
 }
 ?>
