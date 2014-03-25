@@ -89,27 +89,38 @@
 							echo '<input type="hidden" name="emri_prof[]" value="'.$profesor->getEmri().' '.$profesor->getMbiemri().'" />';	
 					echo'<table class="table table-">';
 							if($pyetjet = getPyetjet()){
-								echo '<span class="text-danger lenda-prof"><strong>'.$profesor->getMbiemri().' '.$profesor->getMbiemri().' - '.$lenda->getEmri().'</strong></span>';
+								echo '<span class="text-danger lenda-prof"><strong>'.$profesor->getEmri().' '.$profesor->getMbiemri().' - '.$lenda->getEmri().'</strong></span>';
 								foreach($pyetjet as $pyetja){
 									echo '<input type="hidden" name="pyetja[]" value="'.$pyetja['pyetja'].'"/>';
-									echo '	<tr><td><span class="pyetja col-md-8"> '.$pyetja['pyetja'].' </span>
-											<div class="btn-group form-group col-md-4 has-error" data-toggle="buttons">
-											  <label class="btn btn-default">
-											    <input type="radio" class="form-control" id="nota'.$pyetja['id'].''.$i.'[]" name="nota'.$pyetja['id'].''.$i.'[]"  required value="1">  1
-											  </label>
-											  <label class="btn btn-default">
-											    <input type="radio" class="form-control" id="nota'.$pyetja['id'].''.$i.'[]" name="nota'.$pyetja['id'].''.$i.'[]"  required value="2">  2
-											  </label>
-											  <label class="btn btn-default">
-											    <input type="radio" class="form-control" id="nota'.$pyetja['id'].''.$i.'[]" name="nota'.$pyetja['id'].''.$i.'[]"  required value="3"> 3
-											  </label>
-											  <label class="btn btn-default">
-											    <input type="radio" class="form-control" id="nota'.$pyetja['id'].''.$i.'[]" name="nota'.$pyetja['id'].''.$i.'[]"  required value="4"> 4
-											  </label>
-											  <label class="btn btn-default">
-											    <input type="radio" class="form-control" id="nota'.$pyetja['id'].''.$i.'[]" name="nota'.$pyetja['id'].''.$i.'[]"  required value="5"> 5
-											  </label>
-											</div></td></tr>';
+									if($pyetja['lloji'] == 0){
+										echo '	<tr><td><span class="pyetja col-md-8"> '.$pyetja['pyetja'].' </span>
+												<div class="btn-group form-group col-md-4" data-toggle="buttons">
+												  <label class="btn btn-default">
+												    <input type="radio" class="form-control" id="nota'.$pyetja['id'].''.$i.'[]" name="nota'.$pyetja['id'].''.$i.'[]"  required value="1">  1
+												  </label>
+												  <label class="btn btn-default">
+												    <input type="radio" class="form-control" id="nota'.$pyetja['id'].''.$i.'[]" name="nota'.$pyetja['id'].''.$i.'[]"  required value="2">  2
+												  </label>
+												  <label class="btn btn-default">
+												    <input type="radio" class="form-control" id="nota'.$pyetja['id'].''.$i.'[]" name="nota'.$pyetja['id'].''.$i.'[]"  required value="3"> 3
+												  </label>
+												  <label class="btn btn-default">
+												    <input type="radio" class="form-control" id="nota'.$pyetja['id'].''.$i.'[]" name="nota'.$pyetja['id'].''.$i.'[]"  required value="4"> 4
+												  </label>
+												  <label class="btn btn-default">
+												    <input type="radio" class="form-control" id="nota'.$pyetja['id'].''.$i.'[]" name="nota'.$pyetja['id'].''.$i.'[]"  required value="5"> 5
+												  </label>
+												</div></td></tr>';
+									}
+									else{
+										echo '<tr>
+											<td><span class="pyetja col-md-6">'.$pyetja['pyetja'].'</span>
+												<div class="form-group col-md-6">
+													<textarea class="form-control" name="mendimi'.$pyetja['id'].'[]" maxlength="250" style="resize:none;"></textarea>
+												</div>
+											</td>
+										</tr>';
+									}
 								}
 							}
 							else{
