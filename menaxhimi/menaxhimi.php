@@ -1,14 +1,14 @@
 <?php
 include($_SERVER['DOCUMENT_ROOT'].'/portal/includes/config.php');
 $page = new Page();
-	/*if(!empty($_POST['title-footer-submit'])){
+	if(!empty($_POST['title-footer-submit'])){
 		if(!empty($_POST['title']) && strlen($_POST['title']) >4 ){
 			$titulli = $lidhja->real_escape_string($_POST['title']);
 			$page->setTitle($titulli);
 			header('Location: index.php?faqja=menaxhimi');
 			die();
 		}
-	}*/
+	}
 		if(!empty($_POST['online']) && $_POST['online']==1){
 			if($page->deAktivizoFaqen()){
 				echo '<input type="hidden" name="offline" value="1"/>
