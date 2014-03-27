@@ -43,6 +43,22 @@ class Page{
 	function getFooter(){
 		return html_entity_decode($this->footer);
 	}
+	function setTitle($titulli){
+		global $lidhja;
+		$titulli = htmlentities($titulli, ENT_QUOTES, "UTF-8");
+		$lidhja->query("UPDATE page_info SET title='$titulli'");
+	}
+	function setFooter($footer){
+		global $lidhja;
+		if(strlen(trim($footer))>3){
+			$footer = htmlentities($footer, ENT_QUOTES, "UTF-8");
+		}
+		else{
+			$footer = "Copyright &copy; 2014";
+		}
+		$lidhja->query("UPDATE page_info SET footer='$footer'");
+		
+	}
 	/*
 	* Funksioni per me kqyr a eshte faqja aktive
 	*/
@@ -118,11 +134,6 @@ class Page{
 		else{
 			echo '';
 		}
-	}
-	function setTitle($titulli){
-		global $lidhja;
-		$titulli = htmlentities($titulli, ENT_QUOTES, "UTF-8");
-		$lidhja->query("UPDATE page_info SET title='$titulli'");
 	}
 	function deAktivizoFaqen(){
 		global $lidhja;

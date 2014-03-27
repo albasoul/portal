@@ -32,6 +32,20 @@
 		}
 	}
 	/*
+	*	Verifikimi i menaxhuesit per kyqje
+	*	Kontrollon username apo email dhe Fjalekalimin
+	*/
+	function verifikojePerdoruesin($e,$p){
+		global $lidhja;
+		$perdorues = $lidhja->query("SELECT id FROM perdoruesit WHERE (username='$e' AND password='$p') OR (email='$e' AND password='$p')") or die('Kontrolloni databasen e perdoruesve!');
+		if($perdorues->num_rows == 1){
+			$perdorues = $perdorues->fetch_assoc();
+			$_SESSION['p_id'] = $perdorues['id'];
+			$_SESSION['perdorues'] = TRUE;
+			return TRUE;
+		}
+	}
+	/*
 	* Funksioni qe kthen te gjitha lendet (si array) me semestrin e caktuar, kthen vetem ID e lendeve
 	*/
 	function getLendetMeSemester($semestri,$s_did){
@@ -84,13 +98,6 @@
 			$data = $dita . " Dhjetor " . $viti;
 		}
 		return $data;
-	}
-	function rregulloLajmin($lajmi){
-		$lajmi2 = "";
-		$ndare = explode("\n", $lajmi);
-		foreach($ndare as $n){
-			echo '<p>'.$n.'</p>';
-		}
 	}
 	function paraqitArkiven($viti){
 		global $lidhja;
@@ -157,6 +164,45 @@
 		$pyetjet = $lidhja->query("SELECT * FROM pyetjet") or die("Kontrolloni databasen e pyetjeve.");
 		if($pyetjet->num_rows){
 			return $pyetjet;
+		}
+		else{
+			return FALSE;
+		}
+	}
+	/*
+		Funksioni qe i merr te gjitha fakultetet nga databasa
+	*/
+	function getFakultetet(){
+		global $lidhja;
+		$fakultetet = $lidhja->query("SELECT * FROM fakulteti ORDER BY id");
+		if($fakultetet->num_rows){
+			return $fakultetet;
+		}
+		else{
+			return FALSE;
+		}
+	}
+	/*
+		Funksioni qe i merr te gjitha drejtimet nga databasa
+	*/
+	function getDrejtimet(){
+		global $lidhja;
+		$drejtimet = $lidhja->query("SELECT * FROM drejtimet ORDER BY f_id");
+		if($drejtimet->num_rows){
+			return $drejtimet;
+		}
+		else{
+			return FALSE;
+		}
+	}
+	/*
+		Funksioni qe i merr te gjithe perdoruesit
+	*/
+	function getPerdoruesit(){
+		global $lidhja;
+		$perdoruesit = $lidhja->query("SELECT id,emri,mbiemri,niveli FROM perdoruesit");
+		if($perdoruesit->num_rows){
+			return $perdoruesit;
 		}
 		else{
 			return FALSE;

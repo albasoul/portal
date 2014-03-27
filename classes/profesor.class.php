@@ -43,6 +43,16 @@ class Profesor{
 			return false;
 		}
 	}
+	function getProfesoret(){
+		global $lidhja;
+		$profesoret = $lidhja->query("SELECT id,emri,mbiemri FROM profesoret ORDER BY emri,mbiemri");
+		if($profesoret->num_rows){
+			return $profesoret;
+		}
+		else{
+			return false;
+		}
+	}
 }
 
 ?>

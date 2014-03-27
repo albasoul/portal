@@ -83,11 +83,22 @@ $page = new Page();
 							</div>';
 					echo 	'<div class="panel-body" style="padding-left:0px; padding-right:0px">';
 						if($lajmi->getFoto()){
-							echo '<div class="col-md-4"><img src="'.$lajmi->getFoto().'" class="img-responsive img-rounded"/></div>';
-							echo '<div class="col-md-8 lajm-trupi" style="margin-top: -15px; "><p class="lajmi-rend">'.substr($lajmi->getBody(),0,200).'...</p></div>';
+							echo '<div class="col-md-4"><img src="'.$lajmi->getFoto().'" class="img-responsive img-rounded"></img></div>';
+							if(strlen($lajmi->getBody()) > 200){
+								echo '<div class="col-md-8 lajm-trupi" style="margin-top: -15px; "><div class="clearfix"></div><p class="lajmi-rend">'.strip_tags(html_entity_decode(substr($lajmi->getBody(),0,200))).'...</p><div class="clearfix"></div></div>';
+							}
+							else{
+								echo '<div class="col-md-8 lajm-trupi" style="margin-top: -15px; "><div class="clearfix"></div><p class="lajmi-rend">'.strip_tags(html_entity_decode(($lajmi->getBody()))).'</p><div class="clearfix"></div></div>';
+							}
+							
 						}
 						else{
-							echo '<div class="col-md-12 lajm-trupi" style="margin-top: -15px; "><p class="lajmi-rend">'.substr($lajmi->getBody(),0,250).'...</p></div>';
+							if(strlen($lajmi->getBody()) > 200){
+								echo '<div class="col-md-12 lajm-trupi" style="margin-top: -15px; "><div class="clearfix"></div><p class="lajmi-rend">'.strip_tags(html_entity_decode(substr($lajmi->getBody(),0,200))).'...</p></div>';
+							}
+							else{
+								echo '<div class="col-md-12 lajm-trupi" style="margin-top: -15px; "><div class="clearfix"></div><p class="lajmi-rend">'.strip_tags(html_entity_decode(($lajmi->getBody()))).'</p></div>';
+							}
 						}
 					echo '	</div>';
 					if($lajmi->getBody() && strlen($lajmi->getBody())>200) {

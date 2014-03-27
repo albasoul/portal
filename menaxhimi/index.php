@@ -1,5 +1,9 @@
 <?php 
 	include($_SERVER['DOCUMENT_ROOT'].'/portal/includes/config.php');
+	if(!Perdorues::loggedIn()){
+		header('Location: kyqja.php');
+		die();
+	}
 	$page = new Page();
 	if(!empty($_GET['faqja'])){
 		$faqja = $lidhja->real_escape_string($_GET['faqja']);
@@ -20,10 +24,14 @@
     <!-- Bootstrap -->
     <link href="../css/bootstrap.min.css" rel="stylesheet">
     <link href="../css/style.css" rel="stylesheet">
+    
+    <script src="../js/summernote.js"></script>
 	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="../js/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
+
     <script src="../js/bootstrap.min.js"></script>
+
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>

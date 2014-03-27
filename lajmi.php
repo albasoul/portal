@@ -77,10 +77,10 @@
 					<?php 
 						if($lajmi->getFoto()){
 							echo '<div class="col-md-8 col-md-offset-2"><img src="'.$lajmi->getFoto().'" class="img-responsive img-rounded img-thumbnail"/><p><br/></p></div>';
-							echo '<div class="col-md-12"><p>'.$lajmi->getBody().'</p></div>';
+							echo '<div class="col-md-12"><p>'.html_entity_decode($lajmi->getBody()).'</p></div>';
 						}
 						else{
-							echo '<div class="col-md-12"><p>'.rregulloLajmin($lajmi->getBody()).'</p></div>';
+							echo '<div class="col-md-12"><p>'.html_entity_decode($lajmi->getBody()).'</p></div>';
 						}
 					?>
 					</div>

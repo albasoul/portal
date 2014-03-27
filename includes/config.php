@@ -23,5 +23,6 @@
 	include($_SERVER['DOCUMENT_ROOT'].'/'.$vendi_ruajtjes.'/classes/lenda.class.php');
 	include($_SERVER['DOCUMENT_ROOT'].'/'.$vendi_ruajtjes.'/classes/profesor.class.php');
 	include($_SERVER['DOCUMENT_ROOT'].'/'.$vendi_ruajtjes.'/classes/ligjerata.class.php');
+	include($_SERVER['DOCUMENT_ROOT'].'/'.$vendi_ruajtjes.'/classes/perdorues.class.php');
 
 ?>

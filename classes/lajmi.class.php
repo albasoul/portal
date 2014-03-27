@@ -78,5 +78,26 @@ class Lajmi{
 		}
 	}
 
+	/*
+		Funksioni qe regjistron lajmin ne database
+	*/
+	function regjistroLajmin($t, $b, $f){
+		global $lidhja;
+		$data = date('Y-m-d H-m-s');
+		$titulli = $lidhja->real_escape_string($t);
+		$body = htmlentities($lidhja->real_escape_string($b));
+		if(!empty($f)){
+			$foto = $lidhja->real_escape_string($f);
+		}
+		else{
+			$foto='';
+		}
+		if($lidhja->query("INSERT INTO lajmet VALUES('','$titulli','$body','$data', '$foto')")){
+			return TRUE;
+		}
+		else{
+			return FALSE;
+		}
+	}
 }
 ?>
