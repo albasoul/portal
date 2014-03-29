@@ -123,7 +123,7 @@
 		  </div>
 		  <div class="panel-body">
 		    	<?php
-					if($drejtimet = getDrejtimet()){
+					if($drejtimet = getDrejtimet(0)){
 						echo '<ul class="nav nav-pills nav-stacked">';
 						foreach($drejtimet as $drejtimi){
 							$alias = $lidhja->query("SELECT alias FROM fakulteti WHERE id=$drejtimi[f_id]");
@@ -154,7 +154,7 @@
 	<div class="col-md-4">
 		<div class="panel panel-primary">
 		  <div class="panel-heading">
-		    <h3 class="panel-title">P&euml;rdoruesi<a data-toggle="modal" data-target="#shtoperdorues" href="menaxhimi.php?shto=perdorues" style="margin:-5px;" href="#" class="pull-right"><span class="btn btn-info glyphicon glyphicon-plus"></span></a></h3>
+		    <h3 class="panel-title">P&euml;rdorues&euml;t<a data-toggle="modal" data-target="#shtoperdorues" href="menaxhimi.php?shto=perdorues" style="margin:-5px;" href="#" class="pull-right"><span class="btn btn-info glyphicon glyphicon-plus"></span></a></h3>
 		  </div>
 		  <div class="panel-body">
 		    	<?php

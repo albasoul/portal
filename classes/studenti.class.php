@@ -26,7 +26,6 @@ class Studenti{
 		$studentQuery = $lidhja->query("SELECT ID,SID,emri,mbiemri,email,drejtimi,semestri,kredi,lokacioni,foto FROM studentet WHERE SID=$sid LIMIT 1");
 		if($studentQuery->num_rows == 1){
 			$student = $studentQuery->fetch_assoc(); // marrja e informacioneve dhe ruajtja ne $student
-
 			$this->ID = $student['ID'];
 			$this->SID = $student['SID'];
 			$this->emri = $student['emri'];
@@ -158,6 +157,27 @@ class Studenti{
 		}
 		else{
 			return false;
+		}
+	}
+	/*
+		Funksioni qe merr studentet nga drejtimi i caktuar
+	*/
+	function getStudentet($drejtimi_id,$faqja){
+		global $lidhja;
+		if($faqja ==0){
+			$studentet = $lidhja->query("SELECT SID FROM studentet WHERE drejtimi=$drejtimi_id ORDER BY emri,mbiemri");
+		}
+		else{
+			$perFaqe = 12;
+			$momentale = ($faqja-1) * $perFaqe;
+			$studentet = $lidhja->query("SELECT SID FROM studentet WHERE drejtimi=$drejtimi_id ORDER BY emri,mbiemri LIMIT $momentale, $perFaqe");
+		}
+		
+		if($studentet->num_rows){
+			return $studentet;
+		}
+		else{
+			return FALSE;
 		}
 	}
 }

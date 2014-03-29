@@ -6,10 +6,11 @@ class Lenda{
 	private $semestri = 0;
 	private $kredi = 0;
 	private $p_id = 0;
+	private $lloji = 'A';
 	
 	function __construct($id){
 		global $lidhja;
-		$lendaQuery = $lidhja->query("SELECT id,emri,drejtimi,semestri,kredi,p_id FROM lendet WHERE id=$id");
+		$lendaQuery = $lidhja->query("SELECT id,emri,drejtimi,semestri,kredi,p_id,lloji FROM lendet WHERE id=$id");
 		if($lendaQuery->num_rows > 0){
 			$lenda = $lendaQuery->fetch_assoc();
 			$this->id = $lenda['id'];
@@ -18,6 +19,7 @@ class Lenda{
 			$this->semestri = $lenda['semestri'];
 			$this->kredi = $lenda['kredi'];
 			$this->p_id = $lenda['p_id'];
+			$this->lloji = $lenda['lloji'];
 		}
 	}
 	function getID(){
@@ -38,6 +40,9 @@ class Lenda{
 	function getProfID(){
 		return $this->p_id;
 	}
+	function getLloji(){
+		return $this->lloji;
+	}
 	function getLigjeratat(){
 		global $lidhja;
 		$id = $this->id;
@@ -57,6 +62,16 @@ class Lenda{
 		}
 		else{
 			return false;
+		}
+	}
+	function getLendet($did){
+		global $lidhja;
+		$total = $lidhja->query("SELECT id FROM lendet WHERE drejtimi=$did ORDER BY semestri");
+		if($total->num_rows){
+			return $total;
+		}
+		else{
+			return FALSE;
 		}
 	}
 }

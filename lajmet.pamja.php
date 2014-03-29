@@ -1,11 +1,5 @@
 <?php
 global $lidhja;
-if(!empty($_GET['faqe'])){
-	$faqja = $lidhja->real_escape_string($_GET['faqe'])-1;
-}
-else{
-	$faqja = 0;
-}
 if(!empty($_GET['viti'])){
 	$viti = $lidhja->real_escape_string($_GET['viti']);
 }
@@ -85,19 +79,19 @@ $page = new Page();
 						if($lajmi->getFoto()){
 							echo '<div class="col-md-4"><img src="'.$lajmi->getFoto().'" class="img-responsive img-rounded"></img></div>';
 							if(strlen($lajmi->getBody()) > 200){
-								echo '<div class="col-md-8 lajm-trupi" style="margin-top: -15px; "><div class="clearfix"></div><p class="lajmi-rend">'.strip_tags(html_entity_decode(substr($lajmi->getBody(),0,200))).'...</p><div class="clearfix"></div></div>';
+								echo '<div class="col-md-8 lajm-trupi" style="margin-top: -15px; "><div class="clearfix"></div><p class="lajmi-rend">'.substr(strip_tags(html_entity_decode($lajmi->getBody())),0,200).'...</p><div class="clearfix"></div></div>';
 							}
 							else{
-								echo '<div class="col-md-8 lajm-trupi" style="margin-top: -15px; "><div class="clearfix"></div><p class="lajmi-rend">'.strip_tags(html_entity_decode(($lajmi->getBody()))).'</p><div class="clearfix"></div></div>';
+								echo '<div class="col-md-8 lajm-trupi" style="margin-top: -15px; "><div class="clearfix"></div><p class="lajmi-rend">'.strip_tags(html_entity_decode($lajmi->getBody())).'</p><div class="clearfix"></div></div>';
 							}
 							
 						}
 						else{
 							if(strlen($lajmi->getBody()) > 200){
-								echo '<div class="col-md-12 lajm-trupi" style="margin-top: -15px; "><div class="clearfix"></div><p class="lajmi-rend">'.strip_tags(html_entity_decode(substr($lajmi->getBody(),0,200))).'...</p></div>';
+								echo '<div class="col-md-12 lajm-trupi" style="margin-top: -15px; "><div class="clearfix"></div><p class="lajmi-rend">'.substr(strip_tags(html_entity_decode($lajmi->getBody())),0,200).'...</p></div>';
 							}
 							else{
-								echo '<div class="col-md-12 lajm-trupi" style="margin-top: -15px; "><div class="clearfix"></div><p class="lajmi-rend">'.strip_tags(html_entity_decode(($lajmi->getBody()))).'</p></div>';
+								echo '<div class="col-md-12 lajm-trupi" style="margin-top: -15px; "><div class="clearfix"></div><p class="lajmi-rend">'.strip_tags(html_entity_decode($lajmi->getBody())).'</p></div>';
 							}
 						}
 					echo '	</div>';

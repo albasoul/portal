@@ -38,21 +38,19 @@
 						    </ul>
 						  </div>
 						  <div class="panel-footer text-right"><a class="pull-left" href="index.php?faqja=lajmet"><span class="glyphicon glyphicon-new-window"></span> Shiko t&euml; gjitha</a>
-						  <button data-toggle="modal" data-target=".shtim-lajmi" class="glyphicon glyphicon-plus btn btn-primary"></button>
+						  <button data-toggle="modal" data-target=".shtim-lajmi" class="glyphicon glyphicon-plus btn btn-sm btn-primary"></button>
 
 							<!-- Modal -->
 							<div class="modal shtim-lajmi fade text-left" id="myModal" tabindex="-1" role="dialog" aria-labelledby="shtolajm" aria-hidden="true">
 							  <div class="modal-dialog modal-lg">
-							  <form action="menaxhimi.php" enctype="multipart/form-data" role="form" class="form-horizontal" method="POST">
+							  <form action="menaxhimi.php?shto=lajm" enctype="multipart/form-data" role="form" class="form-horizontal" method="POST">
 							    <div class="modal-content">
 							      <div class="modal-header">
 							        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 							        <h4 class="modal-title" id="shtolajm">Shto lajm</h4>
 							      </div>
 							      <div class="modal-body">
-							        
-
-							        	<div class="form-group">
+							           	<div class="form-group">
 							        		<label for="titulli" class="col-sm-2 control-label">Titulli</label>
 							        		<div class="col-sm-10">
 							        			<input type="text" value="" class="form-control" autofocus name="titulli" placeholder="titulli i lajmit" id="titulli" />

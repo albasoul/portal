@@ -232,3 +232,99 @@ p.lajmi-rend  {
 	margin-left:10px;
 	font: 110%/1.625 'Open Sans', sans-serif;
 }
+.menaxhim-arkiva li{
+	float:left;
+	font: 110%/1.625 'Open Sans', sans-serif;
+}
+.menaxhim-arkiva li a{
+	display: inline-block;
+
+  padding: 6px 12px;
+  margin-bottom: 0;  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  cursor: pointer;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  background-image: none;
+  border: 1px solid transparent;
+  color: #333;
+  background-color: #fff;
+  border-color: #ccc;
+  margin-right:-1px;
+}
+.menaxhim-arkiva li a:hover{
+	color: #333;
+  background-color: #ebebeb;
+  border-color: #adadad;
+  text-decoration: none;
+}
+.menaxhim-arkiva li a:active{
+	background-image: none;
+  outline: 0;
+  -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, .125);
+          box-shadow: inset 0 3px 5px rgba(0, 0, 0, .125);
+}
+.lajmet-menaxhim{
+	
+}
+.lajmet-menaxhim .col-md-6 .list-group {
+	height: 70px;
+}
+.lajmet-menaxhim .col-md-6 .list-group a{
+	border-radius: 2px;
+	font: 110%/1.625 'Open Sans', sans-serif;
+}
+.lajmet-menaxhim .col-md-6 .list-group a:hover{
+	cursor: pointer;
+}
+.shtim-lajmi{
+	font: 110%/1.625 'Open Sans', sans-serif;
+}
+.studentet-menaxhim-majt{
+	font: 110%/1.625 'Open Sans', sans-serif;
+	padding:0;
+	margin:0;
+}
+.studentet-menaxhim-majt .nav-pills>li+li{
+	margin-left:0px;
+}
+.studentet-menaxhim-djatht{
+	font: 110%/1.625 'Open Sans', sans-serif;
+}
+.studentet-menaxhim-djatht .drejtimet{
+	padding-left:10px;
+}
+.studentet-menaxhim-djatht .drejtimet a{
+
+}
+.studentet-menaxhim-djatht a:hover{
+	text-decoration: none;
+	color:#000;
+}
+.lendet-menaxhim-djatht{
+	font: 110%/1.625 'Open Sans', sans-serif;
+}
+.lendet-menaxhim-djatht .drejtimet{
+	padding-left:10px;
+}
+.lendet-menaxhim-majt ul li {
+	font: 110%/1.225 'Open Sans', sans-serif;
+	margin-left:0px;
+	margin-bottom: 10px;
+	height:60px;
+}
+.lendet-menaxhim-majt ul li a{
+	border: 1px solid #dedede;
+	border-radius: 0px;
+}
+.profesoret-menaxhim {
+	font: 110%/1.625 'Open Sans', sans-serif;
+}
+.profesoret-menaxhim ul li{
+	margin-left:0px;
+}
+.profesoret-menaxhim ul li a{
+}

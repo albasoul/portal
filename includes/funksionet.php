@@ -185,9 +185,14 @@
 	/*
 		Funksioni qe i merr te gjitha drejtimet nga databasa
 	*/
-	function getDrejtimet(){
+	function getDrejtimet($fk_id=0){
 		global $lidhja;
-		$drejtimet = $lidhja->query("SELECT * FROM drejtimet ORDER BY f_id");
+		if($fk_id == 0){
+			$drejtimet = $lidhja->query("SELECT * FROM drejtimet ORDER BY f_id");
+		}
+		else{
+			$drejtimet = $lidhja->query("SELECT * FROM drejtimet WHERE f_id=$fk_id ORDER by emri");
+		}
 		if($drejtimet->num_rows){
 			return $drejtimet;
 		}

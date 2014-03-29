@@ -1,22 +1,29 @@
 <?php
 class Profesor{
+	private $id = 0;
 	private $emri = "panjohur";
 	private $mbiemri = "panjohur";
 	private $email = "panjohur@email.com";
 	private $lokacioni = "panjohur";
 	private $foto = "img/fakultet/profesore/profil/default.png";
+	private $lloji = 'A';
 
 	function __construct($id){
 		global $lidhja;
-		$profQuery = $lidhja->query("SELECT emri,mbiemri,email,lokacioni,foto FROM profesoret WHERE id=$id");
+		$profQuery = $lidhja->query("SELECT emri,mbiemri,email,lloji,lokacioni,foto FROM profesoret WHERE id=$id");
 		if($profQuery->num_rows){
 			$prof = $profQuery->fetch_assoc();
+			$this->id = $id;
 			$this->emri = $prof['emri'];
 			$this->mbiemri = $prof['mbiemri'];
 			$this->email = $prof['email'];
 			$this->lokacioni = $prof['lokacioni'];
 			$this->foto = $prof['foto'];
+			$this->lloji = $prof['lloji'];
 		}
+	}
+	function getID(){
+		return $this->id;
 	}
 	function getEmri(){
 		return html_entity_decode($this->emri);
@@ -26,6 +33,9 @@ class Profesor{
 	}
 	function getEmail(){
 		return $this->email;
+	}
+	function getLloji(){
+		return $this->lloji;
 	}
 	function getLokacioni(){
 		return html_entity_decode($this->lokacioni);
