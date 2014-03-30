@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 29, 2014 at 05:01 AM
+-- Generation Time: Mar 30, 2014 at 09:18 AM
 -- Server version: 5.6.16
 -- PHP Version: 5.5.9
 
@@ -289,21 +289,23 @@ CREATE TABLE IF NOT EXISTS `profesoret` (
   `lloji` enum('R','A','L','S') NOT NULL,
   `gjinia` varchar(1) NOT NULL,
   `lokacioni` varchar(250) NOT NULL,
+  `tel` varchar(100) NOT NULL,
   `foto` varchar(250) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
 
 --
 -- Dumping data for table `profesoret`
 --
 
-INSERT INTO `profesoret` (`id`, `emri`, `mbiemri`, `email`, `password`, `lloji`, `gjinia`, `lokacioni`, `foto`) VALUES
-(1, 'Ilir', 'Byty&ccedili', 'ilir.bytyci@gmail.com', 'blendi', 'L', 'M', 'Prizren', 'img/fakultet/profesore/profil/default.png'),
-(2, 'Shaban', 'Buza', 'shbuza@gmail.com', 'blendi', 'R', 'M', 'Prishtin&euml;', 'img/fakultet/profesore/profil/default.png'),
-(3, 'Mentor', 'Shala', 'mentor.shala@gmail.com', 'blendi', 'L', 'M', 'Prizren', 'img/fakultet/profesore/profil/default.png'),
-(4, 'Ermir', 'Rogova', 'erogova@hotmail.com', 'blendi', 'A', 'M', 'Prizren', 'img/fakultet/profesore/profil/default.png'),
-(5, 'Xhevahir', 'Bajrami', 'xheva@live.com', 'blendi', 'A', 'M', 'Prizren', 'img/fakultet/profesore/profil/default.png'),
-(6, 'Isak', 'Hoxha', 'isak@live.com', 'blendi', 'R', 'M', 'Prishtin&euml;', '');
+INSERT INTO `profesoret` (`id`, `emri`, `mbiemri`, `email`, `password`, `lloji`, `gjinia`, `lokacioni`, `tel`, `foto`) VALUES
+(1, 'Ilir', 'Byty&ccedili', 'ilir.bytyci@gmail.com', 'blendi', 'L', 'M', 'Prizren', '', 'img/fakultet/profesore/profil/default.png'),
+(2, 'Shaban', 'Buza', 'shbuza@gmail.com', 'blendi', 'R', 'F', 'Prishtin&euml;', '', 'img/fakultet/profesore/profil/default.png'),
+(3, 'Mentor', 'Shala', 'mentor.shala@gmail.com', 'blendi', 'L', 'M', 'Prizren', '', 'img/fakultet/profesore/profil/default.png'),
+(4, 'Ermir', 'Rogova', 'erogova@hotmail.com', 'blendi', 'A', 'M', 'Prizren', '', 'img/fakultet/profesore/profil/default.png'),
+(5, 'Xhevahir', 'Bajrami', 'xheva@live.com', 'blendi', 'A', 'M', 'Prizren', '', 'img/fakultet/profesore/profil/default.png'),
+(6, 'Isak', 'Hoxha', 'isak@live.com', 'blendos', 'R', 'M', 'PrishtinÃ«', '+37745123123', ''),
+(7, 'Artan', 'Dermaku', 'artan@live.com', 'prizren', 'S', 'F', 'Prizren', '044 123232', 'img/fakultet/profesore/profil/default.png');
 
 -- --------------------------------------------------------
 

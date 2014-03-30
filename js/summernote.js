@@ -1481,7 +1481,7 @@
       if (ytMatch && ytMatch[2].length === 11) {
         var youtubeId = ytMatch[2];
         $video = $('<iframe>')
-          .attr('src', '//www.youtube.com/embed/' + youtubeId)
+          .attr('src', 'http://www.youtube.com/embed/' + youtubeId)
           .attr('width', '640').attr('height', '360');
       } else if (igMatch && igMatch[0].length > 0) {
         $video = $('<iframe>')
@@ -1496,7 +1496,7 @@
           .attr('class', 'vine-embed');
       } else if (vimMatch && vimMatch[3].length > 0) {
         $video = $('<iframe webkitallowfullscreen mozallowfullscreen allowfullscreen>')
-          .attr('src', '//player.vimeo.com/video/' + vimMatch[3])
+          .attr('src', 'http://player.vimeo.com/video/' + vimMatch[3])
           .attr('width', '640').attr('height', '360');
       } else if (dmMatch && dmMatch[2].length > 0) {
         $video = $('<iframe>')

@@ -296,7 +296,7 @@ $page = new Page();
 			        	<div class="row">
 			        		<div class="form-group col-md-9">
 			        			';
-			        			if($profesoret = Profesor::getProfesoret()){
+			        			if($profesoret = Profesor::getProfesoret('T')){
 			        				echo '<label for="profesori">Profesori</label>
 			        					<select class="form-control" name="prof_fk" id="profesori">';
 			        					echo '<option value="0"> = profesori = </option>';
@@ -587,7 +587,7 @@ $page = new Page();
 			        	</div>
 			        	<div class="row">
 			        		<div class="form-group col-md-9">';
-			        			if($profesoret = Profesor::getProfesoret()){
+			        			if($profesoret = Profesor::getProfesoret('T')){
 			        				echo '<label for="profesori">Profesori</label>
 			        					<select class="form-control" name="shto_prof_fk" id="profesori">';
 			        					echo '<option value="0"> = profesori = </option>';
@@ -888,7 +888,7 @@ $page = new Page();
 							<div class="form-group col-md-6">
 				    			<label for="profesori" class="control-label">Profesori</label>
 			    				<select name="profesori" class="form-control" id="profesori">';
-			    				if($profesoret = Profesor::getProfesoret()){
+			    				if($profesoret = Profesor::getProfesoret('T')){
 			    					foreach($profesoret as $p){
 			    						if($p['id'] == $lenda->getProfID()){
 			    							echo '<option selected value="'.$p['id'].'">'.$p['emri'].' '.$p['mbiemri'].'</option>';
@@ -1002,11 +1002,11 @@ $page = new Page();
 			    		</div>
 			    		<div class="row">
 			    			<div class="form-group col-md-6">
-			    				<label for="email">e-mail</label>
+			    				<label for="email"><span class="glyphicon glyphicon-envelope"></span>  e-mail</label>
 			    				<input type="email" class="form-control" value="'.$prof->getEmail().'" name="email" id="email" />
 			    			</div>
-			    			<div class="form-group col-md-6">
-			    				<label for="lloji" class="control-label">Roli</label>
+			    			<div class="form-group col-md-3">
+			    				<label for="lloji" class="control-label"><span class="glyphicon glyphicon-bookmark"></span> Roli</label>
 			    				<select name="lloji" id="lloji" class="form-control">';
 			    				foreach($rolet as $shkronja=>$dmth){
 			    					if($shkronja == $prof->getLloji()){
@@ -1018,12 +1018,102 @@ $page = new Page();
 			    				}
 			    echo'			</select>
 			    			</div>
+			    			<div class="form-group col-md-3">
+					    		<label for="gjinia" class="control-label"><span class="glyphicon glyphicon-asterisk"></span> Gjinia</label>
+					    		<select name="gjinia" id="gjinia" class="form-control">';
+					    		if($prof->getGjinia() == 'M'){
+					    			echo '<option selected value="M">M</option>
+					    			<option value="F">F</option>';
+					    		}
+					    		else{
+					    			echo '<option value="M">M</option>
+					    			<option selected value="F">F</option>';
+					    		}
+					    			
+				echo'    		</select>
+					    	</div>
 			    		</div>
+			    		<div class="row">
+						    	<div class="form-group col-md-7">
+						    		<label for="lokacioni" class="control-label"><span class="glyphicon glyphicon-home"></span> Lokacioni</label>
+						    		<input type="text" name="lokacioni" value="'.$prof->getLokacioni().'" id="lokacioni" class="form-control" />
+						    	</div>
+						    	<div class="form-group col-md-5">
+						    		<label for="tel" class="control-label"><span class="glyphicon glyphicon-earphone"></span> Tel.</label>
+						    		<input type="text" name="tel" id="tel" value="'.$prof->getTel().'" class="form-control" />
+						    	</div>
+			    		</div>
+			    		<div class="row">
+					    	<div class="form-group col-md-6">
+					    		<label for="password" class="control-label"><span class="glyphicon glyphicon-lock"></span> Fjal&euml;kalimi</label>
+					    		<input type="password" autocomplete="off" name="password" id="password" class="form-control" />
+					    	</div>
+					    	<div class="form-group col-md-6">
+					    		<label for="password1" class="control-label"><span class="glyphicon glyphicon-lock"></span> P&euml;rs&euml;rit fjal&euml;kalimin</label>
+					    		<input type="password" name="password1" id="password1" class="form-control" />
+					    	</div>
+					    </div>
 			    	</div>
 			    	<div class="modal-footer">
 			    		<button type="button" class="btn btn-default" data-dismiss="modal">Mbylle!</button>
 			    		<button type="submit" class="btn btn-primary">Ruaje</button>
 					</div>
 			    </form>';
+		}
+		/*
+			Nese eshte ndryshuar profesori
+		*/
+		if(!empty($_GET['ndryshoP']) && is_numeric($_GET['ndryshoP'])){
+			$id = $lidhja->real_escape_string($_GET['ndryshoP']);
+			$emri = $lidhja->real_escape_string($_POST['emri']);
+			$mbiemri = $lidhja->real_escape_string($_POST['mbiemri']);
+			$email = $lidhja->real_escape_string($_POST['email']);
+			$lloji = $lidhja->real_escape_string($_POST['lloji']);
+			$gjinia = $lidhja->real_escape_string($_POST['gjinia']);
+			$lokacioni = $lidhja->real_escape_string($_POST['lokacioni']);
+			$tel = $lidhja->real_escape_string($_POST['tel']);
+			if(strlen($_POST['password'])>0 && strlen($_POST['password1'])>5 && $_POST['password'] === $_POST['password1']){
+				$pass = $lidhja->real_escape_string($_POST['password']);
+				$sql = "UPDATE profesoret SET emri='$emri', mbiemri='$mbiemri', email='$email',password='$pass',lloji='$lloji',gjinia='$gjinia',lokacioni='$lokacioni',tel='$tel' WHERE id=$id";
+			}
+			else{
+				$sql = "UPDATE profesoret SET emri='$emri', mbiemri='$mbiemri', email='$email',lloji='$lloji',gjinia='$gjinia',lokacioni='$lokacioni',tel='$tel' WHERE id=$id";
+			}
+			if($lidhja->query($sql)){
+				header('Location: index.php?faqja=profesoret&lloji='.$_SESSION['ch'].'&mesazhi=ndryshoprof0');
+				die();
+			}
+			else{
+				header('Location: index.php?faqja=profesoret&lloji='.$_SESSION['ch'].'&mesazhi=ndryshoprof1');
+				die();
+			}
+		}
+		/*
+			Per te shtuar nje profesor
+		*/
+		if(!empty($_GET['shto']) && $_GET['shto']==="profesor"){
+			if(strlen($_POST['password'])>0 && strlen($_POST['password1'])>5 && $_POST['password'] === $_POST['password1']){
+			$emri = $lidhja->real_escape_string($_POST['emri']);
+			$mbiemri = $lidhja->real_escape_string($_POST['mbiemri']);
+			$email = $lidhja->real_escape_string($_POST['email']);
+			$lloji = $lidhja->real_escape_string($_POST['lloji']);
+			$gjinia = $lidhja->real_escape_string($_POST['gjinia']);
+			$lokacioni = $lidhja->real_escape_string($_POST['lokacioni']);
+			$tel = $lidhja->real_escape_string($_POST['tel']);
+			$pass = $lidhja->real_escape_string($_POST['password']);
+				if($lidhja->query("INSERT INTO profesoret VALUES ('','$emri','$mbiemri','$email','$pass','$lloji','$gjinia','$lokacioni','$tel','img/fakultet/profesore/profil/default.png')")){
+					header('Location: index.php?faqja=profesoret&lloji='.$_SESSION['ch'].'&mesazhi=shtoprof0');
+					die();
+				}
+				else{
+					header('Location: index.php?faqja=profesoret&lloji='.$_SESSION['ch'].'&mesazhi=shtoprof1');
+					die();
+				}
+			}
+			else{
+				header('Location: index.php?faqja=profesoret&lloji='.$_SESSION['ch'].'&mesazhi=shtoprof1');
+				die();
+			}
+			
 		}
 ?>

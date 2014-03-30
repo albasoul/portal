@@ -42,7 +42,7 @@
 				    	<label for="profesori" class="control-label">Profesori</label>
 			    		<select name="profesori" class="form-control" id="profesori">
 			    		<?php
-			    				if($profesoret = Profesor::getProfesoret()){
+			    				if($profesoret = Profesor::getProfesoret('T')){
 			    					foreach($profesoret as $p){
 			    						echo '<option value="'.$p['id'].'">'.$p['emri'].' '.$p['mbiemri'].'</option>';
 			    					}
