@@ -30,7 +30,7 @@ if(!empty($_POST)){
 		$prof = new Profesor($lenda->getProfID());
 		foreach($pyetjet as $pyetje){
 			$pyetja_temp = $pyetje['pyetja'];
-			$emri_lendes = utf8_decode($lenda->getEmri()); // emri per cilen lende po votohet
+			$emri_lendes = htmlentities(($lenda->getEmri())); // emri per cilen lende po votohet
 			$emri_prof = $prof->getEmri() . ' ' .$prof->getMbiemri();
 			$data_pergjigjes = date('Y-m-d'); // data momentale e regjistrimit te notes
 			$semestri_lendes = $lenda->getSemestri(); // semestrin e lendes

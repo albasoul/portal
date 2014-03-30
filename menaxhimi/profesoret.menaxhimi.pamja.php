@@ -18,7 +18,12 @@
 		<?php 
 			$rolet = array('R' => 'I rregullt', 'A'=>'Asistent', 'L'=> 'Ligj&euml;rues', 'S'=>'Asociuar', 'T' => 'T&euml; gjith&euml;'); 
 			foreach($rolet as $shkronja => $dmth){
-				echo '<li><a class="btn btn-default" href="index.php?faqja=profesoret&lloji='.$shkronja.'">'.$dmth.'</a></li>';
+				if($_SESSION['ch'] == $shkronja){
+					echo '<li><a class="btn btn-primary" href="index.php?faqja=profesoret&lloji='.$shkronja.'">'.$dmth.'</a></li>';
+				}
+				else{
+					echo '<li><a class="btn btn-default" href="index.php?faqja=profesoret&lloji='.$shkronja.'">'.$dmth.'</a></li>';
+				}
 			}
 		?>
 		</ul>

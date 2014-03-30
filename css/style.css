@@ -328,3 +328,12 @@ p.lajmi-rend  {
 }
 .profesoret-menaxhim ul li a{
 }
+.vleresimi{
+	font: 120%/1.625 'Open Sans', sans-serif;
+}
+.vleresimi .votat a{
+	border-radius: 0px;
+	margin-top:1px;
+	border:none;
+	border-bottom: 1px solid #ddd;
+}
