@@ -116,7 +116,7 @@ else{
 			echo '<ul class="list-unstyled">';
 			foreach($fk as $f){
 				if($f['id'] == $fak){
-					echo '<li><a class="btn btn-block btn-default disabled" href="index.php?faqja=vleresimi&viti='.$viti.'&semestri='.$s['semestri'].'&fakulteti='.$f['id'].'">'.$f['emri'].'</a></li>';
+					echo '<li><a class="btn btn-block btn-primary" href="index.php?faqja=vleresimi&viti='.$viti.'&semestri='.$s['semestri'].'&fakulteti='.$f['id'].'">'.$f['emri'].'</a></li>';
 				}
 				else{
 					echo '<li><a class="btn btn-block btn-default" href="index.php?faqja=vleresimi&viti='.$viti.'&semestri='.$s['semestri'].'&fakulteti='.$f['id'].'">'.$f['emri'].'</a></li>';
