@@ -213,9 +213,9 @@
 			return FALSE;
 		}
 	}
-	function getVotat($viti, $semestri){
+	function getVotat($viti, $semestri, $fakulteti){
 		global $lidhja;
-		if($votat = $lidhja->query("SELECT *, AVG(nota) as mesatarja FROM votat WHERE YEAR(data)=$viti AND semestri=$semestri GROUP BY lenda")){
+		if($votat = $lidhja->query("SELECT *, AVG(nota) as mesatarja FROM votat WHERE YEAR(data)=$viti AND semestri=$semestri AND fk_id=$fakulteti GROUP BY lenda")){
 			if($votat->num_rows){
 				return $votat;
 			}

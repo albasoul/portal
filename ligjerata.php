@@ -3,7 +3,7 @@
 	include('includes/config.php');
 
 	//marrim ID e ligjerates
-if(!empty($_GET['id']) && $_GET['id'] > 0){
+if(!empty($_GET['id']) && is_numeric($_GET['id'])){
 	$id = $lidhja->real_escape_string($_GET['id']);
 	$ligjerata = new Ligjerata($id); // Krijojm 1 ligjerat permes Klases per ligjerata
 	$lenda = new Lenda($ligjerata->getLID()); // Krijojm Lenden nga klasa lenda.class
@@ -24,11 +24,11 @@ if(!empty($_GET['id']) && $_GET['id'] > 0){
 	}
 }
 else{
-	header('Location: index.php');
+	header('Location: index.ph2');
 	die();
 }
 
-if($page->isActivated != 1){
+if($page->isActivated() != 1){
 		header('Location: index.php');
 		die();
 	}
@@ -54,7 +54,6 @@ if($page->isActivated != 1){
     <![endif]-->
   </head>
   <body>
-  <br/>
   <div class="container">
   	<nav class="navbar navbar-default" role="navigation">
 	  <div class="container-fluid">

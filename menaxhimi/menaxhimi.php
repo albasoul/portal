@@ -236,7 +236,7 @@ $page = new Page();
 				$drejtimi = $lidhja->real_escape_string($_POST['drejtimi']);
 				$semestri = $lidhja->real_escape_string($_POST['semestri']);
 				$kredi = $lidhja->real_escape_string($_POST['kredi']);
-				$lokacioni = $lidhja->real_escape_string($_POST['lokacioni']);
+				$lokacioni = htmlentities($lidhja->real_escape_string($_POST['lokacioni']));
 			if(strlen($_POST['password1'])>5){
 				if($_POST['password1'] === $_POST['password2']){
 					$pass = $lidhja->real_escape_string($_POST['password1']);
@@ -336,7 +336,7 @@ $page = new Page();
 		if(!empty($_POST['emri_fk'])) {
 			if(strlen(trim($_POST['emri_fk'])) >5){
 				$id = $_POST['id_fk'];
-				$emri = $lidhja->real_escape_string($_POST['emri_fk']);
+				$emri = htmlentities($lidhja->real_escape_string($_POST['emri_fk']));
 				$prof = $_POST['prof_fk'];
 				$alias = $lidhja->real_escape_string($_POST['alias_fk']);
 				if($lidhja->query("UPDATE fakulteti SET emri='$emri',dekani='$prof',alias='$alias' WHERE id=$id")){
@@ -414,7 +414,7 @@ $page = new Page();
 		if(!empty($_POST['emri_d'])){
 			if(strlen(trim($_POST['emri_d'])) >5){
 				$id = $_POST['id_d'];
-				$emri = $lidhja->real_escape_string($_POST['emri_d']);
+				$emri = htmlentities($lidhja->real_escape_string($_POST['emri_d']));
 				$fk = $_POST['fk_d'];
 				$alias = $lidhja->real_escape_string($_POST['alias_d']);
 				if($lidhja->query("UPDATE drejtimet SET emri='$emri',f_id=$fk,alias='$alias' WHERE id=$id")){
@@ -529,13 +529,13 @@ $page = new Page();
 					header('Location: index.php?faqja=menaxhimi&mesazhi=perdorues1');
 					die();
 				}
-				$emri = $lidhja->real_escape_string($_POST['emri_p']);
-				$mbiemri = $lidhja->real_escape_string($_POST['mbiemri_p']);
+				$emri = htmlentities($lidhja->real_escape_string($_POST['emri_p']));
+				$mbiemri = htmlentities($lidhja->real_escape_string($_POST['mbiemri_p']));
 				$username = $lidhja->real_escape_string($_POST['username']);
 				$email = $lidhja->real_escape_string($_POST['email']);
 				$tel = $lidhja->real_escape_string($_POST['tel']);
-				$qyteti = $lidhja->real_escape_string($_POST['qyteti']);
-				$adresa = $lidhja->real_escape_string($_POST['adresa']);
+				$qyteti = htmlentities($lidhja->real_escape_string($_POST['qyteti']));
+				$adresa = htmlentities($lidhja->real_escape_string($_POST['adresa']));
 				$niveli = $lidhja->real_escape_string($_POST['niveli']);
 				if(!empty($_POST['password']) && !empty($_POST['password2']) && strlen($_POST['password']) > 5) {
 					$pass1 = $lidhja->real_escape_string($_POST['password']);
@@ -1065,12 +1065,12 @@ $page = new Page();
 		*/
 		if(!empty($_GET['ndryshoP']) && is_numeric($_GET['ndryshoP'])){
 			$id = $lidhja->real_escape_string($_GET['ndryshoP']);
-			$emri = $lidhja->real_escape_string($_POST['emri']);
-			$mbiemri = $lidhja->real_escape_string($_POST['mbiemri']);
+			$emri = htmlentities($lidhja->real_escape_string($_POST['emri']));
+			$mbiemri = htmlentities($lidhja->real_escape_string($_POST['mbiemri']));
 			$email = $lidhja->real_escape_string($_POST['email']);
 			$lloji = $lidhja->real_escape_string($_POST['lloji']);
 			$gjinia = $lidhja->real_escape_string($_POST['gjinia']);
-			$lokacioni = $lidhja->real_escape_string($_POST['lokacioni']);
+			$lokacioni = htmlentities($lidhja->real_escape_string($_POST['lokacioni']));
 			$tel = $lidhja->real_escape_string($_POST['tel']);
 			if(strlen($_POST['password'])>0 && strlen($_POST['password1'])>5 && $_POST['password'] === $_POST['password1']){
 				$pass = $lidhja->real_escape_string($_POST['password']);
@@ -1093,12 +1093,12 @@ $page = new Page();
 		*/
 		if(!empty($_GET['shto']) && $_GET['shto']==="profesor"){
 			if(strlen($_POST['password'])>0 && strlen($_POST['password1'])>5 && $_POST['password'] === $_POST['password1']){
-			$emri = $lidhja->real_escape_string($_POST['emri']);
-			$mbiemri = $lidhja->real_escape_string($_POST['mbiemri']);
+			$emri = htmlentities($lidhja->real_escape_string($_POST['emri']));
+			$mbiemri = htmlentities($lidhja->real_escape_string($_POST['mbiemri']));
 			$email = $lidhja->real_escape_string($_POST['email']);
 			$lloji = $lidhja->real_escape_string($_POST['lloji']);
 			$gjinia = $lidhja->real_escape_string($_POST['gjinia']);
-			$lokacioni = $lidhja->real_escape_string($_POST['lokacioni']);
+			$lokacioni = htmlentities($lidhja->real_escape_string($_POST['lokacioni']));
 			$tel = $lidhja->real_escape_string($_POST['tel']);
 			$pass = $lidhja->real_escape_string($_POST['password']);
 				if($lidhja->query("INSERT INTO profesoret VALUES ('','$emri','$mbiemri','$email','$pass','$lloji','$gjinia','$lokacioni','$tel','img/fakultet/profesore/profil/default.png')")){

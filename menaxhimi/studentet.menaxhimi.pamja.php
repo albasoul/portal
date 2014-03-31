@@ -108,7 +108,7 @@
 	  			$studenti = new Studenti($s['SID']);
 	  			echo '<li class="text-left col-md-4"><a data-toggle="modal" data-target="#ndryshoStudentin'.$studenti->getID().'" href="menaxhimi.php?ndryshoStudentin='.$studenti->getSID().'"><h4><strong>'.$studenti->getEmri().' ' .$studenti->getMbiemri(). '</strong></h4><span class="">'.$studenti->getSID().'</span> <abbr class="pull-right" title="Semestri">S'.$studenti->getSemestri().'</abbr></a></li>';
 	  			echo '	<!--Modal-->
-	  					<div class="modal fade" id="ndryshoStudentin'.$studenti->getID().'" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	  					<div class="modal fade" id="ndryshoStudentin'.$studenti->getID().'" tabindex="-1" role="dialog" aria-labelledby="Ndryshostudent" aria-hidden="true">
 						  <div class="modal-dialog modal-lg">
 						    <div class="modal-content">
 						    </div>

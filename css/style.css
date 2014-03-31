@@ -6,6 +6,7 @@
 }
 body{
 	background-color: #f9f9f9;
+	margin:20px;
 }
 .navbar{
 	border-radius: 0;	
@@ -229,8 +230,7 @@ p.lajmi-rend  {
 }
 /* ADMIN PAGE */
 .menaxhim-majt{
-	margin-left:10px;
-	font: 110%/1.625 'Open Sans', sans-serif;
+	font: 120%/1.225 'Open Sans', sans-serif;
 }
 .menaxhim-arkiva li{
 	float:left;
@@ -269,9 +269,6 @@ p.lajmi-rend  {
 }
 .lajmet-menaxhim{
 	
-}
-.lajmet-menaxhim .col-md-6 .list-group {
-	height: 70px;
 }
 .lajmet-menaxhim .col-md-6 .list-group a{
 	border-radius: 2px;
@@ -336,4 +333,45 @@ p.lajmi-rend  {
 	margin-top:1px;
 	border:none;
 	border-bottom: 1px solid #ddd;
+}
+.mendimet{
+	font: 100%/1.225 'Open Sans', sans-serif;
+}
+.uni-pz {
+	font: 110%/1.525 'Open Sans', sans-serif;
+	
+	font-weight: bold;
+	color:#000;
+	text-shadow: 0px 1px 1px #C7C7C7;
+}
+.menaxhim-djathti{
+	margin:0px;
+}
+.vleresimi-header{
+	font: 110%/1.625 'Open Sans', sans-serif;
+}
+.vleresimi-pyetjet .list-group-item{
+	border-radius: 0px;
+	border:none;
+	margin-top:1px;
+	border-bottom:1px solid #ddd;
+}
+.vleresimi-pyetjet{
+	margin:0px;
+	font: 110%/1.625 'Open Sans', sans-serif;
+}
+.vleresimi-pyetjet .list-group-item:hover{
+	background-color: #eee;
+
+}
+.pyetja-votimit{
+
+}
+.vleresimi-pyetjet .list-group-item:hover > .col-md-1{
+	font-weight: bold;
+}
+@media (max-width: 767px) {
+  #content .modal.fade.in {
+    top: 5%;
+  }
 }

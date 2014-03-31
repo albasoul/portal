@@ -31,7 +31,7 @@ if(!empty($_POST)){
 		foreach($pyetjet as $pyetje){
 			$pyetja_temp = $pyetje['pyetja'];
 			$emri_lendes = htmlentities(($lenda->getEmri())); // emri per cilen lende po votohet
-			$emri_prof = $prof->getEmri() . ' ' .$prof->getMbiemri();
+			$emri_prof = htmlentities($prof->getEmri()) . ' ' .htmlentities($prof->getMbiemri());
 			$data_pergjigjes = date('Y-m-d'); // data momentale e regjistrimit te notes
 			$semestri_lendes = $lenda->getSemestri(); // semestrin e lendes
 

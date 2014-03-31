@@ -19,7 +19,6 @@ if($muaji == 1){ $m = "Janar";} elseif($muaji == 2) { $m ="Shkurt";} elseif($mua
 ?>
 <script src="../js/summernote.js"></script>
 <link href="../css/summernote.css" rel="stylesheet">
-<link href="../css/font-awesome.css" rel="stylesheet">
 <div class="col-md-12">
 	<div class="row">
 		<label>Muaji</label>
