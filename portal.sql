@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 31, 2014 at 11:39 PM
+-- Generation Time: Apr 03, 2014 at 03:07 AM
 -- Server version: 5.6.16
 -- PHP Version: 5.5.9
 
@@ -199,10 +199,10 @@ CREATE TABLE IF NOT EXISTS `navbar` (
 --
 
 INSERT INTO `navbar` (`ID`, `emri`, `link`, `enabled`) VALUES
-(1, 'Lendet', 'index.php?faqja=lendet', 1),
-(2, 'Gazeta', 'gazeta.php', 1),
-(3, 'Lajmet', 'index.php?faqja=lajmet', 1),
-(4, 'Voto', 'index.php?faqja=voto', 1);
+(1, 'L&euml;nd&euml;t', 'lendet', 1),
+(2, 'Gazeta', 'gazeta', 0),
+(3, 'Lajmet', 'lajmet', 1),
+(4, 'Voto', 'voto', 1);
 
 -- --------------------------------------------------------
 
@@ -244,7 +244,7 @@ CREATE TABLE IF NOT EXISTS `page_info` (
 --
 
 INSERT INTO `page_info` (`title`, `footer`, `activated`, `logo`, `vleresimi`) VALUES
-('Universiteti i Prizrenit &quot;Ukshin Hoti&quot;', 'Copyright &copy; 2014', 1, 'img/fakultet/logo.png', 1);
+('Universiteti i Prizrenit &quot;Ukshin Hoti&quot;', 'Mund&euml;suar nga Blendi!', 1, 'img/fakultet/logo.png', 1);
 
 -- --------------------------------------------------------
 
@@ -319,7 +319,7 @@ CREATE TABLE IF NOT EXISTS `pyetjet` (
   `pyetja` varchar(256) NOT NULL,
   `lloji` tinyint(4) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=13 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=14 ;
 
 --
 -- Dumping data for table `pyetjet`
@@ -336,7 +336,7 @@ INSERT INTO `pyetjet` (`id`, `pyetja`, `lloji`) VALUES
 (8, 'N&euml; k&euml;t&euml; l&euml;nd&euml; kam m&euml;suar gj&euml;ra t&euml; reja dhe t&euml; dobishme.', 0),
 (9, '&Euml;sht&euml; inkurajuar pjes&euml;marrja dhe bashk&euml;veprimi n&euml; klas&euml;.', 0),
 (10, '&Euml;sht&euml; ofruar koh&euml; e mjaftueshme p&euml;r pyetjet e student&euml;ve.', 0),
-(11, '&Ccedilka ju ka p&euml;lqyer m&euml; s&euml; shumti n&euml; k&euml;t&euml; program studimor?', 1),
+(11, '&Ccedil;ka ju ka p&euml;lqyer m&euml; s&euml; shumti n&euml; k&euml;t&euml; program studimor?', 1),
 (12, '&Ccedil;ka kishit ndryshuar n&euml; k&euml;t&euml; program studimor?', 1);
 
 -- --------------------------------------------------------

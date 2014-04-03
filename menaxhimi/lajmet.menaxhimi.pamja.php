@@ -9,13 +9,13 @@ if(!empty($_GET['muaji'])){
 	$muaji = $lidhja->real_escape_string($_GET['muaji']);
 }
 else{
-	$muaji = date('m');
+	$muaji = 0;
 }
 $lajmetID = Lajmi::getLajmetID($viti,$muaji);
 
 if($muaji == 1){ $m = "Janar";} elseif($muaji == 2) { $m ="Shkurt";} elseif($muaji == 3) { $m ="Mars";} elseif($muaji == 4) { $m ="Prill";} elseif($muaji == 5) { $m ="Maj";}
  elseif($muaji == 6) { $m ="Qershor";}  elseif($muaji == 7) { $m ="Korrik";} elseif($muaji == 8) { $m ="Gusht";} elseif($muaji == 9) { $m ="Shtator";} elseif($muaji == 10) { $m ="Tetor";}
-  elseif($muaji == 11) { $m ="N&euml;ntor";} elseif($muaji == 12) { $m ="Dhjetor";} else { $m="n/a";}
+  elseif($muaji == 11) { $m ="N&euml;ntor";} elseif($muaji == 12) { $m ="Dhjetor";} else { $m="";}
 ?>
 <script src="../js/summernote.js"></script>
 <link href="../css/summernote.css" rel="stylesheet">

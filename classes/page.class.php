@@ -73,17 +73,39 @@ class Page{
 	* Funksioni qe perfshin dokumentin HTML per paraqitjen e faqes
 	*/
 	function showPamja($studenti,$page,$lokacioni){
+		global $lidhja;
 		if($lokacioni ==="index"){
 			include('index.pamja.php');
 		}
 		elseif($lokacioni ==="lendet"){
-			include('lendet.pamja.php');
+			$temp = $lidhja->query("SELECT * FROM navbar WHERE link='$lokacioni' AND enabled=1");
+			if($temp->num_rows == 1){
+				include('lendet.pamja.php');
+			}
+			else{
+				header('Location: index.php');
+				die();
+			}
 		}
 		elseif($lokacioni ==="lenda"){
-			include('lenda.pamja.php');
+			$temp = $lidhja->query("SELECT * FROM navbar WHERE link='lendet' AND enabled=1");
+			if($temp->num_rows == 1){
+				include('lenda.pamja.php');
+			}
+			else{
+				header('Location: index.php');
+				die();
+			}
 		}
 		elseif($lokacioni === "lajmet"){
-			include('lajmet.pamja.php');
+			$temp = $lidhja->query("SELECT * FROM navbar WHERE link='$lokacioni' AND enabled=1");
+			if($temp->num_rows == 1){
+				include('lajmet.pamja.php');
+			}
+			else{
+				header('Location: index.php');
+				die();
+			}
 		}
 		elseif($lokacioni === "voto"){
 			include('voto.pamja.php');
@@ -111,7 +133,7 @@ class Page{
 		$navQuery = $lidhja->query("SELECT * FROM navbar WHERE enabled=1");
 		if($navQuery->num_rows > 0){
 			foreach($navQuery as $nav){
-				echo '<li><a href="'.$nav['link'].'" class="text-primary">'.$nav['emri'].'</a></li>';
+				echo '<li><a href="index.php?faqja='.$nav['link'].'" class="text-primary">'.html_entity_decode($nav['emri']).'</a></li>';
 			}
 		}
 		else{

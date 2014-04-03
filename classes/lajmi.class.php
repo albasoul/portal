@@ -63,7 +63,7 @@ class Lajmi{
 	function getLajmetID($v,$m){
 		global $lidhja;
 		if(!empty($v)) {
-			if(!empty($m)){
+			if($m != 0){
 				$lajmet = $lidhja->query("SELECT id FROM lajmet WHERE YEAR(data)=$v AND MONTH(data)=$m ORDER BY data DESC") or die($lidhja->error);
 			}
 			else{

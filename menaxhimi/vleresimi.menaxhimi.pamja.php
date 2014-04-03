@@ -9,7 +9,7 @@
 		$semestri = $_GET['semestri'];
 	}
 	else{
-		$semestri = 4;
+		$semestri = 1;
 	}
 	if(!empty($_GET['fakulteti']) && is_numeric($_GET['fakulteti'])){
 		$fak = $_GET['fakulteti'];
@@ -37,7 +37,10 @@ if(!empty($_GET['votaID'])){ // per vetem 1 prof
 	}
 	$temp = $votimi->fetch_assoc();
 	$mes = array_sum($mesatareArray) / count($mesatareArray);
-	echo '<a href="'.$_SERVER["HTTP_REFERER"].'" class="btn btn-info"><i class="fa fa-angle-double-left"></i> Kthehu</a>';
+
+	echo '<a href="'.$_SERVER["HTTP_REFERER"].'" class="btn btn-info"><i class="fa fa-angle-double-left"></i> Kthehu</a>
+	<a class="btn btn-md btn-warning printo pull-right" href="nePdf.php?votaID='.$id[0].'-'.$id[1].'&fakulteti='.$fak.'&viti='.$viti.'"><i class="fa fa-print"></i> Printo</a>';
+
 	echo '<div class="page-header vleresimi-header">
 		  <h1>'.$p.' <small>'.$emri_lendes.'</small><span class="label label-danger pull-right"><abbr title="Mesatarja">'.$mes.'</abbr></span></h1>
 		</div>';
@@ -110,16 +113,17 @@ else{
 		</div>
 	</div>
 	<div class="col-md-3">
+		<p><a href="index.php?faqja=pyetjet" class="btn btn-info"><i class="fa fa-pencil"></i> Ndrysho pyetjet</a></p>
 		<label>Fakultetet</label>
 		<?php
 			$fk = getFakultetet(); // marrim fakultetet te gjitha
 			echo '<ul class="list-unstyled">';
 			foreach($fk as $f){
 				if($f['id'] == $fak){
-					echo '<li><a class="btn btn-block btn-primary" href="index.php?faqja=vleresimi&viti='.$viti.'&semestri='.$s['semestri'].'&fakulteti='.$f['id'].'">'.$f['emri'].'</a></li>';
+					echo '<li><a class="btn btn-block btn-primary" href="index.php?faqja=vleresimi&viti='.$viti.'&semestri='.$semestri.'&fakulteti='.$f['id'].'">'.$f['emri'].'</a></li>';
 				}
 				else{
-					echo '<li><a class="btn btn-block btn-default" href="index.php?faqja=vleresimi&viti='.$viti.'&semestri='.$s['semestri'].'&fakulteti='.$f['id'].'">'.$f['emri'].'</a></li>';
+					echo '<li><a class="btn btn-block btn-default" href="index.php?faqja=vleresimi&viti='.$viti.'&semestri='.$semestri.'&fakulteti='.$f['id'].'">'.$f['emri'].'</a></li>';
 				}
 			}
 			echo '</ul>';

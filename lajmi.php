@@ -1,6 +1,13 @@
 <?php
 	# perfshije config.php
 	include('includes/config.php');
+			$temp = $lidhja->query("SELECT * FROM navbar WHERE link='lajmet' AND enabled=1"); //kontrollon a eshte e aktivizuar faqja e lajmeve
+			if($temp->num_rows == 1){
+			}
+			else{
+				header('Location: index.php');
+				die();
+			}
 	if(!empty($_GET['id']) && $_GET['id']>0){
 		$id = $lidhja->real_escape_string($_GET['id']);
 		$lajmi = new Lajmi($id);

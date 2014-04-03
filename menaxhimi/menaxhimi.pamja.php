@@ -2,6 +2,64 @@
 
 ?>
 <div class="row">
+	<div class="col-md-12">
+		<label>Navbar</label>
+		
+			<div class="navbar-links">
+				<?php $navbar = $lidhja->query("SELECT * FROM navbar");
+				foreach($navbar as $nav){
+					if($nav['enabled']==0){
+						echo '<a data-toggle="modal" data-target=".navbar-links-'.$nav['ID'].'" class="btn btn-danger">'.$nav['emri'].'</a>';
+					}
+					else{
+						echo '<a data-toggle="modal" data-target=".navbar-links-'.$nav['ID'].'" class="btn btn-success">'.$nav['emri'].'</a>';
+					}
+					echo '
+					<div class="modal fade navbar-links-'.$nav['ID'].'" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+					  <div class="modal-dialog modal-sm">
+					    <div class="modal-content">
+					      <form role="form" action="menaxhimi.php?navbar='.$nav['ID'].'" method="POST">
+					      	<div class="modal-header">
+						        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+						        <h4 class="modal-title">Navbar</h4>
+						      </div>
+						      <div class="modal-body">
+						      <div class="row">
+						      	<div class="form-group col-md-12">
+						      		<label class="control-label" for="emri">Emri</label>
+						      		<input type="text" name="emri" id="emri" value="'.$nav['emri'].'" class="form-control"/>
+						      	</div>
+						      	<div class="form-group col-md-12">
+						      		<label for="enabled" class="control-label">Aktivizimi</label>
+						      		<select name="enabled" id="enabled" class="form-control">';
+						      			if($nav['enabled']==1){
+						      				echo '<option value="1" selected>Aktive</option>';
+						      				echo '<option value="0">Ndalo</option>';
+						      			}
+						      			else{
+						      				echo '<option value="1">Aktive</option>';
+						      				echo '<option value="0" selected>Ndalo</option>';
+						      			}
+						echo'  		</select>
+						      	</div>
+						      </div>
+						      </div>
+						      <div class="modal-footer">
+						        <button type="button" class="btn btn-default" data-dismiss="modal">Mbylle</button>
+						        <button type="submit" class="btn btn-primary">Ruaj</button>
+						      </div>
+					      </form>
+					    </div>
+					  </div>
+					</div>';
+				}
+				 ?>
+			</div>
+		
+	</div>
+</div>
+<hr/>
+<div class="row">
 	<div class="col-md-6">
 		<form role="form" id="page_info" action="menaxhimi.php" method="POST">
 			<div class="form-group">
@@ -40,7 +98,7 @@
 			<?php
 				if($page->isActivated() == 1){
 					echo '<input type="hidden" name="online" value="1"/>
-				<p class="bg-success text-left"><input name="online-offline-submit" id="faqjaOnline" type="submit" class="btn btn-md btn-success" value="Online"/> Faqja &euml;sht&euml; aktive!<span class="glyphicon glyphicon-ok pull-right text-success hidden-xs" style="font-size:20px;padding:5px;"></span></p>';
+				<p class="bg-success text-left"><input name="online-offline-submit" id="faqjaOnline" type="submit" class="btn btn-md btn-primary" value="Online"/> Faqja &euml;sht&euml; aktive!<span class="glyphicon glyphicon-ok pull-right text-primary hidden-xs" style="font-size:20px;padding:5px;"></span></p>';
 				}
 				else{
 					echo '<input type="hidden" name="offline" value="1"/>
@@ -70,7 +128,7 @@
 			<?php
 				if($page->getVleresimi() == 1){
 					echo '<input type="hidden" name="votimOn" value="1"/>
-				<p class="bg-success text-left"><button name="votimOnOff-submit" id="faqjaOnline" type="submit" class="btn btn-md btn-success">Online</button> Vler&euml;simi &euml;sht&euml; aktiv!<span class="glyphicon glyphicon-ok pull-right text-success hidden-xs" style="font-size:20px;padding:5px;"></span></p>';
+				<p class="bg-success text-left"><button name="votimOnOff-submit" id="faqjaOnline" type="submit" class="btn btn-md btn-primary">Online</button> Vler&euml;simi &euml;sht&euml; aktiv!<span class="glyphicon glyphicon-ok pull-right text-primary hidden-xs" style="font-size:20px;padding:5px;"></span></p>';
 				}
 				else{
 					echo '<input type="hidden" name="votimOff" value="1"/>
@@ -84,7 +142,7 @@
 <hr/>
 <div class="row">
 	<div class="col-md-4">
-		<div class="panel panel-primary">
+		<div class="panel panel-default">
 		  <div class="panel-heading">
 		    <h3 class="panel-title">Fakultetet<a style="margin:-5px;" data-toggle="modal" data-target="#shtofakultet" href="menaxhimi.php?shto=fakultet" class="pull-right"><span class="btn btn-info glyphicon glyphicon-plus"></span></a></h3>
 		  </div>
@@ -117,7 +175,7 @@
 		</div>
 	</div>
 	<div class="col-md-4">
-		<div class="panel panel-primary">
+		<div class="panel panel-default">
 		  <div class="panel-heading">
 		    <h3 class="panel-title">Drejtimet<a data-toggle="modal" data-target="#shtodrejtim" href="menaxhimi.php?shto=drejtim" style="margin:-5px;" href="#" class="pull-right"><span class="btn btn-info glyphicon glyphicon-plus"></span></a></h3>
 		  </div>
@@ -152,9 +210,9 @@
 		</div>
 	</div>
 	<div class="col-md-4">
-		<div class="panel panel-primary">
+		<div class="panel panel-default">
 		  <div class="panel-heading">
-		    <h3 class="panel-title">P&euml;rdorues&euml;t<a data-toggle="modal" data-target="#shtoperdorues" href="menaxhimi.php?shto=perdorues" style="margin:-5px;" href="#" class="pull-right"><span class="btn btn-info glyphicon glyphicon-plus"></span></a></h3>
+		    <h3 class="panel-title">P&euml;rdoruesit<a data-toggle="modal" data-target="#shtoperdorues" href="menaxhimi.php?shto=perdorues" style="margin:-5px;" href="#" class="pull-right"><span class="btn btn-info glyphicon glyphicon-plus"></span></a></h3>
 		  </div>
 		  <div class="panel-body">
 		    	<?php

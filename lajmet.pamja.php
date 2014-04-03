@@ -10,7 +10,7 @@ if(!empty($_GET['muaji'])){
 	$muaji = $lidhja->real_escape_string($_GET['muaji']);
 }
 else{
-	$muaji = date('m');
+	$muaji = 0;
 }
 $lajmetID = Lajmi::getLajmetID($viti,$muaji); // marrim ID e te gjitha lendeve, nese ska, behet FALSE!
 $page = new Page();

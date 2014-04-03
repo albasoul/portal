@@ -26,7 +26,6 @@
     <link href="../css/bootstrap-theme.css" rel="stylesheet">
     <link href="../css/style.css" rel="stylesheet">
     <link href="../css/font-awesome.css" rel="stylesheet">
-    
     <script src="../js/summernote.js"></script>
 	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="../js/jquery.min.js"></script>
@@ -86,6 +85,9 @@
 					}
 					elseif($faqja === "paraqitja"){
 						include('paraqitja.menaxhimi.pamja.php');
+					}
+					elseif($faqja === "pyetjet"){
+						include('pyetjet.pamja.php');
 					}
 					else{
 						header('Location: index.php?faqja=index');

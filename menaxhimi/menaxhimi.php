@@ -27,7 +27,7 @@ $page = new Page();
 		elseif(!empty($_POST['offline']) && $_POST['offline']==1){
 			if($page->aktivizoFaqen()){
 				echo '<input type="hidden" name="online" value="1"/>
-				<p class="bg-success text-left"><input id="faqjaOnline" type="submit" class="btn btn-md btn-success" value="Online"/> Faqja &euml;sht&euml; aktivizuar! <span class="glyphicon glyphicon-ok pull-right text-success hidden-xs" style="font-size:20px;padding:5px;"></span></p>';
+				<p class="bg-success text-left"><input id="faqjaOnline" type="submit" class="btn btn-md btn-primary" value="Online"/> Faqja &euml;sht&euml; aktivizuar! <span class="glyphicon glyphicon-ok pull-right text-primary hidden-xs" style="font-size:20px;padding:5px;"></span></p>';
 			die();
 			}
 		}
@@ -44,7 +44,7 @@ $page = new Page();
 		elseif(!empty($_POST['votimOff']) && $_POST['votimOff']==1){
 			if($page->aktivizoVotim()){
 				echo '<input type="hidden" name="votimOn" value="1"/>
-				<p class="bg-success text-left"><button id="faqjaOnline" type="submit" class="btn btn-md btn-success">Online</button> Vler&euml;simi &euml;sht&euml; aktivizuar! <span class="glyphicon glyphicon-ok pull-right text-success hidden-xs" style="font-size:20px;padding:5px;"></span></p>';
+				<p class="bg-success text-left"><button id="faqjaOnline" type="submit" class="btn btn-md btn-primary">Online</button> Vler&euml;simi &euml;sht&euml; aktivizuar! <span class="glyphicon glyphicon-ok pull-right text-primary hidden-xs" style="font-size:20px;padding:5px;"></span></p>';
 			die();
 			}
 		}
@@ -1114,6 +1114,66 @@ $page = new Page();
 				header('Location: index.php?faqja=profesoret&lloji='.$_SESSION['ch'].'&mesazhi=shtoprof1');
 				die();
 			}
-			
+		}
+		/*
+			Ndryshimi i navbar-links
+		*/
+		if(!empty($_GET['navbar']) && is_numeric($_GET['navbar'])){
+			$id = $lidhja->real_escape_string($_GET['navbar']);
+			$emri = htmlentities($lidhja->real_escape_string($_POST['emri']));
+			$enabled = $lidhja->real_escape_string($_POST['enabled']);
+			if($lidhja->query("UPDATE navbar set emri='$emri', enabled=$enabled WHERE ID=$id")){
+				header('Location: index.php?faqja=menaxhimi&mesazhi=navbar0');
+				die();
+			}
+			else{
+				header('Location: index.php?faqja=menaxhimi&mesazhi=navbar1');
+				die();
+			}
+		}
+		/*
+			Ndryshimi i pyetjeve
+		*/
+		if(!empty($_GET['ndryshoPyetje']) && is_numeric($_GET['ndryshoPyetje'])){
+			$id = $_GET['ndryshoPyetje'];
+			$pyetja = htmlentities($lidhja->real_escape_string($_POST['pyetja']));
+			$lloji = $lidhja->real_escape_string($_POST['lloji']);
+			if($lidhja->query("UPDATE pyetjet SET pyetja='$pyetja', lloji=$lloji WHERE id=$id")){
+				header('Location: index.php?faqja=pyetjet&mesazhi=pyetja0');
+				die();
+			}
+			else{
+				header('Location: index.php?faqja=pyetjet&mesazhi=pyetja1');
+				die();
+			}
+		}
+		/*
+			Shto pyetje
+		*/
+		if(!empty($_GET['shtoPyetje'])){
+			$pyetja = htmlentities($lidhja->real_escape_string($_POST['pyetja']));
+			$lloji = $lidhja->real_escape_string($_POST['lloji']);
+			if($lidhja->query("INSERT INTO pyetjet VALUES('','$pyetja',$lloji)")){
+				header('Location: index.php?faqja=pyetjet&mesazhi=shtopyetje0');
+				die();
+			}
+			else{
+				header('Location: index.php?faqja=pyetjet&mesazhi=shtopyetje1');
+				die();
+			}
+		}
+		/*
+			Fshirja e pyetjes
+		*/
+		if(!empty($_GET['fshiPyetje']) && is_numeric($_GET['fshiPyetje'])){
+			$id = $_GET['fshiPyetje'];
+			if($lidhja->query("DELETE FROM pyetjet WHERE id=$id")){
+				header('Location: index.php?faqja=pyetjet&mesazhi=fshipyetje0');
+				die();
+			}
+			else{
+				header('Location: index.php?faqja=pyetjet&mesazhi=fshipyetje1');
+				die();
+			}
 		}
 ?>

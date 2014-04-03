@@ -24,7 +24,7 @@ if(!empty($_GET['id']) && is_numeric($_GET['id'])){
 	}
 }
 else{
-	header('Location: index.ph2');
+	header('Location: index.php');
 	die();
 }
 
@@ -98,15 +98,8 @@ if($page->isActivated() != 1){
 							  <h4><small>Formati: </small>'.$ligjerata->getExtension().'</h4>
 							  <h4><small>Madh&euml;sia: </small>'.$ligjerata->getMadhesia().'</h4>
 							</div>';
-							// leximi i ligjeratave
-							if($ligjerata->getExtension() === "pdf"){
-								echo '<iframe src="lexoLigjerat.php?id='.$id.'" width="100%" height="780" style="border: none;">
-										</iframe>';
-							}
-							else{
-								echo '<iframe src="http://docs.google.com/viewer?url=http://178.175.110.242//portal/'.$ligjerata->getLink().'&embedded=true" width="100%" height="780" style="border: none;">
+								echo '<iframe src="http://docs.google.com/viewer?url=http://178.175.110.242/portal/'.$ligjerata->getLink().'&embedded=true" width="100%" height="780" style="border: none;">
 								</iframe>';
-							}
 					
 					echo '<ul class="pager">';
 					if($info = $ligjerata->kaLigjerat($ligjerata->getID(),"p",$lenda->getID())) { // "p" = posht
