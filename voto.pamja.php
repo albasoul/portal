@@ -71,7 +71,7 @@
 			</div>
 			<div class="col-md-8 col-md-offset-1 voto"> <!-- KTU FILLON paraqitja e anes se djathte per votim -->
 			<?php 
-				if($page->getVleresimi() == 0){ //kontrollojm a eshte i aktivizuar vleresimi i profesoreve
+				if($page->getVleresimi() == 0 OR aKaVotuar($studenti->getSID())){ //kontrollojm a eshte i aktivizuar vleresimi i profesoreve
 					echo '<h4> Vler&euml;simi i profesor&euml;ve nuk eshte aktiv!</h4>';
 				}
 				else{

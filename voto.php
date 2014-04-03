@@ -5,6 +5,8 @@ include('includes/config.php');
 
 $pyetjet = getPyetjet();
 $studenti = new Studenti($_SESSION['s_id']);
+$semestri_studentit = $studenti->getSemestri();
+$SID= $studenti->getSID();
 $lendet = getLendetMeSemester($studenti->getSemestri(), $studenti->getDrejtimi());
 	// Krijimi array, qe i permban te gjitha notat,rend, njera pas tjetres :p
 		$pyetja = array();
@@ -74,7 +76,6 @@ if(!empty($_POST)){
 	$shuma = count($nota); // veq i numrojm sa nota jon regjistru ne array;
 	for($k=0; $k<$shuma; $k++){ // per krejt notat, regjistrojm nDatabas te dhenat
 		regjistroVoten($pyetja[$k],$lendetArray[$k], $profesori[$k], $nota[$k], $data[$k], $semestri[$k]);
-		
 	}
 
 	$shumaKomenteve = count($komentet);
@@ -82,6 +83,9 @@ if(!empty($_POST)){
 	for($b=0; $b<$shumaKomenteve; $b++){
 		regjistroMendimin($pyetja2[$b],$lendetArray2[$b], $profesori2[$b], $komentet[$b], $data2[$b], $semestri2[$b]);
 	}
+	# bejme studentin me shenj qe ka votuar
+	$lidhja->query("UPDATE studentet SET nr_votimit=$semestri_studentit WHERE SID=$SID");
+	
 	header('Location: index.php?faqja=voto&gabim=0');
 	die();
 }

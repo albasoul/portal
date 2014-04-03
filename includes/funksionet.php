@@ -213,6 +213,9 @@
 			return FALSE;
 		}
 	}
+	/*
+		Funksioni qe kthen votat sipas vitit, semestrit dhe fakultetit te caktuar
+	*/
 	function getVotat($viti, $semestri, $fakulteti){
 		global $lidhja;
 		if($votat = $lidhja->query("SELECT *, AVG(nota) as mesatarja FROM votat WHERE YEAR(data)=$viti AND semestri=$semestri AND fk_id=$fakulteti GROUP BY lenda")){
@@ -227,4 +230,18 @@
 			return FALSE;
 		}
 	}
+	/*
+		Funksioni qe kontrollon a ka votuar studenti njeher ne ate semester
+	*/
+	function aKaVotuar($SID){
+		global $lidhja;
+		$votuar = $lidhja->query("SELECT SID FROM studentet WHERE nr_votimit=semestri AND SID=$SID");
+		if($votuar->num_rows > 0){
+			return TRUE;
+		}
+		else{
+			return FALSE;
+		}
+	}
+
 ?>

@@ -98,6 +98,15 @@ body{
 $dompdf = new DOMPDF();
 $dompdf->load_html($paraqitja);
 $dompdf->render();
-$temp = $p . ' - ' . $lenda->getEmri();
+$find[] = '&euml;';
+$find[] = '&ccedil;';
+$find[] = '&Euml;';
+$find[] = '$Ccedil';
+$replace[] = 'e';
+$replace[] = 'c';
+$replace[] = 'E';
+$replace[] = 'C';
+$text = $p . ' - ' . $lenda->getEmri();
+$temp = str_replace($find, $replace, $text);
 $dompdf->stream($temp);
 ?>	
