@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 03, 2014 at 03:07 AM
+-- Generation Time: Apr 03, 2014 at 04:00 AM
 -- Server version: 5.6.16
 -- PHP Version: 5.5.9
 
@@ -265,7 +265,7 @@ CREATE TABLE IF NOT EXISTS `perdoruesit` (
   `niveli` int(2) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `username` (`username`,`email`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
 
 --
 -- Dumping data for table `perdoruesit`
@@ -273,7 +273,8 @@ CREATE TABLE IF NOT EXISTS `perdoruesit` (
 
 INSERT INTO `perdoruesit` (`id`, `username`, `emri`, `mbiemri`, `email`, `password`, `tel`, `qyteti`, `rruga`, `niveli`) VALUES
 (1, 'bgashi', 'Blendi', 'Gashi', 'blendi.gashi@gmail.com', 'blendos', '+37744625975', 'Prizren', 'Ulqini 4', 1),
-(2, 'dmorina', 'Durim', 'Morina', 'duriimm@live.com', 'blendi2', '+123129401293', 'Prizren', 'Kosovo', 2);
+(2, 'dmorina', 'Durim', 'Morina', 'duriimm@live.com', 'blendi2', '+123129401293', 'Prizren', 'Kosovo', 2),
+(3, 'bbajrami', 'Besfort', 'Bajrami', 'bess.-@live.com', 'blendi', '+37745689367', 'Prizren', 'Piran&euml;, Rr.&quot;Zahir Pajaziti&quot;', 1);
 
 -- --------------------------------------------------------
 
@@ -357,6 +358,7 @@ CREATE TABLE IF NOT EXISTS `studentet` (
   `kredi` int(3) NOT NULL,
   `lokacioni` varchar(50) NOT NULL,
   `foto` varchar(256) NOT NULL,
+  `nr_votimit` int(1) NOT NULL,
   PRIMARY KEY (`ID`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
 
@@ -364,13 +366,13 @@ CREATE TABLE IF NOT EXISTS `studentet` (
 -- Dumping data for table `studentet`
 --
 
-INSERT INTO `studentet` (`ID`, `SID`, `emri`, `mbiemri`, `email`, `password`, `drejtimi`, `semestri`, `kredi`, `lokacioni`, `foto`) VALUES
-(1, 1240023, 'Blendi', 'Gashi', 'blendi.gashi@gmail.com', 'blendos', 1, 4, 2, 'Prizren', 'img/studente/profil/default.png'),
-(2, 1240050, 'Besfort', 'Bajrami', 'bess.-@live.com', 'blendi', 3, 3, 8, 'Pirane', 'img/studente/profil/default.png'),
-(3, 1240025, 'Din', 'Laqaj', 'din@live.com', 'blendi', 4, 3, 18, 'Prizren', 'img/studente/profil/default.png'),
-(4, 1240026, 'Durim', 'Morina', 'duriiim-@live.com', 'blendi', 1, 4, 39, 'Prizren', 'img/studente/profil/default.png'),
-(5, 1240122, 'Blend', 'Popaj', 'blend@live.com', 'blendi', 1, 4, 42, 'Fortes&euml;', 'img/studente/profil/default.png'),
-(6, 1240141, 'Ardit', 'Morina', 'ardit@live.com', 'blendi', 1, 4, 32, 'RogovÃ«', 'img/studente/profil/default.png');
+INSERT INTO `studentet` (`ID`, `SID`, `emri`, `mbiemri`, `email`, `password`, `drejtimi`, `semestri`, `kredi`, `lokacioni`, `foto`, `nr_votimit`) VALUES
+(1, 1240023, 'Blendi', 'Gashi', 'blendi.gashi@gmail.com', 'blendos', 1, 4, 2, 'Prizren', 'img/studente/profil/default.png', 4),
+(2, 1240050, 'Besfort', 'Bajrami', 'bess.-@live.com', 'blendi', 3, 3, 8, 'Pirane', 'img/studente/profil/default.png', 0),
+(3, 1240025, 'Din', 'Laqaj', 'din@live.com', 'blendi', 4, 3, 18, 'Prizren', 'img/studente/profil/default.png', 0),
+(4, 1240026, 'Durim', 'Morina', 'duriiim-@live.com', 'blendi', 1, 4, 39, 'Prizren', 'img/studente/profil/default.png', 0),
+(5, 1240122, 'Blend', 'Popaj', 'blend@live.com', 'blendi', 1, 4, 42, 'Fortes&euml;', 'img/studente/profil/default.png', 0),
+(6, 1240141, 'Ardit', 'Morina', 'ardit@live.com', 'blendi', 1, 4, 32, 'RogovÃ«', 'img/studente/profil/default.png', 0);
 
 -- --------------------------------------------------------
 
