@@ -110,6 +110,9 @@ class Page{
 		elseif($lokacioni === "voto"){
 			include('voto.pamja.php');
 		}
+		elseif ($lokacioni === "paraqitja") {
+			include('paraqitja.pamja.php');
+		}
 		else{
 			include('index.pamja.php');
 		}

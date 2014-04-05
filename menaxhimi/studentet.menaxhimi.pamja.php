@@ -120,7 +120,10 @@
 	  	else{
 	  		echo '<p class="bg-danger"> Nuk ka student&euml;. </p>';
 	  	}
+
 	  if($total>0){
+	  	echo '<label class="pull-left" style="margin-top:23px; margin-right:10px;">Faqja</label> ';
+
 	  	echo '<ul class="pagination">';
 	  	for($i=1; $i<=$total;$i++){
 	  		echo'<li><a href="index.php?faqja=studentet&drejtimi='.$_SESSION['d_id'].'&fq='.$i.'">'.$i.'</a></li>';

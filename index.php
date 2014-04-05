@@ -25,6 +25,9 @@
 		elseif($faqja === "voto"){
 			$lokacioni = "voto";
 		}
+		elseif ($faqja === "paraqitja") {
+			$lokacioni = "paraqitja";
+		}
 		else{
 			$lokacioni = "index";
 		}

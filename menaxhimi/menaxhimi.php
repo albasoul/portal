@@ -886,19 +886,33 @@ $page = new Page();
 				echo'			</select>
 							</div>
 							<div class="form-group col-md-6">
-				    			<label for="profesori" class="control-label">Profesori</label>
-			    				<select name="profesori" class="form-control" id="profesori">';
-			    				if($profesoret = Profesor::getProfesoret('T')){
-			    					foreach($profesoret as $p){
-			    						if($p['id'] == $lenda->getProfID()){
-			    							echo '<option selected value="'.$p['id'].'">'.$p['emri'].' '.$p['mbiemri'].'</option>';
-			    						}
-			    						else{
-			    							echo '<option value="'.$p['id'].'">'.$p['emri'].' '.$p['mbiemri'].'</option>';
-			    						}
-			    					}
-			    				}
-				echo'			</select>
+				    			<label for="profesori" class="control-label">Profesori</label>';
+									$profat = $lenda->getProfID();
+									foreach($profat as $key => $value){
+										if($profesoret = Profesor::getProfesoret('T')) {
+					    					echo '<select name="profesori[]" class="form-control" id="profesori">';
+					    					echo '<option value="0"> = fshije = </option>';
+					    					foreach($profesoret as $p){
+
+					    						if($p['id'] == $value) {
+					    							echo '<option selected value="'.$p['id'].'">'.$p['emri'].' '.$p['mbiemri'].'</option>';
+					    						}
+					    						else{
+					    							echo '<option value="'.$p['id'].'">'.$p['emri'].' '.$p['mbiemri'].'</option>';
+					    						}
+					    					}
+					    					echo '</select>';
+				    					}
+									}
+				echo'			<select name="profesori[]" class="form-control" id="profesori">';
+									if($profesoret = Profesor::getProfesoret('T')){
+										echo '<option value="0"></option>';
+										foreach ($profesoret as $p) {
+											echo '<option value="'.$p['id'].'">'.$p['emri'].' '.$p['mbiemri'].'</option>';
+										}
+									}
+				echo '
+								</select>
 							</div>
 						</div>
 						<div class="row">
@@ -939,11 +953,18 @@ $page = new Page();
 			if(strlen(trim($_POST['emri']))>3){
 				$emri = htmlentities(trim($lidhja->real_escape_string($_POST['emri'])));
 				$drejtimi = $lidhja->real_escape_string($_POST['drejtimi']);
-				$profesori = $lidhja->real_escape_string($_POST['profesori']);
 				$semestri = $lidhja->real_escape_string($_POST['semestri']);
 				$kredi = $lidhja->real_escape_string($_POST['kredi']);
 				$lloji = $lidhja->real_escape_string($_POST['lloji']);
-				if($lidhja->query("UPDATE lendet SET emri='$emri', drejtimi=$drejtimi, semestri=$semestri, kredi=$kredi, p_id=$profesori, lloji='$lloji' WHERE id=$id")){
+				if($lidhja->query("UPDATE lendet SET emri='$emri', drejtimi=$drejtimi, semestri=$semestri, kredi=$kredi, lloji='$lloji' WHERE id=$id")){
+					# fshiji profat dhe regjistroi perseri
+					$lidhja->query("DELETE FROM lendeprofesore WHERE LID=$id");
+					foreach($_POST['profesori'] as $prof){
+						if($prof!=0){
+							$lidhja->query("INSERT INTO lendeprofesore VALUES('',$id,$prof)");
+						}
+					}
+					
 					header('Location: index.php?faqja=lendet&drejtimi='.$_SESSION['d_id'].'&mesazhi=ndrysholende0');
 					die();
 				}
@@ -1173,6 +1194,63 @@ $page = new Page();
 			}
 			else{
 				header('Location: index.php?faqja=pyetjet&mesazhi=fshipyetje1');
+				die();
+			}
+		}
+		/*
+			Ndryshimi i afatit
+		*/
+		if(!empty($_GET['afati']) && is_numeric($_GET['afati'])){
+			$id = $_GET['afati'];
+			$emri = htmlentities($lidhja->real_escape_string($_POST['emri']));
+			$aktivizimi = $_POST['enabled'];
+			$data_f = $_POST['data_fillimit'];
+			$data_m = $_POST['data_mbarimit'];
+			$lloji = $_POST['lloji'];
+			if($lidhja->query("UPDATE afatet set emri='$emri', active=$aktivizimi, data_fillimit='$data_f', data_mbarimit='$data_m', lloji=$lloji WHERE id=$id")){
+				header('Location: index.php?faqja=menaxhimi&mesazhi=afati0');
+				die();
+			}
+			else{
+				header('Location: index.php?faqja=menaxhimi&mesazhi=afati1');
+				die();
+			}
+		}
+		/*
+			Shtimi i afatit
+		*/
+		if(!empty($_GET['shtoafat']) && $_GET['shtoafat'] == 1){
+			if(strlen(trim($_POST['emri']))){
+				$emri = htmlentities($lidhja->real_escape_string($_POST['emri']));
+			}
+			else{
+				header('Location: index.php?faqja=menaxhimi&mesazhi=shtoafat1');
+				die();
+			}
+			$aktivizimi = $_POST['enabled'];
+			$data_f = $_POST['data_fillimit'];
+			$data_m = $_POST['data_mbarimit'];
+			$lloji = $_POST['lloji'];
+			if($lidhja->query("INSERT INTO afatet VALUES('','$emri',$aktivizimi,'$data_f','$data_m',$lloji)")){
+				header('Location: index.php?faqja=menaxhimi&mesazhi=shtoafat0');
+				die();
+			}
+			else{
+				header('Location: index.php?faqja=menaxhimi&mesazhi=shtoafat1');
+				die();
+			}
+		}
+		/*
+			Fshirja e afatit
+		*/
+		if(!empty($_GET['fshiAfat']) && is_numeric($_GET['fshiAfat'])){
+			$id = $_GET['fshiAfat'];
+			if($lidhja->query("DELETE FROM afatet WHERE id=$id")){
+				header('Location: index.php?faqja=menaxhimi&mesazhi=fshiafat0');
+				die();
+			}
+			else{
+				header('Location: index.php?faqja=menaxhimi&mesazhi=fshiafat1');
 				die();
 			}
 		}

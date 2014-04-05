@@ -1,6 +1,7 @@
 <?php
 
 ?>
+
 <div class="row">
 	<div class="col-md-12">
 		<label>Navbar</label>
@@ -56,6 +57,134 @@
 				 ?>
 			</div>
 		
+	</div>
+</div>
+<hr/>
+<div class="row">
+	<div class="col-md-12">
+		<label>Afatet e provimit</label>
+		<div class="afatet">
+		<?php
+		$afatet = $lidhja->query("SELECT * FROM afatet");
+		foreach($afatet as $afati){
+			if($afati['active'] == 1){
+				echo '<a data-toggle="modal" data-target=".afati-'.$afati['id'].'" class="btn btn-success">'.$afati['emri'].'</a>';
+			}
+			else{
+				echo '<a data-toggle="modal" data-target=".afati-'.$afati['id'].'" class="btn btn-danger">'.$afati['emri'].'</a>';
+			}
+				echo '
+					<div class="modal fade afati-'.$afati['id'].'" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+					  <div class="modal-dialog modal-sm">
+					    <div class="modal-content">
+					      <form role="form" action="menaxhimi.php?afati='.$afati['id'].'" method="POST">
+					      	<div class="modal-header">
+						        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+						        <h4 class="modal-title">Afati</h4>
+						      </div>
+						      <div class="modal-body">
+						      <div class="row">
+						      	<div class="form-group col-md-12">
+						      		<label class="control-label" for="emri">Emri</label>
+						      		<input type="text" name="emri" id="emri" value="'.$afati['emri'].'" class="form-control"/>
+						      	</div>
+						      	<div class="form-group col-md-12">
+						      		<label for="enabled" class="control-label">Aktivizimi</label>
+						      		<select name="enabled" id="enabled" class="form-control">';
+						      			if($afati['active']==1){
+						      				echo '<option value="1" selected>Aktiv</option>';
+						      				echo '<option value="0">Ndalur</option>';
+						      			}
+						      			else{
+						      				echo '<option value="1">Aktiv</option>';
+						      				echo '<option value="0" selected>Ndalur</option>';
+						      			}
+						echo'  		</select>
+						      	</div>
+						      	<div class="form-group col-md-12">
+						      		<label for="data_fillimit">Data fillimit</label>
+						      		<input type="date" value="'.$afati['data_fillimit'].'" class="form-control" name="data_fillimit" id="data_fillimit"/>
+						      	</div>
+						      	<div class="form-group col-md-12">
+						      		<label for="data_mbarimit">Data fillimit</label>
+						      		<input type="date" value="'.$afati['data_mbarimit'].'" class="form-control" name="data_mbarimit" id="data_mbarimit"/>
+						      	</div>
+						      	<div class="form-group col-md-12">
+						      		<label for="lloji">Lloji</label>
+						      		<select name="lloji" id="lloji" class="form-control">';
+
+						      		if($afati['lloji']==1){
+						      			echo '<option value="0" selected> Rregullt </option>	
+						      				<option value="1"> Jo-rregullt </option>';
+						      		}
+						      		else{
+						      			echo '<option value="0"> Rregullt </option>	
+						      				<option value="1" selected> Jo-regullt </option>';
+						      		}
+						echo'  		</select>
+								</div>
+						      </div>
+						      </div>
+						      <div class="modal-footer">
+						      	<a href="menaxhimi.php?fshiAfat='.$afati['id'].'" class="btn btn-danger">Fshije</a>
+						        <button type="button" class="btn btn-default" data-dismiss="modal">Mbylle</button>
+						        <button type="submit" class="btn btn-primary">Ruaj</button>
+						      </div>
+					      </form>
+					    </div>
+					  </div>
+					</div>';
+		}
+
+		?>
+		<a data-toggle="modal" data-target=".shto-afat" class="btn btn-info"><i class="fa fa-plus"></i></a>
+		<div class="modal fade shto-afat" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+					  <div class="modal-dialog modal-sm">
+					    <div class="modal-content">
+					      <form role="form" action="menaxhimi.php?shtoafat=1" method="POST">
+					      	<div class="modal-header">
+						        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+						        <h4 class="modal-title">Afati</h4>
+						      </div>
+						      <div class="modal-body">
+						      <div class="row">
+						      	<div class="form-group col-md-12">
+						      		<label class="control-label" for="emri">Emri</label>
+						      		<input type="text" name="emri" id="emri" placeholder="afati" class="form-control"/>
+						      	</div>
+						      	<div class="form-group col-md-12">
+						      		<label for="enabled" class="control-label">Aktivizimi</label>
+						      		<select name="enabled" id="enabled" class="form-control">';
+						      			<option value="1">Aktiv</option>';
+						      			<option value="0" selected>Ndalur</option>
+							  		</select>
+						      	</div>
+						      	<div class="form-group col-md-12">
+						      		<label for="data_fillimit">Data fillimit</label>
+						      		<input type="date" placeholder="YYYY/mm/dd" class="form-control" name="data_fillimit" id="data_fillimit"/>
+						      	</div>
+						      	<div class="form-group col-md-12">
+						      		<label for="data_mbarimit">Data fillimit</label>
+						      		<input type="date" placeholder="YYYY/mm/dd" class="form-control" name="data_mbarimit" id="data_mbarimit"/>
+						      	</div>
+						      	<div class="form-group col-md-12">
+						      		<label for="lloji">Lloji</label>
+						      		<select name="lloji" id="lloji" class="form-control">';
+										<option value="0" selected> Rregullt </option>	
+						      			<option value="1"> Jo-rregullt </option>
+							  		</select>
+								</div>
+						      </div>
+						      </div>
+						      <div class="modal-footer">
+						        <button type="button" class="btn btn-default" data-dismiss="modal">Mbylle</button>
+						        <button type="submit" class="btn btn-primary">Ruaj</button>
+						      </div>
+					      </form>
+					    </div>
+					  </div>
+					</div>
+		</div>
 	</div>
 </div>
 <hr/>

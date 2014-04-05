@@ -19,7 +19,13 @@ class Lajmi{
 			$this->titulli = $lajmi['titulli'];
 			$this->body = $lajmi['body'];
 			$this->data = $lajmi['data'];
-			$this->foto = $lajmi['foto'];
+			if(file_exists($lajmi['foto'])){
+				$this->foto = $lajmi['foto'];
+			}
+			else{
+				$this->foto = 'http://www.transportenvironment.org/sites/te/files/styles/large/public/defaults/news_default.png';
+			}
+			
 		}
 	}
 	function getID(){
