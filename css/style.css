@@ -408,3 +408,14 @@ p.lajmi-rend  {
 .pyetjet{
 	font: 110%/1.925 'Open Sans', sans-serif;
 }
+/* Paraqitja provimeve */
+.paraqitja-provimeve{
+	font: 120%/1.925 'Open Sans', sans-serif;
+}
+.paraqitja-provimeve a{
+	font: 90%/1.925 'Open Sans', sans-serif;
+}
+/* Statusi lendeve */
+.statusi-lendeve{
+	font: 110%/1.925 'Open Sans', sans-serif;
+}

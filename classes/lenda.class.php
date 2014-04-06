@@ -49,10 +49,10 @@ class Lenda{
 	function getLloji(){
 		return $this->lloji;
 	}
-	function getLigjeratat(){
+	function getLigjeratat($pid){ // ligjeratat sipas lendes se caktuar
 		global $lidhja;
 		$id = $this->id;
-		$ligjeratat = $lidhja->query("SELECT * FROM ligjeratat WHERE id_l=$id");
+		$ligjeratat = $lidhja->query("SELECT * FROM ligjeratat WHERE id_l=$id AND id_p=$pid");
 		if($ligjeratat->num_rows){
 			return $ligjeratat;
 		}
@@ -60,7 +60,7 @@ class Lenda{
 			return FALSE;
 		}
 	}
-	function getTotalLendet(){
+	function getTotalLendet(){ // numri total i lendeve
 		global $lidhja;
 		$total = $lidhja->query("SELECT * FROM lendet");
 		if($total->num_rows){
@@ -70,7 +70,7 @@ class Lenda{
 			return false;
 		}
 	}
-	function getLendet($did){
+	function getLendet($did){ // lendet sipas drejtimit
 		global $lidhja;
 		$total = $lidhja->query("SELECT id FROM lendet WHERE drejtimi=$did ORDER BY semestri");
 		if($total->num_rows){

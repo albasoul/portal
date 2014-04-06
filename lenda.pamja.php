@@ -14,6 +14,19 @@ if($lenda->num_rows){
 else{
 	$lejo = FALSE;
 }
+$profat = $lenda->getProfID();
+if(!empty($_POST['profesori']) && is_numeric($_POST['profesori'])){
+	$PID=$_POST['profesori'];
+}
+else{
+	if(count($profat) > 1){
+
+	}
+	else{
+		$PID = $profat[0];
+	}
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -27,7 +40,7 @@ else{
     <link href="css/bootstrap.css" rel="stylesheet">
     <!-- Stili i veqant -->
     <link href="css/style.css" rel="stylesheet">
-
+    <link href="css/font-awesome.css" rel="stylesheet">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -60,8 +73,8 @@ else{
 	</div>
     <div class="container">
     <?php 
-    if($lejo){
-    	$prof = new Profesor($lenda->getProfID());
+    if($lejo && count($profat)==1 || !empty($_POST['profesori'])){
+    	$prof = new Profesor($PID);
     	echo' <div class="jumbotron text-center">
 		  <h1>'. $lenda->getEmri() .' - <em> '.$prof->getEmri().' '.$prof->getMbiemri().'</em></h1>
 		</div>';
@@ -93,22 +106,41 @@ echo '<tr>
 			<?php if(!$lejo){ 
 				echo '<p> Nuk ju lejohet &ccedilasja n&euml; lend&euml;.</p>';
 			} 
-			else {
-				if($lenda->getLigjeratat()){
-					$ligjeratat = $lenda->getLigjeratat();
-					echo '<div class="list-group">';
-						foreach($ligjeratat as $l){
-							$ligjerata = new Ligjerata($l['id']);
-							echo '
-								<a href="ligjerata.php?id='.$ligjerata->getID().'" class="list-group-item">
-								    <h4 class="list-group-item-heading">'.$ligjerata->getAlias().' - '.$ligjerata->getEmri().'</h4>
-									<p class="list-group-item-text pull-right hidden-xs" style="margin-top:-25px;"><em class="text-danger">'.$ligjerata->getExtension().'</em> <small class="text-info">'.$ligjerata->getMadhesia().'</small></p>
-								</a>';
-						}
-					echo '</div>';
+			else{
+				if(count($profat)==1 OR !empty($_POST['profesori'])){ // Nese eshte i caktuar profesori
+					if($lenda->getLigjeratat($PID)){ // nese ka ligjerata
+						$ligjeratat = $lenda->getLigjeratat($PID);
+						echo '<div class="list-group">';
+							foreach($ligjeratat as $l){ // krejt ligjeratat paraqiten
+								$ligjerata = new Ligjerata($l['id']);
+								echo '
+									<a href="ligjerata.php?id='.$ligjerata->getID().'" class="list-group-item">
+									    <h4 class="list-group-item-heading">'.$ligjerata->getAlias().' - '.$ligjerata->getEmri().'</h4>
+										<p class="list-group-item-text pull-right hidden-xs" style="margin-top:-25px;"><em class="text-danger">'.$ligjerata->getExtension().'</em> <small class="text-info">'.$ligjerata->getMadhesia().'</small></p>
+									</a>';
+							}
+						echo '</div>';
+					}
+					else{
+						echo '<div class="alert alert-info">Nuk ka ligj&euml;rata n&euml; k&euml;t&euml; l&euml;nd&euml;.</div>';
+					}
 				}
 				else{
-					echo '<div class="alert alert-info">Nuk ka ligj&euml;rata n&euml; k&euml;t&euml; l&euml;nd&euml;.</div>';
+					echo '<h4>Zgjedhni profesorin p&euml;r ti ndjekur ligj&euml;ratat.</h4>';
+					echo'
+					<form action="" method="POST" role="form">
+						<div class="form-group col-md-8">
+							<select name="profesori" id="profesori" class="form-control">';
+							foreach($profat as $key => $id){
+								$p = new Profesor($id);
+								echo '<option value="'.$p->getID().'">'.$p->getEmri().' '.$p->getMbiemri().'</option>';
+							}
+					echo'	</select>
+						</div>
+						<div class="form-group col-md-4">
+							<button type="submit" class="btn btn-md btn-primary"><i class="fa fa-angle-double-right"></i></button>
+						</div>
+					</form>';
 				}
 			}
 			?>

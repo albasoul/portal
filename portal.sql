@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 03, 2014 at 04:00 AM
+-- Generation Time: Apr 07, 2014 at 01:38 AM
 -- Server version: 5.6.16
 -- PHP Version: 5.5.9
 
@@ -19,6 +19,32 @@ SET time_zone = "+00:00";
 --
 -- Database: `portal`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `afatet`
+--
+
+CREATE TABLE IF NOT EXISTS `afatet` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `emri` varchar(40) NOT NULL,
+  `active` tinyint(1) NOT NULL,
+  `data_fillimit` date NOT NULL,
+  `data_mbarimit` date NOT NULL,
+  `lloji` tinyint(1) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+
+--
+-- Dumping data for table `afatet`
+--
+
+INSERT INTO `afatet` (`id`, `emri`, `active`, `data_fillimit`, `data_mbarimit`, `lloji`) VALUES
+(1, 'Prill', 1, '2014-04-04', '2014-04-11', 0),
+(2, 'Janar', 0, '2014-01-02', '2014-01-22', 1),
+(3, 'Qershor', 0, '0000-00-00', '0000-00-00', 1),
+(4, 'Shtator', 0, '2014-09-11', '2014-09-11', 0);
 
 -- --------------------------------------------------------
 
@@ -127,6 +153,34 @@ INSERT INTO `lajmet` (`id`, `titulli`, `body`, `data`, `foto`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `lendeprofesore`
+--
+
+CREATE TABLE IF NOT EXISTS `lendeprofesore` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `LID` int(11) NOT NULL,
+  `PID` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=28 ;
+
+--
+-- Dumping data for table `lendeprofesore`
+--
+
+INSERT INTO `lendeprofesore` (`id`, `LID`, `PID`) VALUES
+(1, 1, 1),
+(2, 2, 2),
+(4, 4, 3),
+(5, 5, 4),
+(6, 6, 5),
+(8, 8, 6),
+(25, 3, 2),
+(26, 3, 7),
+(27, 7, 6);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `lendet`
 --
 
@@ -136,7 +190,6 @@ CREATE TABLE IF NOT EXISTS `lendet` (
   `drejtimi` int(11) NOT NULL,
   `semestri` int(2) NOT NULL,
   `kredi` int(2) NOT NULL,
-  `p_id` int(11) NOT NULL,
   `lloji` varchar(1) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
@@ -145,15 +198,15 @@ CREATE TABLE IF NOT EXISTS `lendet` (
 -- Dumping data for table `lendet`
 --
 
-INSERT INTO `lendet` (`id`, `emri`, `drejtimi`, `semestri`, `kredi`, `p_id`, `lloji`) VALUES
-(1, 'Programimi i aplikacioneve p&euml;r server', 1, 4, 6, 1, 'O'),
-(2, 'Verifikimi dhe miratimi softuerik', 1, 4, 3, 2, 'Z'),
-(3, 'Menaxhimi i kualiteti n&euml; TI', 1, 4, 3, 2, 'Z'),
-(4, 'Dizajnimi i softuerit', 1, 3, 6, 3, 'O'),
-(5, 'Bazat e t&euml; dh&euml;nave', 1, 2, 6, 4, 'O'),
-(6, 'Grafika kompjuterike dhe procesimi i imazheve', 1, 4, 6, 5, 'O'),
-(7, 'Matematik&euml; 2', 1, 4, 6, 6, 'O'),
-(8, 'Matematik&euml;', 1, 1, 6, 6, 'O');
+INSERT INTO `lendet` (`id`, `emri`, `drejtimi`, `semestri`, `kredi`, `lloji`) VALUES
+(1, 'Programimi i aplikacioneve p&euml;r server', 1, 4, 6, 'O'),
+(2, 'Verifikimi dhe miratimi softuerik', 1, 4, 3, 'Z'),
+(3, 'Menaxhimi i kualiteti n&euml; TI', 1, 4, 3, 'Z'),
+(4, 'Dizajnimi i softuerit', 1, 3, 6, 'O'),
+(5, 'Bazat e t&euml; dh&euml;nave', 1, 2, 6, 'O'),
+(6, 'Grafika kompjuterike dhe procesimi i imazheve', 1, 4, 6, 'O'),
+(7, 'Matematik&euml; 2', 1, 4, 6, 'O'),
+(8, 'Matematik&euml;', 1, 1, 6, 'O');
 
 -- --------------------------------------------------------
 
@@ -167,6 +220,7 @@ CREATE TABLE IF NOT EXISTS `ligjeratat` (
   `alias` varchar(20) NOT NULL,
   `link` text NOT NULL,
   `id_l` int(11) NOT NULL,
+  `id_p` int(11) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
 
@@ -174,11 +228,11 @@ CREATE TABLE IF NOT EXISTS `ligjeratat` (
 -- Dumping data for table `ligjeratat`
 --
 
-INSERT INTO `ligjeratat` (`id`, `emri`, `alias`, `link`, `id_l`) VALUES
-(1, 'Hyrje n&euml; Aplikim', 'L1', 'docs/ligjeratat/DS/Semestri4/L1.pdf', 1),
-(2, 'Programimi i servereve', 'L2', 'docs/ligjeratat/DS/Semestri4/L2.pdf', 1),
-(3, 'Serveret e programuar', 'L3', 'docs/ligjeratat/DS/Semestri4/L3.pdf', 1),
-(4, 'Hyrje ne biznes', 'L1', 'docs/ligjeratat/DS/Semestri4/astrit hulaj.docx', 2);
+INSERT INTO `ligjeratat` (`id`, `emri`, `alias`, `link`, `id_l`, `id_p`) VALUES
+(1, 'Hyrje n&euml; Aplikim', 'L1', 'docs/ligjeratat/DS/Semestri4/L1.pdf', 1, 1),
+(2, 'Programimi i servereve', 'L2', 'docs/ligjeratat/DS/Semestri4/L2.pdf', 1, 1),
+(3, 'Serveret e programuar', 'L3', 'docs/ligjeratat/DS/Semestri4/L3.pdf', 1, 1),
+(4, 'Hyrje ne biznes', 'L1', 'docs/ligjeratat/DS/Semestri4/astrit hulaj.docx', 2, 2);
 
 -- --------------------------------------------------------
 
@@ -192,7 +246,7 @@ CREATE TABLE IF NOT EXISTS `navbar` (
   `link` varchar(250) NOT NULL,
   `enabled` tinyint(1) NOT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
 
 --
 -- Dumping data for table `navbar`
@@ -202,7 +256,8 @@ INSERT INTO `navbar` (`ID`, `emri`, `link`, `enabled`) VALUES
 (1, 'L&euml;nd&euml;t', 'lendet', 1),
 (2, 'Gazeta', 'gazeta', 0),
 (3, 'Lajmet', 'lajmet', 1),
-(4, 'Voto', 'voto', 1);
+(4, 'Voto', 'voto', 1),
+(5, 'Paraqitja', 'paraqitja', 1);
 
 -- --------------------------------------------------------
 
@@ -222,8 +277,9 @@ CREATE TABLE IF NOT EXISTS `notat` (
 --
 
 INSERT INTO `notat` (`sid`, `lid`, `nota`, `data`) VALUES
-(1240023, 1, 6, '2014-03-14'),
-(1240023, 2, 9, '2014-03-12');
+(1240023, 4, 6, '2013-12-11'),
+(1240023, 5, 10, '2014-01-15'),
+(1240023, 8, 10, '2014-01-08');
 
 -- --------------------------------------------------------
 
@@ -245,6 +301,22 @@ CREATE TABLE IF NOT EXISTS `page_info` (
 
 INSERT INTO `page_info` (`title`, `footer`, `activated`, `logo`, `vleresimi`) VALUES
 ('Universiteti i Prizrenit &quot;Ukshin Hoti&quot;', 'Mund&euml;suar nga Blendi!', 1, 'img/fakultet/logo.png', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `paraqitjet`
+--
+
+CREATE TABLE IF NOT EXISTS `paraqitjet` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `SID` int(11) NOT NULL,
+  `LID` int(11) NOT NULL,
+  `PID` int(11) NOT NULL,
+  `data` date NOT NULL,
+  `nota` int(2) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -320,7 +392,7 @@ CREATE TABLE IF NOT EXISTS `pyetjet` (
   `pyetja` varchar(256) NOT NULL,
   `lloji` tinyint(4) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=14 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=13 ;
 
 --
 -- Dumping data for table `pyetjet`

@@ -1207,6 +1207,9 @@ $page = new Page();
 			$data_f = $_POST['data_fillimit'];
 			$data_m = $_POST['data_mbarimit'];
 			$lloji = $_POST['lloji'];
+			if($aktivizimi == 1){
+				$lidhja->query("UPDATE afatet set active=0");
+			}
 			if($lidhja->query("UPDATE afatet set emri='$emri', active=$aktivizimi, data_fillimit='$data_f', data_mbarimit='$data_m', lloji=$lloji WHERE id=$id")){
 				header('Location: index.php?faqja=menaxhimi&mesazhi=afati0');
 				die();
@@ -1228,6 +1231,9 @@ $page = new Page();
 				die();
 			}
 			$aktivizimi = $_POST['enabled'];
+			if($aktivizimi == 1){
+				$lidhja->query("UPDATE afatet set active=0");
+			}
 			$data_f = $_POST['data_fillimit'];
 			$data_m = $_POST['data_mbarimit'];
 			$lloji = $_POST['lloji'];

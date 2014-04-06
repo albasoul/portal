@@ -10,6 +10,7 @@
     <link href="css/bootstrap.css" rel="stylesheet">
     <!-- Stili i veqant -->
     <link href="css/style.css" rel="stylesheet">
+    <link href="css/font-awesome.css" rel="stylesheet">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -44,8 +45,30 @@
 	</nav>
 	</div>
     <div class="container">
-		
 		<div class="clearfix"></div><br/>
+		<?php
+			if($afati = afatAktiv()){
+				echo '<div class="well well-lg col-md-6 statusi-lendeve">';
+					if($afati['lloji'] == 0){ //nese eshte afat i rregullt
+						paraqitStatusinLendeve($studenti);
+					}
+					else{ //nese eshte afat jo-i-rregullt
+
+					}
+				echo '</div>';
+
+				echo '<div class="col-md-6 paraqitja-provimeve">';
+				echo '<div class="panel panel-primary">';
+				echo '<div class="panel-heading"><h3 class="panel-title">Paraqitja e provimeve</h3></div>';
+				echo '<div class="panel-body">';
+					paraqitjaProvimeve($studenti);
+
+				echo '</div></div></div>';
+			}
+			else{
+				echo '<h4 class="bg-primary text-center" style="padding:10px;"> Paraqitja nuk eshte e mundshme per momentin! </h4>';
+			}
+		?>
 		<div class="row">
 		</div>
 		

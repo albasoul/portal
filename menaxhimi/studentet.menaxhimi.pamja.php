@@ -130,7 +130,6 @@
 	  	}
 	  	echo '</ul>';
 	  }
-
 	  ?>
 </div>
 <div class="col-md-3 studentet-menaxhim-djatht">
