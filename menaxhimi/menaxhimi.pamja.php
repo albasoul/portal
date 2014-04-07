@@ -106,7 +106,7 @@
 						      		<input type="date" value="'.$afati['data_fillimit'].'" class="form-control" name="data_fillimit" id="data_fillimit"/>
 						      	</div>
 						      	<div class="form-group col-md-12">
-						      		<label for="data_mbarimit">Data fillimit</label>
+						      		<label for="data_mbarimit">Data mbarimit</label>
 						      		<input type="date" value="'.$afati['data_mbarimit'].'" class="form-control" name="data_mbarimit" id="data_mbarimit"/>
 						      	</div>
 						      	<div class="form-group col-md-12">

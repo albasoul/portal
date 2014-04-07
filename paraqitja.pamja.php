@@ -48,6 +48,8 @@
 		<div class="clearfix"></div><br/>
 		<?php
 			if($afati = afatAktiv()){
+				$data = date('Y-m-d');
+				echo '<h3 class="text-center"><i class="fa fa-check-square-o"></i> <strong><em>'.$afati['emri'].'</em></strong></h3>';
 				echo '<div class="well well-lg col-md-6 statusi-lendeve">';
 				paraqitStatusinLendeve($studenti);
 				echo '</div>';
@@ -55,6 +57,9 @@
 				echo '<div class="col-md-6 paraqitja-provimeve">';
 				if(paraqitjaPerfundoi($studenti)){
 					echo '<h4 class="bg-primary text-center" style="padding:10px;"> Paraqitja e l&euml;nd&euml;ve &euml;sht&euml; kryer me sukses! </h4>';
+				}
+				elseif($data < $afati['data_fillimit'] OR $data > $afati['data_mbarimit']){
+					echo '<h4 class="bg-danger text-center" style="padding:10px;"> Afati i paraqitjes s&euml; provimeve ka kaluar!</h4>';
 				}
 				else{
 					if($afati['lloji'] == 0){ //nese eshte afat i rregullt

@@ -534,37 +534,48 @@
 			$s = semestriNgaViti($viti_studentit-1);
 			$lendet = $lidhja->query("SELECT id FROM lendet WHERE drejtimi=$drejtimi_studentit AND (semestri<$s OR semestri=$s)");
 		}
-		$perfundimi = TRUE;
+		$total = $lendet->num_rows; // numri total i lendeve qe do testohen se a jane te paraqitura ose a kane note
+		$temp = 0; // Te gjitha lendet duhet te kontrollohen, nese eshte gjithqka ne rregull dhe te gjitha "kalojne testin" at'her $temp do jete e barabarte me $total e lendeve te testuara
 		if($afati = afatAktiv()){
-			if($afati['lloji'] == 0){
+			if($afati['lloji'] == 0){ // nese eshte afat i rregullt
 				foreach($lendet AS $l){
 					$LID = $l['id'];
 					$tempQuery = $lidhja->query("SELECT id FROM paraqitjet WHERE SID=$SID AND LID=$LID LIMIT 1");
-					if($tempQuery->num_rows == 0){
-						$perfundimi = TRUE;
+					if($tempQuery->num_rows == 0){ // nese ajo lende nuk eshte e paraqitur nga ai student kontrollo nese ka note ajo lende
+						$tempQuery2 = $lidhja->query("SELECT * FROM notat WHERE sid=$SID and lid=$LID LIMIT 1");
+						if($tempQuery2->num_rows == 1){ // nese studenti ka note at'her mos e paraqit, perndryshe, lenda duhet te jete e gatshme per paraqitje
+							$temp++;
+						}
 					}
 					else{
-
+						$temp++;
 					}
 				}
+				if($temp == $total){
+					return TRUE;
+				}
+				else{
+					return FALSE;
+				}
+
 			}
-			else{
-				$lendetParaqitura = 0;
+			else{ // nese eshte afat i parregullt
+				$lendetParaqitura = 0; // pasiqe eshte afat jo i rregullt duhet te ndalojme numrin e paraqitjeve nga studentet ne max. 2
 				foreach($lendet AS $l){
 					$LID = $l['id'];
 					$tempQuery = $lidhja->query("SELECT id FROM paraqitjet WHERE SID=$SID AND LID=$LID LIMIT 1");
 					if($tempQuery->num_rows == 1){
-						$lendetParaqitura++;
+						$lendetParaqitura++; //llogarisim dhe ruajme numrin e lendeve te paraqitura
 					}
 					else{
 
 					}
 				}
-				if($lendetParaqitura < 2){
+				if($lendetParaqitura < 2){ //nese numri i lendeve eshte me i vogel se 2, 1 ose 0, at'her studenti ka mundesi ti paraqese provimet tjera
 					$perfundimi = FALSE;
 				}
 				else{
-					$perfundimi = TRUE;
+					$perfundimi = TRUE; // nese studenti ka paraqitur tashme 2 provime, nuk i lejohet te paraqese me shume
 				}
 			}
 			return $perfundimi;
