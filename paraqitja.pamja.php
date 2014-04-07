@@ -49,24 +49,33 @@
 		<?php
 			if($afati = afatAktiv()){
 				echo '<div class="well well-lg col-md-6 statusi-lendeve">';
-					if($afati['lloji'] == 0){ //nese eshte afat i rregullt
-						paraqitStatusinLendeve($studenti);
-					}
-					else{ //nese eshte afat jo-i-rregullt
-
-					}
+				paraqitStatusinLendeve($studenti);
 				echo '</div>';
 
 				echo '<div class="col-md-6 paraqitja-provimeve">';
-				echo '<div class="panel panel-primary">';
-				echo '<div class="panel-heading"><h3 class="panel-title">Paraqitja e provimeve</h3></div>';
-				echo '<div class="panel-body">';
-					paraqitjaProvimeve($studenti);
-
-				echo '</div></div></div>';
+				if(paraqitjaPerfundoi($studenti)){
+					echo '<h4 class="bg-primary text-center" style="padding:10px;"> Paraqitja e l&euml;nd&euml;ve &euml;sht&euml; kryer me sukses! </h4>';
+				}
+				else{
+					if($afati['lloji'] == 0){ //nese eshte afat i rregullt
+						
+					}
+					else{ //nese eshte afat jo-i-rregullt
+						echo '<div class="alert alert-danger"><strong><small>Keni t&euml; drejt&euml; t&euml; b&euml;ni paraqitjen e vet&euml;m 2 l&euml;nd&euml;ve p&euml;r provim.</small></strong> </div>';
+					}
+					echo '	<div class="panel panel-primary">';
+					echo '		<div class="panel-heading"><h3 class="panel-title">Paraqitja e provimeve</h3></div>';
+					echo '		<div class="panel-body">';
+								paraqitjaProvimeve($studenti);
+					echo '
+								</div>
+							</div>';
+				}
+				echo '</div>';
+				
 			}
 			else{
-				echo '<h4 class="bg-primary text-center" style="padding:10px;"> Paraqitja nuk eshte e mundshme per momentin! </h4>';
+				echo '<h4 class="bg-primary text-center" style="padding:10px;"> Nuk ka afat aktiv t&euml; provimeve! </h4>';
 			}
 		?>
 		<div class="row">

@@ -271,10 +271,15 @@
 				foreach($lendet as $l){
 					$lenda = new Lenda($l['id']);
 					if($nota = $studenti->getLendaKaluara($lenda->getID())) {
-						echo '<tr class="success"><td>'.$lenda->getEmri().'</td><td>'.$lenda->getKredi().'</td><td><abbr title="'.$nota['data'].'"><strong>'.$nota['nota'].'</strong></abbr></td></tr>';
+						echo '<tr class="success"><td><strong>'.$lenda->getEmri().'</strong></td><td>'.$lenda->getKredi().'</td><td><abbr title="'.$nota['data'].'"><strong>'.$nota['nota'].'</strong></abbr></td></tr>';
 					}
 					else{
-						echo '<tr class="active"><td>'.$lenda->getEmri().'</td><td>'.$lenda->getKredi().'</td><td></td></tr>';	
+						if(aEshteParaqiturLenda($lenda->getID(),$studenti)){
+							echo '<tr class="info"><td>'.$lenda->getEmri().'</td><td>'.$lenda->getKredi().'</td><td></td></tr>';
+						}
+						else{
+							echo '<tr class="active"><td>'.$lenda->getEmri().'</td><td>'.$lenda->getKredi().'</td><td></td></tr>';
+						}	
 					}
 					
 				}
@@ -295,10 +300,15 @@
 					foreach($lendet as $l){
 						$lenda = new Lenda($l['id']);
 						if($nota = $studenti->getLendaKaluara($lenda->getID())) {
-							echo '<tr class="success"><td>'.$lenda->getEmri().'</td><td>'.$lenda->getKredi().'</td><td><abbr title="'.$nota['data'].'"><strong>'.$nota['nota'].'</strong></abbr></td></tr>';
+							echo '<tr class="success"><td><strong>'.$lenda->getEmri().'</strong></td><td>'.$lenda->getKredi().'</td><td><abbr title="'.$nota['data'].'"><strong>'.$nota['nota'].'</strong></abbr></td></tr>';
 						}
 						else{
-							echo '<tr class="active"><td>'.$lenda->getEmri().'</td><td>'.$lenda->getKredi().'</td><td></td></tr>';	
+							if(aEshteParaqiturLenda($lenda->getID(),$studenti)){
+								echo '<tr class="info"><td>'.$lenda->getEmri().'</td><td>'.$lenda->getKredi().'</td><td></td></tr>';
+							}
+							else{
+								echo '<tr class="active"><td>'.$lenda->getEmri().'</td><td>'.$lenda->getKredi().'</td><td></td></tr>';
+							}	
 						}
 						
 					}
@@ -348,7 +358,11 @@
 					echo '<tbody>';
 					foreach($lendet as $l){
 						$lenda = new Lenda($l['id']); //krijojm nje objekt Lenda
-						if($studenti->getLendaKaluara($l['id'])){ // nese e ka kalu ate lende, kaloje dhe vazhdo te lenda tjeter
+						if($studenti->getLendaKaluara($l['id'])){
+							#mos e paraqit lenden qe e ka te kaluar
+						}
+						elseif(aEshteParaqiturLenda($lenda->getID(),$studenti)){
+							#mos e paraqit lenden qe eshte e paraqitur tashme -4-
 						}
 						else{
 							echo '<tr><td>'.$lenda->getEmri().'</td><td>'.$lenda->getKredi().'</td><td> <a data-toggle="modal" data-target="#paraqit-'.$lenda->getID().'" class="btn btn-primary btn-xs"> <i class="fa fa-check"></i> Paraqit</a></td></tr>';
@@ -483,5 +497,77 @@
 			$semestri = 8;
 		}
 		return $semestri;
+	}
+	/*
+		Funksion qe kontrollon a eshte paraqitur nje lende
+	*/
+	function aEshteParaqiturLenda($LID,$studenti){
+		global $lidhja;
+		$sid = $studenti->getSID();
+		$temp = $lidhja->query("SELECT id FROM paraqitjet WHERE LID=$LID AND SID=$sid");
+		if($temp->num_rows){
+			return TRUE;
+		}
+		else{
+			return FALSE;
+		}
+		return FALSE;
+	}
+	/*
+		Funksioni qe kontrollon a i ka paraqitur studenti te gjitha lendet
+	*/
+	function paraqitjaPerfundoi($studenti){
+		global $lidhja;
+		$SID = $studenti->getSID();
+		$drejtimi_studentit = $studenti->getDrejtimi();
+		$semestri_studentit = $studenti->getSemestri();
+		$viti = $studenti->getViti();
+		if(kaEleminuarVitin($viti,$studenti)){
+			if($studenti->getSemestri()%2 == 1){
+				$lendet = $lidhja->query("SELECT id FROM lendet WHERE drejtimi=$drejtimi_studentit AND semestri = $semestri_studentit");
+			}
+			else{
+				$lendet = $lidhja->query("SELECT id FROM lendet WHERE drejtimi=$drejtimi_studentit AND (semestri=$semestri_studentit OR semestri=$semestri_studentit-1)");
+			}
+		}
+		else{
+			$s = semestriNgaViti($viti_studentit-1);
+			$lendet = $lidhja->query("SELECT id FROM lendet WHERE drejtimi=$drejtimi_studentit AND (semestri<$s OR semestri=$s)");
+		}
+		$perfundimi = TRUE;
+		if($afati = afatAktiv()){
+			if($afati['lloji'] == 0){
+				foreach($lendet AS $l){
+					$LID = $l['id'];
+					$tempQuery = $lidhja->query("SELECT id FROM paraqitjet WHERE SID=$SID AND LID=$LID LIMIT 1");
+					if($tempQuery->num_rows == 0){
+						$perfundimi = TRUE;
+					}
+					else{
+
+					}
+				}
+			}
+			else{
+				$lendetParaqitura = 0;
+				foreach($lendet AS $l){
+					$LID = $l['id'];
+					$tempQuery = $lidhja->query("SELECT id FROM paraqitjet WHERE SID=$SID AND LID=$LID LIMIT 1");
+					if($tempQuery->num_rows == 1){
+						$lendetParaqitura++;
+					}
+					else{
+
+					}
+				}
+				if($lendetParaqitura < 2){
+					$perfundimi = FALSE;
+				}
+				else{
+					$perfundimi = TRUE;
+				}
+			}
+			return $perfundimi;
+		}
 	}
 ?>

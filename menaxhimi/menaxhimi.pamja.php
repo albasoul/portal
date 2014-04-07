@@ -113,7 +113,7 @@
 						      		<label for="lloji">Lloji</label>
 						      		<select name="lloji" id="lloji" class="form-control">';
 
-						      		if($afati['lloji']==1){
+						      		if($afati['lloji']==0){
 						      			echo '<option value="0" selected> Rregullt </option>	
 						      				<option value="1"> Jo-rregullt </option>';
 						      		}
