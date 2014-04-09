@@ -217,6 +217,7 @@ $page = new Page();
 				    </div>
 				</div>
 				<div class="modal-footer">
+					<span class="pull-left"><i class="fa fa-user"></i> <a class="btn btn-link" href="index.php?faqja=studenti&sid='.$studenti->getSID().'"> Detajet </a></span>
 				    <button type="button" class="btn btn-default" data-dismiss="modal">Mbylle</button>
 				    <button type="submit" class="btn btn-primary">Ruaj</button>
 				</div>
@@ -241,7 +242,7 @@ $page = new Page();
 				if($_POST['password1'] === $_POST['password2']){
 					$pass = $lidhja->real_escape_string($_POST['password1']);
 					if($lidhja->query("UPDATE studentet SET SID=$SID, emri='$emri', mbiemri='$mbiemri', email='$email', drejtimi=$drejtimi, semestri=$semestri, kredi=$kredi,lokacioni='$lokacioni',password='$pass' WHERE ID=$ID")){
-						header('Location: index.php?faqja=studentet&drejtimi='.$_SESSION['d_id'].'&mesazhi=ndryshostudent0');
+						header('Location: '.$_SERVER['HTTP_REFERER'].'');
 						die();
 					}
 					else{
@@ -256,7 +257,7 @@ $page = new Page();
 			}
 			else{
 				if($lidhja->query("UPDATE studentet SET SID=$SID, emri='$emri', mbiemri='$mbiemri', email='$email', drejtimi=$drejtimi, semestri=$semestri, kredi=$kredi,lokacioni='$lokacioni' WHERE ID=$ID")){
-					header('Location: index.php?faqja=studentet&drejtimi='.$_SESSION['d_id'].'&mesazhi=ndryshostudent0');
+					header('Location: '.$_SERVER['HTTP_REFERER'].'');
 					die();
 				}
 				else{

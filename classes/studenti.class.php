@@ -131,7 +131,28 @@ class Studenti{
 		Funksioni qe kthen kredit totale te studentit
 	*/
 	function getKredi(){
-		return $this->kredi;
+		global $lidhja;
+		$SID = $this->SID;
+		$totalKredi = $lidhja->query("SELECT lid FROM notat WHERE sid=$SID");
+		$totalTemp = 0;
+		if($totalKredi->num_rows >0){
+			foreach($totalKredi as $t){
+				$lendQuery = $lidhja->query("SELECT kredi FROM lendet WHERE id=$t[lid]");
+				$lendQuery = $lendQuery->fetch_assoc();
+				$totalTemp = $totalTemp + $lendQuery['kredi'];
+			}
+			if($this->kredi != $totalTemp){
+				$lidhja->query("UPDATE studentet set kredi=$totalTemp WHERE SID=$SID");
+				return $totalTemp;
+			}
+			else{
+				return $this->kredi;
+			}
+		}
+		else{
+			$lidhja->query("UPDATE studentet set kredi=$totalTemp WHERE SID=$SID");
+			return $totalTemp;
+		}
 	}
 	/*
 		Funksioni qe tregon a eshte studenti i kyqur

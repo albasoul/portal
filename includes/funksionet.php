@@ -271,11 +271,74 @@
 				foreach($lendet as $l){
 					$lenda = new Lenda($l['id']);
 					if($nota = $studenti->getLendaKaluara($lenda->getID())) {
-						echo '<tr class="success"><td><strong>'.$lenda->getEmri().'</strong></td><td>'.$lenda->getKredi().'</td><td><abbr title="'.$nota['data'].'"><strong>'.$nota['nota'].'</strong></abbr></td></tr>';
+							echo '<tr class="success"><td><strong>'.$lenda->getEmri().'</strong></td><td>'.$lenda->getKredi().'</td><td><abbr title="'.rregulloDaten($nota['data']).'"><strong>'.$nota['nota'].'</strong></abbr></td></tr>';
 					}
 					else{
-						if(aEshteParaqiturLenda($lenda->getID(),$studenti)){
-							echo '<tr class="info"><td>'.$lenda->getEmri().'</td><td>'.$lenda->getKredi().'</td><td></td></tr>';
+						if($paraqitja = aEshteParaqiturLenda($lenda->getID(),$studenti)){
+							$nota = notaParaqitjes($lenda->getID(),$studenti);
+								$id_paraqitjes = $paraqitja['id'];
+								$profesori = new Profesor($paraqitja['PID']);
+								$nota = $paraqitja['nota'];
+								if($nota == 0){ // nese profesori nuk e ka vendosur ende noten
+									echo '<tr><td>'.$lenda->getEmri().'</td><td>'.$lenda->getKredi().'</td><td><span class="bg-primary" style="padding:8px;"><i class="fa fa-info"></i> Paraqitur</span></td></tr>';
+								}
+								elseif($nota == 1){
+									echo '<tr><td>'.$lenda->getEmri().'</td><td>'.$lenda->getKredi().'</td><td><span style="padding:8px; background-color:#d43f3a; color:#fff;"><i class="fa fa-info"></i> Refuzim</span></td></tr>';
+								}
+								elseif ($nota == 5) { // nese profesori ja ka vendosur noten 5, at'her studenti bie automatikisht
+									echo '<tr class="danger"><td>'.$lenda->getEmri().'</td><td>'.$lenda->getKredi().'</td><td>5</td></tr>';
+								}
+								else{ // nese profesori e ka vendosur noten, studenti duhet ta pranoje apo refuzoje
+									echo '<tr class="info"><td>'.$lenda->getEmri().'</td><td>'.$lenda->getKredi().'</td><td>'.$nota.' <a data-toggle="modal" data-target="#paraqitje-'.$id_paraqitjes.'" class="btn btn-success"><i class="fa fa-thumbs-o-up"></i></a> <a data-toggle="modal" data-target="#refuzim-'.$id_paraqitjes.'" class="btn btn-danger"><i class="fa fa-thumbs-o-down"></i></a></td></tr>';
+								// MODALI PER PRANIM NOTE
+									echo'
+									<!-- Modal -->
+									<div class="modal fade" id="paraqitje-'.$id_paraqitjes.'" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+									  <div class="modal-dialog modal-sm">
+									  <form action="paraqitja.php?pranoNot='.$id_paraqitjes.'" method="POST" role="form">
+									    <div class="modal-content">
+									      <div class="modal-header">
+									        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+									        <h4 class="modal-title" id="myModalLabel">Prano not&euml;n</h4>
+									      </div>
+									      <div class="modal-body">
+									        <h3><small><abbr title="L&euml;nda"><i class="fa fa-book"></i></abbr> </small> '.$lenda->getEmri().'</h3>
+									        <h3><small><abbr title="Profesori"><i class="fa fa-user"></i></abbr> </small> '.$profesori->getEmri().' '.$profesori->getMbiemri().'</h3>
+									        <h3><small><abbr title="Nota"><i class="fa fa-certificate"></i></abbr> </small> '.$nota.'</h3>
+									      </div>
+									      <div class="modal-footer">
+									        <button type="button" class="btn btn-default" data-dismiss="modal">Mbylle</button>
+									        <button type="submit" class="btn btn-success">Prano</button>
+									      </div>
+									    </div>
+									   </form>
+									  </div>
+									</div>';
+									// MODALI PER REFUZIM NOTE
+									echo'
+									<!-- Modal -->
+									<div class="modal fade" id="refuzim-'.$id_paraqitjes.'" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+									  <div class="modal-dialog modal-sm">
+									  <form action="paraqitja.php?refuzoNot='.$id_paraqitjes.'" method="POST" role="form">
+									    <div class="modal-content">
+									      <div class="modal-header">
+									        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+									        <h4 class="modal-title" id="myModalLabel">Prano not&euml;n</h4>
+									      </div>
+									      <div class="modal-body">
+									        <h3><small><abbr title="L&euml;nda"><i class="fa fa-book"></i></abbr> </small> '.$lenda->getEmri().'</h3>
+									        <h3><small><abbr title="Profesori"><i class="fa fa-user"></i></abbr> </small> '.$profesori->getEmri().' '.$profesori->getMbiemri().'</h3>
+									        <h3><small><abbr title="Nota"><i class="fa fa-certificate"></i></abbr> </small> '.$nota.'</h3>
+									      </div>
+									      <div class="modal-footer">
+									        <button type="button" class="btn btn-default" data-dismiss="modal">Mbylle</button>
+									        <button type="submit" class="btn btn-danger">Refuzo</button>
+									      </div>
+									    </div>
+									   </form>
+									  </div>
+									</div>';
+								}
 						}
 						else{
 							echo '<tr class="active"><td>'.$lenda->getEmri().'</td><td>'.$lenda->getKredi().'</td><td></td></tr>';
@@ -300,11 +363,73 @@
 					foreach($lendet as $l){
 						$lenda = new Lenda($l['id']);
 						if($nota = $studenti->getLendaKaluara($lenda->getID())) {
-							echo '<tr class="success"><td><strong>'.$lenda->getEmri().'</strong></td><td>'.$lenda->getKredi().'</td><td><abbr title="'.$nota['data'].'"><strong>'.$nota['nota'].'</strong></abbr></td></tr>';
+							echo '<tr class="success"><td><strong>'.$lenda->getEmri().'</strong></td><td>'.$lenda->getKredi().'</td><td><abbr title="'.rregulloDaten($nota['data']).'"><strong>'.$nota['nota'].'</strong></abbr></td></tr>';
 						}
 						else{
-							if(aEshteParaqiturLenda($lenda->getID(),$studenti)){
-								echo '<tr class="info"><td>'.$lenda->getEmri().'</td><td>'.$lenda->getKredi().'</td><td></td></tr>';
+							if($paraqitja = aEshteParaqiturLenda($lenda->getID(),$studenti)){
+								$id_paraqitjes = $paraqitja['id'];
+								$profesori = new Profesor($paraqitja['PID']);
+								$nota = $paraqitja['nota'];
+								if($nota == 0){ // nese profesori nuk e ka vendosur ende noten
+									echo '<tr><td>'.$lenda->getEmri().'</td><td>'.$lenda->getKredi().'</td><td><span class="bg-primary" style="padding:8px;"><i class="fa fa-info"></i> Paraqitur</span></td></tr>';
+								}
+								elseif($nota == 1){
+									echo '<tr><td>'.$lenda->getEmri().'</td><td>'.$lenda->getKredi().'</td><td><span style="padding:8px; background-color:#d43f3a; color:#fff;"><i class="fa fa-info"></i> Refuzim</span></td></tr>';
+								}
+								elseif ($nota == 5) { // nese profesori ja ka vendosur noten 5, at'her studenti bie automatikisht
+									echo '<tr class="danger"><td>'.$lenda->getEmri().'</td><td>'.$lenda->getKredi().'</td><td>5</td></tr>';
+								}
+								else{ // nese profesori e ka vendosur noten, studenti duhet ta pranoje apo refuzoje
+									echo '<tr class="info"><td>'.$lenda->getEmri().'</td><td>'.$lenda->getKredi().'</td><td>'.$nota.' <a data-toggle="modal" data-target="#paraqitje-'.$id_paraqitjes.'" class="btn btn-success"><i class="fa fa-thumbs-o-up"></i></a> <a data-toggle="modal" data-target="#refuzim-'.$id_paraqitjes.'" class="btn btn-danger"><i class="fa fa-thumbs-o-down"></i></a></td></tr>';
+								// MODALI PER PRANIM NOTE
+									echo'
+									<!-- Modal -->
+									<div class="modal fade" id="paraqitje-'.$id_paraqitjes.'" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+									  <div class="modal-dialog modal-sm">
+									  <form action="paraqitja.php?pranoNot='.$id_paraqitjes.'" method="POST" role="form">
+									    <div class="modal-content">
+									      <div class="modal-header">
+									        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+									        <h4 class="modal-title" id="myModalLabel">Prano not&euml;n</h4>
+									      </div>
+									      <div class="modal-body">
+									        <h3><small><abbr title="L&euml;nda"><i class="fa fa-book"></i></abbr> </small> '.$lenda->getEmri().'</h3>
+									        <h3><small><abbr title="Profesori"><i class="fa fa-user"></i></abbr> </small> '.$profesori->getEmri().' '.$profesori->getMbiemri().'</h3>
+									        <h3><small><abbr title="Nota"><i class="fa fa-certificate"></i></abbr> </small> '.$nota.'</h3>
+									      </div>
+									      <div class="modal-footer">
+									        <button type="button" class="btn btn-default" data-dismiss="modal">Mbylle</button>
+									        <button type="submit" class="btn btn-success">Prano</button>
+									      </div>
+									    </div>
+									   </form>
+									  </div>
+									</div>';
+									// MODALI PER REFUZIM NOTE
+									echo'
+									<!-- Modal -->
+									<div class="modal fade" id="refuzim-'.$id_paraqitjes.'" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+									  <div class="modal-dialog modal-sm">
+									  <form action="paraqitja.php?refuzoNot='.$id_paraqitjes.'" method="POST" role="form">
+									    <div class="modal-content">
+									      <div class="modal-header">
+									        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+									        <h4 class="modal-title" id="myModalLabel">Prano not&euml;n</h4>
+									      </div>
+									      <div class="modal-body">
+									        <h3><small><abbr title="L&euml;nda"><i class="fa fa-book"></i></abbr> </small> '.$lenda->getEmri().'</h3>
+									        <h3><small><abbr title="Profesori"><i class="fa fa-user"></i></abbr> </small> '.$profesori->getEmri().' '.$profesori->getMbiemri().'</h3>
+									        <h3><small><abbr title="Nota"><i class="fa fa-certificate"></i></abbr> </small> '.$nota.'</h3>
+									      </div>
+									      <div class="modal-footer">
+									        <button type="button" class="btn btn-default" data-dismiss="modal">Mbylle</button>
+									        <button type="submit" class="btn btn-danger">Refuzo</button>
+									      </div>
+									    </div>
+									   </form>
+									  </div>
+									</div>';
+								}
 							}
 							else{
 								echo '<tr class="active"><td>'.$lenda->getEmri().'</td><td>'.$lenda->getKredi().'</td><td></td></tr>';
@@ -504,9 +629,10 @@
 	function aEshteParaqiturLenda($LID,$studenti){
 		global $lidhja;
 		$sid = $studenti->getSID();
-		$temp = $lidhja->query("SELECT id FROM paraqitjet WHERE LID=$LID AND SID=$sid");
+		$temp = $lidhja->query("SELECT id,PID,data,nota FROM paraqitjet WHERE LID=$LID AND SID=$sid");
 		if($temp->num_rows){
-			return TRUE;
+			$temp = $temp->fetch_assoc();
+			return $temp;
 		}
 		else{
 			return FALSE;

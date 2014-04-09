@@ -117,7 +117,7 @@ if($muaji == 1){ $m = "Janar";} elseif($muaji == 2) { $m ="Shkurt";} elseif($mua
 							        		if($lajmi->getFoto()){
 							        			echo '
 							        			<div class="col-sm-5">
-							        				<img class="img-thumbnail img-responsive" src="../'.$lajmi->getFoto().'">
+							        				<img class="img-thumbnail img-responsive" src="'.$lajmi->getFoto().'">
 							        			</div>';
 							        		}
 							   echo'   		<div class="col-sm-5">

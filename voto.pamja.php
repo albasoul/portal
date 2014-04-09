@@ -51,7 +51,7 @@
 			<div class="col-md-3 user-info hidden-sm hidden-xs"> <!-- KTU FILLON paraqitja e anes se majte te antarit -->
 					<img class="img-circle" src="<?php echo $studenti->getFoto(); ?>" />
 					<p class="emri"><?php echo $studenti->getEmri() . ' '. $studenti->getMbiemri();  ?></p>
-					<p>Gjithsej kredi: <em><?php echo $studenti->getKredi(); ?></em></p>
+					<p>Gjithsej kredi: <strong><?php echo $studenti->getKredi(); ?></strong></p>
 					<hr class="hidden-xs">
 					<table class="table table-hover text-left">
 					<thead><tr><th>Emri</th><th>Kredi</th></tr></thead>
@@ -71,8 +71,11 @@
 			</div>
 			<div class="col-md-8 col-md-offset-1 voto"> <!-- KTU FILLON paraqitja e anes se djathte per votim -->
 			<?php 
-				if($page->getVleresimi() == 0 OR aKaVotuar($studenti->getSID())){ //kontrollojm a eshte i aktivizuar vleresimi i profesoreve
+				if($page->getVleresimi() == 0) { //kontrollojm a eshte i aktivizuar vleresimi i profesoreve
 					echo '<h4> Vler&euml;simi i profesor&euml;ve nuk eshte aktiv!</h4>';
+				}
+				elseif (aKaVotuar($studenti->getSID())) {
+					echo '<h4>Vler&euml;simi i profesor&euml;ve ndihmon fakultetin!</h4>';
 				}
 				else{
 			?>

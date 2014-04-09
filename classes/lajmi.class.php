@@ -19,11 +19,11 @@ class Lajmi{
 			$this->titulli = $lajmi['titulli'];
 			$this->body = $lajmi['body'];
 			$this->data = $lajmi['data'];
-			if(file_exists($lajmi['foto'])){
-				$this->foto = $lajmi['foto'];
+			if(file_exists($_SERVER['SERVER_NAME'] . '/portal/'. $lajmi['foto'])){
+				$this->foto = 'http://'.$_SERVER['SERVER_NAME'] . '/portal/'. $lajmi['foto'];
 			}
 			else{
-				$this->foto = 'http://www.transportenvironment.org/sites/te/files/styles/large/public/defaults/news_default.png';
+				$this->foto ='http://'.$_SERVER['SERVER_NAME'] . '/portal/'. $lajmi['foto'];
 			}
 			
 		}

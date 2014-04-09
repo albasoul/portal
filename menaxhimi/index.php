@@ -89,6 +89,22 @@
 					elseif($faqja === "pyetjet"){
 						include('pyetjet.pamja.php');
 					}
+					elseif($faqja === "studenti"){
+						if(!empty($_GET['sid']) && is_numeric($_GET['sid'])){
+							$studenti = new Studenti($_GET['sid']);
+							if($studenti->getEmri() !== "panjohur"){
+								include('studenti.php');
+							}
+							else{
+								header('Location: index.php?faqja=index');
+								die();
+							}
+						}
+						else{
+							header('Location: index.php?faqja=index');
+							die();
+						}
+					}
 					else{
 						header('Location: index.php?faqja=index');
 						die();

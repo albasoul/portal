@@ -51,7 +51,7 @@
 				$data = date('Y-m-d');
 				echo '<h3 class="text-center"><i class="fa fa-check-square-o"></i> <strong><em>'.$afati['emri'].'</em></strong></h3>';
 				echo '<div class="well well-lg col-md-6 statusi-lendeve">';
-				paraqitStatusinLendeve($studenti);
+						paraqitStatusinLendeve($studenti);
 				echo '</div>';
 
 				echo '<div class="col-md-6 paraqitja-provimeve">';

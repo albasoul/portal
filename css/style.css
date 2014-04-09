@@ -46,6 +46,7 @@ body{
   max-height: 300px;
   margin-left:15%;
   max-width: 350px;
+  min-height: 200px;
 }
 .carousel-caption {
   position: absolute;
@@ -417,5 +418,22 @@ p.lajmi-rend  {
 }
 /* Statusi lendeve */
 .statusi-lendeve{
+	font: 110%/1.925 'Open Sans', sans-serif;
+}
+/* STUDENTI */
+.studenti-djathti{
+	font: 110%/1.125 'Open Sans', sans-serif;
+}
+.studenti-djathti .label{
+	font: 80%/1.0 'Open Sans', sans-serif;
+}
+.studenti-djathti .lendetParaqitura{
+	border:none;
+	border-bottom:1px solid #dedede;
+	margin-top:1px;
+	border-radius: 0px;
+
+}
+.lendet-kaluara{
 	font: 110%/1.925 'Open Sans', sans-serif;
 }
