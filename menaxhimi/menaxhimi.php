@@ -1203,13 +1203,18 @@ $page = new Page();
 		*/
 		if(!empty($_GET['afati']) && is_numeric($_GET['afati'])){
 			$id = $_GET['afati'];
+			$temp = $lidhja->query("SELECT active FROM afatet WHERE id=$id");
+			$temp = $temp->fetch_assoc();
 			$emri = htmlentities($lidhja->real_escape_string($_POST['emri']));
 			$aktivizimi = $_POST['enabled'];
 			$data_f = $_POST['data_fillimit'];
 			$data_m = $_POST['data_mbarimit'];
 			$lloji = $_POST['lloji'];
-			if($aktivizimi == 1){
+			if($aktivizimi == 1){ // nese don me aktivizu afatin, tjerat afate ndaloji
 				$lidhja->query("UPDATE afatet set active=0");
+			}
+			if($temp['active'] == 1 && $aktivizimi == 0){ // nese afati qe ka qene aktiv, ndalohet, at'her fshiji te gjitha prej tabeles paraqitje.(notat e refuzuara dhe notat 5)
+				$lidhja->query("DELETE FROM paraqitjet WHERE nota=5 OR nota=1");
 			}
 			if($lidhja->query("UPDATE afatet set emri='$emri', active=$aktivizimi, data_fillimit='$data_f', data_mbarimit='$data_m', lloji=$lloji WHERE id=$id")){
 				header('Location: index.php?faqja=menaxhimi&mesazhi=afati0');

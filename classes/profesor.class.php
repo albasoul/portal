@@ -78,6 +78,27 @@ class Profesor{
 			return false;
 		}
 	}
+	function loggedIn(){
+		if(!empty($_SESSION['prof_in']) && $_SESSION['prof_in'] == TRUE)
+		{
+			return True;
+		}
+		else
+		{
+			return False;
+		}
+	}
+	function getLendet(){
+		global $lidhja;
+		$pid = $this->id;
+		$lendet = $lidhja->query("SELECT LID FROM lendeprofesore WHERE PID=$pid");
+		if($lendet->num_rows){
+			return $lendet;
+		}
+		else{
+			return FALSE;
+		}
+	}
 }
 
 ?>

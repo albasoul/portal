@@ -52,7 +52,7 @@ class Lenda{
 	function getLigjeratat($pid){ // ligjeratat sipas lendes se caktuar
 		global $lidhja;
 		$id = $this->id;
-		$ligjeratat = $lidhja->query("SELECT * FROM ligjeratat WHERE id_l=$id AND id_p=$pid");
+		$ligjeratat = $lidhja->query("SELECT * FROM ligjeratat WHERE id_l=$id AND id_p=$pid") or die('Kontrollo databasen e ligjeratave!');
 		if($ligjeratat->num_rows){
 			return $ligjeratat;
 		}

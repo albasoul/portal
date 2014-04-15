@@ -82,12 +82,20 @@
 				<form class="form" role="form" action="voto.php" method="POST">
 					<?php
 					$i=0;
+					$tempProf= 0;
 						foreach($lendet as $l){
 							/*
 							* Krijojm 2 objektet, per secilen lende, dhe secilin profesore
 							*/
 							$lenda = new Lenda($l['id']);
-							$profesor = new Profesor($lenda->getProfID());
+							if(count($prof = $lenda->getProfID()) > 1){
+								$profesor = new Profesor($prof[$tempProf]);
+								$tempProf++;
+							}
+							else{
+								$profesor = new Profesor($prof[0]);
+							}
+							
 
 							/*
 							*	Emrat e lendeve dhe emrat/mbiemrat e profesoreve i ruajme ne nje Array
@@ -95,9 +103,19 @@
 							*/
 							echo '<input type="hidden" name="emri_lendes[]" value="'.$lenda->getEmri().'" />';
 							echo '<input type="hidden" name="emri_prof[]" value="'.$profesor->getEmri().' '.$profesor->getMbiemri().'" />';	
-					echo'<table class="table table-">';
+					echo'<table class="table">';
 							if($pyetjet = getPyetjet()){
-								echo '<span class="text-danger lenda-prof"><strong>'.$profesor->getEmri().' '.$profesor->getMbiemri().' - '.$lenda->getEmri().'</strong></span>';
+								if(count($prof) > 1){
+									echo '<div class="col-md-4"><select name="prof_id" class="form-control">';
+										foreach($prof as $p){
+											$profesor = new Profesor($p[0]);
+											echo '<option value="'.$p[0].'">'.$profesor->getEmri().' '.$profesor->getMbiemri().'</option>';
+										}
+									echo '</select></div><div class="col-md-8"><span class="text-danger lenda-prof"><strong>'.$lenda->getEmri().'</strong></span></div>';
+								}
+								else{
+									echo '<span class="text-danger lenda-prof"><strong>'.$profesor->getEmri().' '.$profesor->getMbiemri().' - '.$lenda->getEmri().'</strong></span>';
+								}
 								foreach($pyetjet as $pyetja){
 									echo '<input type="hidden" name="pyetja[]" value="'.$pyetja['pyetja'].'"/>';
 									if($pyetja['lloji'] == 0){

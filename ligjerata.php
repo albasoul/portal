@@ -8,7 +8,7 @@ if(!empty($_GET['id']) && is_numeric($_GET['id'])){
 	$ligjerata = new Ligjerata($id); // Krijojm 1 ligjerat permes Klases per ligjerata
 	$lenda = new Lenda($ligjerata->getLID()); // Krijojm Lenden nga klasa lenda.class
 	$studenti = new Studenti($_SESSION['s_id']); // Krijojm Studentin nga klasa studenti.class
-	$profesori = new Profesor($lenda->getProfID()); // Krijojm Profesorin nga klasa profesor.class
+	$profesori = new Profesor($ligjerata->getPID()); // Krijojm Profesorin nga klasa profesor.class
 	$page = new Page(); // Krijojm objektin $page nga klasa Page.
 	/*
 	* Kontrollojm se a eshte ajo ligjerate e asaj ne lende, ne drejtimin e njejt me studentin ose ne semestrat qe studenti i ka kalu
@@ -39,7 +39,8 @@ if($page->isActivated() != 1){
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Portal 1.0</title>
+    <title><?php echo $page->getTitle();?></title>
+	<link rel="shortcut icon" href="../assets/ico/favicon.jpg">
 
     <!-- Bootstrap -->
     <link href="css/bootstrap.css" rel="stylesheet">
@@ -98,17 +99,17 @@ if($page->isActivated() != 1){
 							  <h4><small>Formati: </small>'.$ligjerata->getExtension().'</h4>
 							  <h4><small>Madh&euml;sia: </small>'.$ligjerata->getMadhesia().'</h4>
 							</div>';
-								echo '<iframe src="http://docs.google.com/viewer?url=http://178.175.110.242/portal/'.$ligjerata->getLink().'&embedded=true" width="100%" height="780" style="border: none;">
+								echo '<iframe src="http://docs.google.com/viewer?url=http://178.175.120.234/portal/'.$ligjerata->getLink().'&embedded=true" width="100%" height="780" style="border: none;">
 								</iframe>';
 					
 					echo '<ul class="pager">';
-					if($info = $ligjerata->kaLigjerat($ligjerata->getID(),"p",$lenda->getID())) { // "p" = posht
+					if($info = $ligjerata->kaLigjerat($ligjerata->getID(),"p",$lenda->getID(),$profesori->getID())) { // "p" = posht
 						echo '<li class="previous"><a href="ligjerata.php?id='.$info[0].'">&larr; '.$info[1].'</a></li>';
 					}
 					else{
 						echo '<li class="previous disabled"><a>&larr;</a></li>';
 					}
-					if($info = $ligjerata->kaLigjerat($ligjerata->getID(),"l",$lenda->getID())) { // "l" = lart
+					if($info = $ligjerata->kaLigjerat($ligjerata->getID(),"l",$lenda->getID(),$profesori->getID())) { // "l" = lart
 						echo '<li class="next"><a href="ligjerata.php?id='.$info[0].'">'.$info[1].' &rarr;</a></li>';
 					}
 					else{

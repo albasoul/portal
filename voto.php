@@ -6,6 +6,7 @@ include('includes/config.php');
 $pyetjet = getPyetjet();
 $studenti = new Studenti($_SESSION['s_id']);
 $semestri_studentit = $studenti->getSemestri();
+$fk_studentit = $studenti->getFakulteti();
 $SID= $studenti->getSID();
 $lendet = getLendetMeSemester($studenti->getSemestri(), $studenti->getDrejtimi());
 	// Krijimi array, qe i permban te gjitha notat,rend, njera pas tjetres :p
@@ -29,7 +30,13 @@ if(!empty($_POST)){
 	$j=0;
 	foreach($lendet as $l){ // kjo vetem tregon sa lende jon n'at semeter te atij studenti, qaq'her perseritet forloop
 		$lenda = new Lenda($l['id']);  //e krijom 1 lende objekt
-		$prof = new Profesor($lenda->getProfID());
+		if(count($profesor_id = $lenda->getProfID()) > 1){
+			$p_id = $_POST['prof_id'];
+			$prof = new Profesor($p_id);
+		}
+		else{
+			$prof = new Profesor($profesor_id[0]);
+		}
 		foreach($pyetjet as $pyetje){
 			$pyetja_temp = $pyetje['pyetja'];
 			$emri_lendes = htmlentities(($lenda->getEmri())); // emri per cilen lende po votohet
@@ -74,10 +81,10 @@ if(!empty($_POST)){
 		$i++;
 	}
 	$shuma = count($nota); // veq i numrojm sa nota jon regjistru ne array;
+	
 	for($k=0; $k<$shuma; $k++){ // per krejt notat, regjistrojm nDatabas te dhenat
 		regjistroVoten($pyetja[$k],$lendetArray[$k], $profesori[$k], $nota[$k], $data[$k], $semestri[$k]);
 	}
-
 	$shumaKomenteve = count($komentet);
 	echo $shumaKomenteve . '<br/>';
 	for($b=0; $b<$shumaKomenteve; $b++){
@@ -85,7 +92,6 @@ if(!empty($_POST)){
 	}
 	# bejme studentin me shenj qe ka votuar
 	$lidhja->query("UPDATE studentet SET nr_votimit=$semestri_studentit WHERE SID=$SID");
-	
 	header('Location: index.php?faqja=voto&gabim=0');
 	die();
 }
@@ -116,12 +122,14 @@ if(!empty($_POST)){
 	*/
 	function regjistroVoten($pyetja,$lenda, $profesori, $nota, $data, $semestri){
 		global $lidhja;
-		$query = "INSERT INTO votat VALUES('','$pyetja','$lenda','$profesori',$nota,'$data',$semestri)";
+		global $fk_studentit;
+		$query = "INSERT INTO votat VALUES('',$fk_studentit,'$pyetja','$lenda','$profesori',$nota,'$data',$semestri)";
 		$lidhja->query($query); // regjistron ....
 	}
 	function regjistroMendimin($pyetja,$lenda, $profesori, $komenti, $data, $semestri){
 		global $lidhja;
-		$query = "INSERT INTO vleresim_komente VALUES('','$pyetja','$lenda','$profesori','$komenti','$data',$semestri)";
+		global $fk_studentit;
+		$query = "INSERT INTO vleresim_komente VALUES('',$fk_studentit,'$pyetja','$lenda','$profesori','$komenti','$data',$semestri)";
 		$lidhja->query($query); // regjistron ....
 	}
 

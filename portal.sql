@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 09, 2014 at 06:02 AM
+-- Generation Time: Apr 15, 2014 at 04:33 AM
 -- Server version: 5.6.16
 -- PHP Version: 5.5.9
 
@@ -42,7 +42,7 @@ CREATE TABLE IF NOT EXISTS `afatet` (
 
 INSERT INTO `afatet` (`id`, `emri`, `active`, `data_fillimit`, `data_mbarimit`, `lloji`) VALUES
 (1, 'Prill', 0, '2014-04-04', '2014-04-11', 1),
-(2, 'Janar', 1, '2014-01-02', '2014-05-15', 0),
+(2, 'Janar', 0, '2014-01-02', '2014-04-11', 0),
 (3, 'Qershor', 0, '2014-04-03', '2014-04-05', 0),
 (4, 'Shtator', 0, '2014-09-11', '2014-09-11', 0);
 
@@ -161,7 +161,7 @@ CREATE TABLE IF NOT EXISTS `lendeprofesore` (
   `LID` int(11) NOT NULL,
   `PID` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=34 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=37 ;
 
 --
 -- Dumping data for table `lendeprofesore`
@@ -174,9 +174,9 @@ INSERT INTO `lendeprofesore` (`id`, `LID`, `PID`) VALUES
 (8, 8, 6),
 (25, 3, 2),
 (26, 3, 7),
-(27, 7, 6),
 (30, 4, 3),
-(33, 6, 5);
+(33, 6, 5),
+(36, 7, 6);
 
 -- --------------------------------------------------------
 
@@ -221,18 +221,19 @@ CREATE TABLE IF NOT EXISTS `ligjeratat` (
   `link` text NOT NULL,
   `id_l` int(11) NOT NULL,
   `id_p` int(11) NOT NULL,
+  `data` date NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=10 ;
 
 --
 -- Dumping data for table `ligjeratat`
 --
 
-INSERT INTO `ligjeratat` (`id`, `emri`, `alias`, `link`, `id_l`, `id_p`) VALUES
-(1, 'Hyrje n&euml; Aplikim', 'L1', 'docs/ligjeratat/DS/Semestri4/L1.pdf', 1, 1),
-(2, 'Programimi i servereve', 'L2', 'docs/ligjeratat/DS/Semestri4/L2.pdf', 1, 1),
-(3, 'Serveret e programuar', 'L3', 'docs/ligjeratat/DS/Semestri4/L3.pdf', 1, 1),
-(4, 'Hyrje ne biznes', 'L1', 'docs/ligjeratat/DS/Semestri4/astrit hulaj.docx', 2, 2);
+INSERT INTO `ligjeratat` (`id`, `emri`, `alias`, `link`, `id_l`, `id_p`, `data`) VALUES
+(6, 'Web Server - Monitorimi dhe Adresimi', 'L4', 'docs/ligjeratat/DS/Semestri4/L4-91313.pdf', 1, 1, '2014-04-15'),
+(7, 'Virtual Machine', 'L1', 'docs/ligjeratat/DS/Semestri4/L1-86156.pdf', 1, 1, '2014-04-15'),
+(8, 'Web Serveri', 'L2', 'docs/ligjeratat/DS/Semestri4/L2-97906.pdf', 1, 1, '2014-04-15'),
+(9, 'Web Serveri - Apache,PHP dhe Eclipse', 'L3', 'docs/ligjeratat/DS/Semestri4/L3-77691.pdf', 1, 1, '2014-04-15');
 
 -- --------------------------------------------------------
 
@@ -295,15 +296,19 @@ CREATE TABLE IF NOT EXISTS `page_info` (
   `footer` varchar(256) NOT NULL,
   `activated` tinyint(1) NOT NULL,
   `logo` varchar(256) NOT NULL,
-  `vleresimi` tinyint(4) NOT NULL
+  `vleresimi` tinyint(4) NOT NULL,
+  `vit1kredi` int(3) NOT NULL,
+  `vit2kredi` int(3) NOT NULL,
+  `vit3kredi` int(3) NOT NULL,
+  `vit4kredi` int(3) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `page_info`
 --
 
-INSERT INTO `page_info` (`title`, `footer`, `activated`, `logo`, `vleresimi`) VALUES
-('Universiteti i Prizrenit &quot;Ukshin Hoti&quot;', 'Mund&euml;suar nga Blendi!', 1, 'img/fakultet/logo.png', 1);
+INSERT INTO `page_info` (`title`, `footer`, `activated`, `logo`, `vleresimi`, `vit1kredi`, `vit2kredi`, `vit3kredi`, `vit4kredi`) VALUES
+('Universiteti i Prizrenit &quot;Ukshin Hoti&quot;', 'Mund&euml;suar nga Blendi!', 1, 'img/fakultet/logo.png', 1, 0, 0, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -319,16 +324,14 @@ CREATE TABLE IF NOT EXISTS `paraqitjet` (
   `data` date NOT NULL,
   `nota` int(2) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=20 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=14 ;
 
 --
 -- Dumping data for table `paraqitjet`
 --
 
 INSERT INTO `paraqitjet` (`id`, `SID`, `LID`, `PID`, `data`, `nota`) VALUES
-(13, 1240023, 1, 1, '2014-04-07', 0),
-(16, 1240023, 7, 6, '2014-04-07', 5),
-(19, 1240023, 6, 5, '2014-04-07', 1);
+(13, 1240023, 1, 1, '2014-04-07', 0);
 
 -- --------------------------------------------------------
 
@@ -466,6 +469,7 @@ INSERT INTO `studentet` (`ID`, `SID`, `emri`, `mbiemri`, `email`, `password`, `d
 
 CREATE TABLE IF NOT EXISTS `vleresim_komente` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
+  `fk_id` int(11) NOT NULL,
   `pyetja` varchar(256) NOT NULL,
   `lenda` varchar(256) NOT NULL,
   `profesori` varchar(256) NOT NULL,
@@ -473,22 +477,32 @@ CREATE TABLE IF NOT EXISTS `vleresim_komente` (
   `data` date NOT NULL,
   `semestri` int(2) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=13 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=23 ;
 
 --
 -- Dumping data for table `vleresim_komente`
 --
 
-INSERT INTO `vleresim_komente` (`id`, `pyetja`, `lenda`, `profesori`, `mendimi`, `data`, `semestri`) VALUES
-(4, '&Ccedil;ka ju ka p&euml;lqyer m&euml; s&euml; shumti n&euml; k&euml;t&euml; program studimor?', 'Programimi i aplikacioneve p&euml;r server', 'Ilir Byty&ccedili', 'test1', '2014-03-25', 4),
-(5, '&Ccedil;ka ju ka p&euml;lqyer m&euml; s&euml; shumti n&euml; k&euml;t&euml; program studimor?', 'Verifikimi dhe miratimi softuerik', 'Shaban Buza', 'test2', '2014-03-25', 4),
-(6, '&Ccedil;ka ju ka p&euml;lqyer m&euml; s&euml; shumti n&euml; k&euml;t&euml; program studimor?', 'Menaxhimi i kualiteti n&euml; TI', 'Shaban Buza', 'test3', '2014-03-25', 4),
-(7, '&Ccedil;ka ju ka p&euml;lqyer m&euml; s&euml; shumti n&euml; k&euml;t&euml; program studimor?', 'Programimi i aplikacioneve p&euml;r server', 'Ilir Byty&ccedili', 'box1 komenti1', '2014-03-25', 4),
-(8, '&Ccedil;ka kishit ndryshuar n&euml; k&euml;t&euml; program studimor?', 'Programimi i aplikacioneve p&euml;r server', 'Ilir Byty&ccedili', 'box2 komenti 1', '2014-03-25', 4),
-(9, '&Ccedil;ka ju ka p&euml;lqyer m&euml; s&euml; shumti n&euml; k&euml;t&euml; program studimor?', 'Verifikimi dhe miratimi softuerik', 'Shaban Buza', 'box 1 komenti 2', '2014-03-25', 4),
-(10, '&Ccedil;ka kishit ndryshuar n&euml; k&euml;t&euml; program studimor?', 'Verifikimi dhe miratimi softuerik', 'Shaban Buza', 'box2 komenti 2', '2014-03-25', 4),
-(11, '&Ccedil;ka ju ka p&euml;lqyer m&euml; s&euml; shumti n&euml; k&euml;t&euml; program studimor?', 'Menaxhimi i kualiteti n&euml; TI', 'Shaban Buza', 'box1 komenti3', '2014-03-25', 4),
-(12, '&Ccedil;ka kishit ndryshuar n&euml; k&euml;t&euml; program studimor?', 'Menaxhimi i kualiteti n&euml; TI', 'Shaban Buza', 'box2 komenti 3', '2014-03-25', 4);
+INSERT INTO `vleresim_komente` (`id`, `fk_id`, `pyetja`, `lenda`, `profesori`, `mendimi`, `data`, `semestri`) VALUES
+(4, 0, '&Ccedil;ka ju ka p&euml;lqyer m&euml; s&euml; shumti n&euml; k&euml;t&euml; program studimor?', 'Programimi i aplikacioneve p&euml;r server', 'Ilir Byty&ccedili', 'test1', '2014-03-25', 4),
+(5, 0, '&Ccedil;ka ju ka p&euml;lqyer m&euml; s&euml; shumti n&euml; k&euml;t&euml; program studimor?', 'Verifikimi dhe miratimi softuerik', 'Shaban Buza', 'test2', '2014-03-25', 4),
+(6, 0, '&Ccedil;ka ju ka p&euml;lqyer m&euml; s&euml; shumti n&euml; k&euml;t&euml; program studimor?', 'Menaxhimi i kualiteti n&euml; TI', 'Shaban Buza', 'test3', '2014-03-25', 4),
+(7, 0, '&Ccedil;ka ju ka p&euml;lqyer m&euml; s&euml; shumti n&euml; k&euml;t&euml; program studimor?', 'Programimi i aplikacioneve p&euml;r server', 'Ilir Byty&ccedili', 'box1 komenti1', '2014-03-25', 4),
+(8, 0, '&Ccedil;ka kishit ndryshuar n&euml; k&euml;t&euml; program studimor?', 'Programimi i aplikacioneve p&euml;r server', 'Ilir Byty&ccedili', 'box2 komenti 1', '2014-03-25', 4),
+(9, 0, '&Ccedil;ka ju ka p&euml;lqyer m&euml; s&euml; shumti n&euml; k&euml;t&euml; program studimor?', 'Verifikimi dhe miratimi softuerik', 'Shaban Buza', 'box 1 komenti 2', '2014-03-25', 4),
+(10, 0, '&Ccedil;ka kishit ndryshuar n&euml; k&euml;t&euml; program studimor?', 'Verifikimi dhe miratimi softuerik', 'Shaban Buza', 'box2 komenti 2', '2014-03-25', 4),
+(11, 0, '&Ccedil;ka ju ka p&euml;lqyer m&euml; s&euml; shumti n&euml; k&euml;t&euml; program studimor?', 'Menaxhimi i kualiteti n&euml; TI', 'Shaban Buza', 'box1 komenti3', '2014-03-25', 4),
+(12, 0, '&Ccedil;ka kishit ndryshuar n&euml; k&euml;t&euml; program studimor?', 'Menaxhimi i kualiteti n&euml; TI', 'Shaban Buza', 'box2 komenti 3', '2014-03-25', 4),
+(13, 0, '&Ccedil;ka ju ka p&euml;lqyer m&euml; s&euml; shumti n&euml; k&euml;t&euml; program studimor?', 'Programimi i aplikacioneve p&euml;r server', 'Ilir Byty&ccedil;i', 'Ilir bytyqi eshte ligjerues i mire', '2014-04-13', 4),
+(14, 0, '&Ccedil;ka kishit ndryshuar n&euml; k&euml;t&euml; program studimor?', 'Programimi i aplikacioneve p&euml;r server', 'Ilir Byty&ccedil;i', 'kisha ndryshu literaturen', '2014-04-13', 4),
+(15, 0, '&Ccedil;ka ju ka p&euml;lqyer m&euml; s&euml; shumti n&euml; k&euml;t&euml; program studimor?', 'Menaxhimi i kualiteti n&euml; TI', 'Artan Dermaku', 'Artan dermaku nuk eshte me profesore ne kete lende', '2014-04-13', 4),
+(16, 0, '&Ccedil;ka kishit ndryshuar n&euml; k&euml;t&euml; program studimor?', 'Menaxhimi i kualiteti n&euml; TI', 'Artan Dermaku', 'kisha ndryshu orarin e mesimit', '2014-04-13', 4),
+(17, 1, '&Ccedil;ka ju ka p&euml;lqyer m&euml; s&euml; shumti n&euml; k&euml;t&euml; program studimor?', 'Programimi i aplikacioneve p&euml;r server', 'Ilir Byty&ccedil;i', 'Iliri spjegon bukur', '2014-04-13', 4),
+(18, 1, '&Ccedil;ka kishit ndryshuar n&euml; k&euml;t&euml; program studimor?', 'Programimi i aplikacioneve p&euml;r server', 'Ilir Byty&ccedil;i', 'kkisha ndrysh literaturen', '2014-04-13', 4),
+(19, 1, '&Ccedil;ka ju ka p&euml;lqyer m&euml; s&euml; shumti n&euml; k&euml;t&euml; program studimor?', 'Verifikimi dhe miratimi softuerik', 'Shaban Buza', 'kjo lende eshte e thjeshte tek shaban buza', '2014-04-13', 4),
+(20, 1, '&Ccedil;ka kishit ndryshuar n&euml; k&euml;t&euml; program studimor?', 'Verifikimi dhe miratimi softuerik', 'Shaban Buza', 'asgje, e njejte le te mbetet', '2014-04-13', 4),
+(21, 1, '&Ccedil;ka ju ka p&euml;lqyer m&euml; s&euml; shumti n&euml; k&euml;t&euml; program studimor?', 'Menaxhimi i kualiteti n&euml; TI', 'Artan Dermaku', 'artani pom duket ka dhon dorheqje nga kjo lende', '2014-04-13', 4),
+(22, 1, '&Ccedil;ka kishit ndryshuar n&euml; k&euml;t&euml; program studimor?', 'Menaxhimi i kualiteti n&euml; TI', 'Artan Dermaku', 'kisha ndryshuar numrin e oreve ', '2014-04-13', 4);
 
 -- --------------------------------------------------------
 
@@ -506,63 +520,63 @@ CREATE TABLE IF NOT EXISTS `votat` (
   `data` date NOT NULL,
   `semestri` int(1) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=396 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=446 ;
 
 --
 -- Dumping data for table `votat`
 --
 
 INSERT INTO `votat` (`id`, `fk_id`, `pyetja`, `lenda`, `profesori`, `nota`, `data`, `semestri`) VALUES
-(346, 1, 'M&euml;simi n&euml; k&euml;t&euml; l&euml;nd&euml; i ka arritur pritjet e mia.', 'Programimi i aplikacioneve p&euml;r server', 'Ilir Byty&ccedil;i', 5, '2014-03-30', 4),
-(347, 1, 'Objektivat e m&euml;simit p&euml;r secil&euml;n nj&euml;si m&euml;simore jan&euml; identifikuar dhe respektuar.', 'Programimi i aplikacioneve p&euml;r server', 'Ilir Byty&ccedil;i', 5, '2014-03-30', 4),
-(348, 1, 'P&euml;rmbajtja e l&euml;nd&euml;s ka qen&euml; e orgranizuar mir&euml; dhe ka qen&euml; e leht&euml; t&euml; p&euml;rcjell&euml;t.', 'Programimi i aplikacioneve p&euml;r server', 'Ilir Byty&ccedil;i', 5, '2014-03-30', 4),
-(349, 1, 'Materiali i shp&euml;rndar&euml; p&euml;r k&euml;t&euml; l&euml;nd&euml; ishte adekuat dhe i dobish&euml;m.', 'Programimi i aplikacioneve p&euml;r server', 'Ilir Byty&ccedil;i', 5, '2014-03-30', 4),
-(350, 1, 'Ligj&euml;ruesi ka pasur njohuri t&euml; mir&euml;.', 'Programimi i aplikacioneve p&euml;r server', 'Ilir Byty&ccedil;i', 5, '2014-03-30', 4),
-(351, 1, 'Cil&euml;sia e udh&euml;zimeve ka qen&euml; e mir&euml;.', 'Programimi i aplikacioneve p&euml;r server', 'Ilir Byty&ccedil;i', 5, '2014-03-30', 4),
-(352, 1, 'Prezantimet n&euml; klas&euml; kan&euml; qen&euml; interesante dhe praktike.', 'Programimi i aplikacioneve p&euml;r server', 'Ilir Byty&ccedil;i', 5, '2014-03-30', 4),
-(353, 1, 'N&euml; k&euml;t&euml; l&euml;nd&euml; kam m&euml;suar gj&euml;ra t&euml; reja dhe t&euml; dobishme.', 'Programimi i aplikacioneve p&euml;r server', 'Ilir Byty&ccedil;i', 5, '2014-03-30', 4),
-(354, 1, '&Euml;sht&euml; inkurajuar pjes&euml;marrja dhe bashk&euml;veprimi n&euml; klas&euml;.', 'Programimi i aplikacioneve p&euml;r server', 'Ilir Byty&ccedil;i', 5, '2014-03-30', 4),
-(355, 1, '&Euml;sht&euml; ofruar koh&euml; e mjaftueshme p&euml;r pyetjet e student&euml;ve.', 'Programimi i aplikacioneve p&euml;r server', 'Ilir Byty&ccedil;i', 5, '2014-03-30', 4),
-(356, 1, 'M&euml;simi n&euml; k&euml;t&euml; l&euml;nd&euml; i ka arritur pritjet e mia.', 'Verifikimi dhe miratimi softuerik', 'Shaban Buza', 1, '2014-03-30', 4),
-(357, 1, 'Objektivat e m&euml;simit p&euml;r secil&euml;n nj&euml;si m&euml;simore jan&euml; identifikuar dhe respektuar.', 'Verifikimi dhe miratimi softuerik', 'Shaban Buza', 1, '2014-03-30', 4),
-(358, 1, 'P&euml;rmbajtja e l&euml;nd&euml;s ka qen&euml; e orgranizuar mir&euml; dhe ka qen&euml; e leht&euml; t&euml; p&euml;rcjell&euml;t.', 'Verifikimi dhe miratimi softuerik', 'Shaban Buza', 1, '2014-03-30', 4),
-(359, 1, 'Materiali i shp&euml;rndar&euml; p&euml;r k&euml;t&euml; l&euml;nd&euml; ishte adekuat dhe i dobish&euml;m.', 'Verifikimi dhe miratimi softuerik', 'Shaban Buza', 1, '2014-03-30', 4),
-(360, 1, 'Ligj&euml;ruesi ka pasur njohuri t&euml; mir&euml;.', 'Verifikimi dhe miratimi softuerik', 'Shaban Buza', 1, '2014-03-30', 4),
-(361, 1, 'Cil&euml;sia e udh&euml;zimeve ka qen&euml; e mir&euml;.', 'Verifikimi dhe miratimi softuerik', 'Shaban Buza', 1, '2014-03-30', 4),
-(362, 1, 'Prezantimet n&euml; klas&euml; kan&euml; qen&euml; interesante dhe praktike.', 'Verifikimi dhe miratimi softuerik', 'Shaban Buza', 1, '2014-03-30', 4),
-(363, 1, 'N&euml; k&euml;t&euml; l&euml;nd&euml; kam m&euml;suar gj&euml;ra t&euml; reja dhe t&euml; dobishme.', 'Verifikimi dhe miratimi softuerik', 'Shaban Buza', 1, '2014-03-30', 4),
-(364, 1, '&Euml;sht&euml; inkurajuar pjes&euml;marrja dhe bashk&euml;veprimi n&euml; klas&euml;.', 'Verifikimi dhe miratimi softuerik', 'Shaban Buza', 1, '2014-03-30', 4),
-(365, 1, '&Euml;sht&euml; ofruar koh&euml; e mjaftueshme p&euml;r pyetjet e student&euml;ve.', 'Verifikimi dhe miratimi softuerik', 'Shaban Buza', 1, '2014-03-30', 4),
-(366, 1, 'M&euml;simi n&euml; k&euml;t&euml; l&euml;nd&euml; i ka arritur pritjet e mia.', 'Menaxhimi i kualiteti n&euml; TI', 'Shaban Buza', 1, '2014-03-30', 4),
-(367, 1, 'Objektivat e m&euml;simit p&euml;r secil&euml;n nj&euml;si m&euml;simore jan&euml; identifikuar dhe respektuar.', 'Menaxhimi i kualiteti n&euml; TI', 'Shaban Buza', 2, '2014-03-30', 4),
-(368, 1, 'P&euml;rmbajtja e l&euml;nd&euml;s ka qen&euml; e orgranizuar mir&euml; dhe ka qen&euml; e leht&euml; t&euml; p&euml;rcjell&euml;t.', 'Menaxhimi i kualiteti n&euml; TI', 'Shaban Buza', 3, '2014-03-30', 4),
-(369, 1, 'Materiali i shp&euml;rndar&euml; p&euml;r k&euml;t&euml; l&euml;nd&euml; ishte adekuat dhe i dobish&euml;m.', 'Menaxhimi i kualiteti n&euml; TI', 'Shaban Buza', 4, '2014-03-30', 4),
-(370, 1, 'Ligj&euml;ruesi ka pasur njohuri t&euml; mir&euml;.', 'Menaxhimi i kualiteti n&euml; TI', 'Shaban Buza', 5, '2014-03-30', 4),
-(371, 1, 'Cil&euml;sia e udh&euml;zimeve ka qen&euml; e mir&euml;.', 'Menaxhimi i kualiteti n&euml; TI', 'Shaban Buza', 5, '2014-03-30', 4),
-(372, 1, 'Prezantimet n&euml; klas&euml; kan&euml; qen&euml; interesante dhe praktike.', 'Menaxhimi i kualiteti n&euml; TI', 'Shaban Buza', 4, '2014-03-30', 4),
-(373, 1, 'N&euml; k&euml;t&euml; l&euml;nd&euml; kam m&euml;suar gj&euml;ra t&euml; reja dhe t&euml; dobishme.', 'Menaxhimi i kualiteti n&euml; TI', 'Shaban Buza', 3, '2014-03-30', 4),
-(374, 1, '&Euml;sht&euml; inkurajuar pjes&euml;marrja dhe bashk&euml;veprimi n&euml; klas&euml;.', 'Menaxhimi i kualiteti n&euml; TI', 'Shaban Buza', 2, '2014-03-30', 4),
-(375, 1, '&Euml;sht&euml; ofruar koh&euml; e mjaftueshme p&euml;r pyetjet e student&euml;ve.', 'Menaxhimi i kualiteti n&euml; TI', 'Shaban Buza', 1, '2014-03-30', 4),
-(376, 1, 'M&euml;simi n&euml; k&euml;t&euml; l&euml;nd&euml; i ka arritur pritjet e mia.', 'Grafika kompjuterike dhe procesimi i imazheve', 'Xhevahir Bajrami', 1, '2014-03-30', 4),
-(377, 1, 'Objektivat e m&euml;simit p&euml;r secil&euml;n nj&euml;si m&euml;simore jan&euml; identifikuar dhe respektuar.', 'Grafika kompjuterike dhe procesimi i imazheve', 'Xhevahir Bajrami', 2, '2014-03-30', 4),
-(378, 1, 'P&euml;rmbajtja e l&euml;nd&euml;s ka qen&euml; e orgranizuar mir&euml; dhe ka qen&euml; e leht&euml; t&euml; p&euml;rcjell&euml;t.', 'Grafika kompjuterike dhe procesimi i imazheve', 'Xhevahir Bajrami', 3, '2014-03-30', 4),
-(379, 1, 'Materiali i shp&euml;rndar&euml; p&euml;r k&euml;t&euml; l&euml;nd&euml; ishte adekuat dhe i dobish&euml;m.', 'Grafika kompjuterike dhe procesimi i imazheve', 'Xhevahir Bajrami', 4, '2014-03-30', 4),
-(380, 1, 'Ligj&euml;ruesi ka pasur njohuri t&euml; mir&euml;.', 'Grafika kompjuterike dhe procesimi i imazheve', 'Xhevahir Bajrami', 5, '2014-03-30', 4),
-(381, 1, 'Cil&euml;sia e udh&euml;zimeve ka qen&euml; e mir&euml;.', 'Grafika kompjuterike dhe procesimi i imazheve', 'Xhevahir Bajrami', 5, '2014-03-30', 4),
-(382, 1, 'Prezantimet n&euml; klas&euml; kan&euml; qen&euml; interesante dhe praktike.', 'Grafika kompjuterike dhe procesimi i imazheve', 'Xhevahir Bajrami', 4, '2014-03-30', 4),
-(383, 1, 'N&euml; k&euml;t&euml; l&euml;nd&euml; kam m&euml;suar gj&euml;ra t&euml; reja dhe t&euml; dobishme.', 'Grafika kompjuterike dhe procesimi i imazheve', 'Xhevahir Bajrami', 3, '2014-03-30', 4),
-(384, 1, '&Euml;sht&euml; inkurajuar pjes&euml;marrja dhe bashk&euml;veprimi n&euml; klas&euml;.', 'Grafika kompjuterike dhe procesimi i imazheve', 'Xhevahir Bajrami', 2, '2014-03-30', 4),
-(385, 1, '&Euml;sht&euml; ofruar koh&euml; e mjaftueshme p&euml;r pyetjet e student&euml;ve.', 'Grafika kompjuterike dhe procesimi i imazheve', 'Xhevahir Bajrami', 1, '2014-03-30', 4),
-(386, 1, 'M&euml;simi n&euml; k&euml;t&euml; l&euml;nd&euml; i ka arritur pritjet e mia.', 'Matematik&euml; 2', 'Isak Hoxha', 3, '2014-03-30', 4),
-(387, 1, 'Objektivat e m&euml;simit p&euml;r secil&euml;n nj&euml;si m&euml;simore jan&euml; identifikuar dhe respektuar.', 'Matematik&euml; 2', 'Isak Hoxha', 3, '2014-03-30', 4),
-(388, 1, 'P&euml;rmbajtja e l&euml;nd&euml;s ka qen&euml; e orgranizuar mir&euml; dhe ka qen&euml; e leht&euml; t&euml; p&euml;rcjell&euml;t.', 'Matematik&euml; 2', 'Isak Hoxha', 3, '2014-03-30', 4),
-(389, 1, 'Materiali i shp&euml;rndar&euml; p&euml;r k&euml;t&euml; l&euml;nd&euml; ishte adekuat dhe i dobish&euml;m.', 'Matematik&euml; 2', 'Isak Hoxha', 3, '2014-03-30', 4),
-(390, 1, 'Ligj&euml;ruesi ka pasur njohuri t&euml; mir&euml;.', 'Matematik&euml; 2', 'Isak Hoxha', 3, '2014-03-30', 4),
-(391, 1, 'Cil&euml;sia e udh&euml;zimeve ka qen&euml; e mir&euml;.', 'Matematik&euml; 2', 'Isak Hoxha', 3, '2014-03-30', 4),
-(392, 1, 'Prezantimet n&euml; klas&euml; kan&euml; qen&euml; interesante dhe praktike.', 'Matematik&euml; 2', 'Isak Hoxha', 3, '2014-03-30', 4),
-(393, 1, 'N&euml; k&euml;t&euml; l&euml;nd&euml; kam m&euml;suar gj&euml;ra t&euml; reja dhe t&euml; dobishme.', 'Matematik&euml; 2', 'Isak Hoxha', 3, '2014-03-30', 4),
-(394, 1, '&Euml;sht&euml; inkurajuar pjes&euml;marrja dhe bashk&euml;veprimi n&euml; klas&euml;.', 'Matematik&euml; 2', 'Isak Hoxha', 3, '2014-03-30', 4),
-(395, 1, '&Euml;sht&euml; ofruar koh&euml; e mjaftueshme p&euml;r pyetjet e student&euml;ve.', 'Matematik&euml; 2', 'Isak Hoxha', 3, '2014-03-30', 4);
+(396, 1, 'M&euml;simi n&euml; k&euml;t&euml; l&euml;nd&euml; i ka arritur pritjet e mia.', 'Programimi i aplikacioneve p&euml;r server', 'Ilir Byty&ccedil;i', 3, '2014-04-13', 4),
+(397, 1, 'Objektivat e m&euml;simit p&euml;r secil&euml;n nj&euml;si m&euml;simore jan&euml; identifikuar dhe respektuar.', 'Programimi i aplikacioneve p&euml;r server', 'Ilir Byty&ccedil;i', 3, '2014-04-13', 4),
+(398, 1, 'P&euml;rmbajtja e l&euml;nd&euml;s ka qen&euml; e orgranizuar mir&euml; dhe ka qen&euml; e leht&euml; t&euml; p&euml;rcjell&euml;t.', 'Programimi i aplikacioneve p&euml;r server', 'Ilir Byty&ccedil;i', 4, '2014-04-13', 4),
+(399, 1, 'Materiali i shp&euml;rndar&euml; p&euml;r k&euml;t&euml; l&euml;nd&euml; ishte adekuat dhe i dobish&euml;m.', 'Programimi i aplikacioneve p&euml;r server', 'Ilir Byty&ccedil;i', 3, '2014-04-13', 4),
+(400, 1, 'Ligj&euml;ruesi ka pasur njohuri t&euml; mir&euml;.', 'Programimi i aplikacioneve p&euml;r server', 'Ilir Byty&ccedil;i', 4, '2014-04-13', 4),
+(401, 1, 'Cil&euml;sia e udh&euml;zimeve ka qen&euml; e mir&euml;.', 'Programimi i aplikacioneve p&euml;r server', 'Ilir Byty&ccedil;i', 4, '2014-04-13', 4),
+(402, 1, 'Prezantimet n&euml; klas&euml; kan&euml; qen&euml; interesante dhe praktike.', 'Programimi i aplikacioneve p&euml;r server', 'Ilir Byty&ccedil;i', 3, '2014-04-13', 4),
+(403, 1, 'N&euml; k&euml;t&euml; l&euml;nd&euml; kam m&euml;suar gj&euml;ra t&euml; reja dhe t&euml; dobishme.', 'Programimi i aplikacioneve p&euml;r server', 'Ilir Byty&ccedil;i', 4, '2014-04-13', 4),
+(404, 1, '&Euml;sht&euml; inkurajuar pjes&euml;marrja dhe bashk&euml;veprimi n&euml; klas&euml;.', 'Programimi i aplikacioneve p&euml;r server', 'Ilir Byty&ccedil;i', 3, '2014-04-13', 4),
+(405, 1, '&Euml;sht&euml; ofruar koh&euml; e mjaftueshme p&euml;r pyetjet e student&euml;ve.', 'Programimi i aplikacioneve p&euml;r server', 'Ilir Byty&ccedil;i', 4, '2014-04-13', 4),
+(406, 1, 'M&euml;simi n&euml; k&euml;t&euml; l&euml;nd&euml; i ka arritur pritjet e mia.', 'Verifikimi dhe miratimi softuerik', 'Shaban Buza', 3, '2014-04-13', 4),
+(407, 1, 'Objektivat e m&euml;simit p&euml;r secil&euml;n nj&euml;si m&euml;simore jan&euml; identifikuar dhe respektuar.', 'Verifikimi dhe miratimi softuerik', 'Shaban Buza', 2, '2014-04-13', 4),
+(408, 1, 'P&euml;rmbajtja e l&euml;nd&euml;s ka qen&euml; e orgranizuar mir&euml; dhe ka qen&euml; e leht&euml; t&euml; p&euml;rcjell&euml;t.', 'Verifikimi dhe miratimi softuerik', 'Shaban Buza', 3, '2014-04-13', 4),
+(409, 1, 'Materiali i shp&euml;rndar&euml; p&euml;r k&euml;t&euml; l&euml;nd&euml; ishte adekuat dhe i dobish&euml;m.', 'Verifikimi dhe miratimi softuerik', 'Shaban Buza', 4, '2014-04-13', 4),
+(410, 1, 'Ligj&euml;ruesi ka pasur njohuri t&euml; mir&euml;.', 'Verifikimi dhe miratimi softuerik', 'Shaban Buza', 3, '2014-04-13', 4),
+(411, 1, 'Cil&euml;sia e udh&euml;zimeve ka qen&euml; e mir&euml;.', 'Verifikimi dhe miratimi softuerik', 'Shaban Buza', 4, '2014-04-13', 4),
+(412, 1, 'Prezantimet n&euml; klas&euml; kan&euml; qen&euml; interesante dhe praktike.', 'Verifikimi dhe miratimi softuerik', 'Shaban Buza', 3, '2014-04-13', 4),
+(413, 1, 'N&euml; k&euml;t&euml; l&euml;nd&euml; kam m&euml;suar gj&euml;ra t&euml; reja dhe t&euml; dobishme.', 'Verifikimi dhe miratimi softuerik', 'Shaban Buza', 3, '2014-04-13', 4),
+(414, 1, '&Euml;sht&euml; inkurajuar pjes&euml;marrja dhe bashk&euml;veprimi n&euml; klas&euml;.', 'Verifikimi dhe miratimi softuerik', 'Shaban Buza', 4, '2014-04-13', 4),
+(415, 1, '&Euml;sht&euml; ofruar koh&euml; e mjaftueshme p&euml;r pyetjet e student&euml;ve.', 'Verifikimi dhe miratimi softuerik', 'Shaban Buza', 3, '2014-04-13', 4),
+(416, 1, 'M&euml;simi n&euml; k&euml;t&euml; l&euml;nd&euml; i ka arritur pritjet e mia.', 'Menaxhimi i kualiteti n&euml; TI', 'Artan Dermaku', 2, '2014-04-13', 4),
+(417, 1, 'Objektivat e m&euml;simit p&euml;r secil&euml;n nj&euml;si m&euml;simore jan&euml; identifikuar dhe respektuar.', 'Menaxhimi i kualiteti n&euml; TI', 'Artan Dermaku', 3, '2014-04-13', 4),
+(418, 1, 'P&euml;rmbajtja e l&euml;nd&euml;s ka qen&euml; e orgranizuar mir&euml; dhe ka qen&euml; e leht&euml; t&euml; p&euml;rcjell&euml;t.', 'Menaxhimi i kualiteti n&euml; TI', 'Artan Dermaku', 3, '2014-04-13', 4),
+(419, 1, 'Materiali i shp&euml;rndar&euml; p&euml;r k&euml;t&euml; l&euml;nd&euml; ishte adekuat dhe i dobish&euml;m.', 'Menaxhimi i kualiteti n&euml; TI', 'Artan Dermaku', 2, '2014-04-13', 4),
+(420, 1, 'Ligj&euml;ruesi ka pasur njohuri t&euml; mir&euml;.', 'Menaxhimi i kualiteti n&euml; TI', 'Artan Dermaku', 3, '2014-04-13', 4),
+(421, 1, 'Cil&euml;sia e udh&euml;zimeve ka qen&euml; e mir&euml;.', 'Menaxhimi i kualiteti n&euml; TI', 'Artan Dermaku', 3, '2014-04-13', 4),
+(422, 1, 'Prezantimet n&euml; klas&euml; kan&euml; qen&euml; interesante dhe praktike.', 'Menaxhimi i kualiteti n&euml; TI', 'Artan Dermaku', 3, '2014-04-13', 4),
+(423, 1, 'N&euml; k&euml;t&euml; l&euml;nd&euml; kam m&euml;suar gj&euml;ra t&euml; reja dhe t&euml; dobishme.', 'Menaxhimi i kualiteti n&euml; TI', 'Artan Dermaku', 3, '2014-04-13', 4),
+(424, 1, '&Euml;sht&euml; inkurajuar pjes&euml;marrja dhe bashk&euml;veprimi n&euml; klas&euml;.', 'Menaxhimi i kualiteti n&euml; TI', 'Artan Dermaku', 4, '2014-04-13', 4),
+(425, 1, '&Euml;sht&euml; ofruar koh&euml; e mjaftueshme p&euml;r pyetjet e student&euml;ve.', 'Menaxhimi i kualiteti n&euml; TI', 'Artan Dermaku', 4, '2014-04-13', 4),
+(426, 1, 'M&euml;simi n&euml; k&euml;t&euml; l&euml;nd&euml; i ka arritur pritjet e mia.', 'Grafika kompjuterike dhe procesimi i imazheve', 'Xhevahir Bajrami', 3, '2014-04-13', 4),
+(427, 1, 'Objektivat e m&euml;simit p&euml;r secil&euml;n nj&euml;si m&euml;simore jan&euml; identifikuar dhe respektuar.', 'Grafika kompjuterike dhe procesimi i imazheve', 'Xhevahir Bajrami', 3, '2014-04-13', 4),
+(428, 1, 'P&euml;rmbajtja e l&euml;nd&euml;s ka qen&euml; e orgranizuar mir&euml; dhe ka qen&euml; e leht&euml; t&euml; p&euml;rcjell&euml;t.', 'Grafika kompjuterike dhe procesimi i imazheve', 'Xhevahir Bajrami', 3, '2014-04-13', 4),
+(429, 1, 'Materiali i shp&euml;rndar&euml; p&euml;r k&euml;t&euml; l&euml;nd&euml; ishte adekuat dhe i dobish&euml;m.', 'Grafika kompjuterike dhe procesimi i imazheve', 'Xhevahir Bajrami', 3, '2014-04-13', 4),
+(430, 1, 'Ligj&euml;ruesi ka pasur njohuri t&euml; mir&euml;.', 'Grafika kompjuterike dhe procesimi i imazheve', 'Xhevahir Bajrami', 3, '2014-04-13', 4),
+(431, 1, 'Cil&euml;sia e udh&euml;zimeve ka qen&euml; e mir&euml;.', 'Grafika kompjuterike dhe procesimi i imazheve', 'Xhevahir Bajrami', 3, '2014-04-13', 4),
+(432, 1, 'Prezantimet n&euml; klas&euml; kan&euml; qen&euml; interesante dhe praktike.', 'Grafika kompjuterike dhe procesimi i imazheve', 'Xhevahir Bajrami', 3, '2014-04-13', 4),
+(433, 1, 'N&euml; k&euml;t&euml; l&euml;nd&euml; kam m&euml;suar gj&euml;ra t&euml; reja dhe t&euml; dobishme.', 'Grafika kompjuterike dhe procesimi i imazheve', 'Xhevahir Bajrami', 3, '2014-04-13', 4),
+(434, 1, '&Euml;sht&euml; inkurajuar pjes&euml;marrja dhe bashk&euml;veprimi n&euml; klas&euml;.', 'Grafika kompjuterike dhe procesimi i imazheve', 'Xhevahir Bajrami', 3, '2014-04-13', 4),
+(435, 1, '&Euml;sht&euml; ofruar koh&euml; e mjaftueshme p&euml;r pyetjet e student&euml;ve.', 'Grafika kompjuterike dhe procesimi i imazheve', 'Xhevahir Bajrami', 3, '2014-04-13', 4),
+(436, 1, 'M&euml;simi n&euml; k&euml;t&euml; l&euml;nd&euml; i ka arritur pritjet e mia.', 'Matematik&euml; 2', 'Isak Hoxha', 3, '2014-04-13', 4),
+(437, 1, 'Objektivat e m&euml;simit p&euml;r secil&euml;n nj&euml;si m&euml;simore jan&euml; identifikuar dhe respektuar.', 'Matematik&euml; 2', 'Isak Hoxha', 3, '2014-04-13', 4),
+(438, 1, 'P&euml;rmbajtja e l&euml;nd&euml;s ka qen&euml; e orgranizuar mir&euml; dhe ka qen&euml; e leht&euml; t&euml; p&euml;rcjell&euml;t.', 'Matematik&euml; 2', 'Isak Hoxha', 3, '2014-04-13', 4),
+(439, 1, 'Materiali i shp&euml;rndar&euml; p&euml;r k&euml;t&euml; l&euml;nd&euml; ishte adekuat dhe i dobish&euml;m.', 'Matematik&euml; 2', 'Isak Hoxha', 4, '2014-04-13', 4),
+(440, 1, 'Ligj&euml;ruesi ka pasur njohuri t&euml; mir&euml;.', 'Matematik&euml; 2', 'Isak Hoxha', 5, '2014-04-13', 4),
+(441, 1, 'Cil&euml;sia e udh&euml;zimeve ka qen&euml; e mir&euml;.', 'Matematik&euml; 2', 'Isak Hoxha', 5, '2014-04-13', 4),
+(442, 1, 'Prezantimet n&euml; klas&euml; kan&euml; qen&euml; interesante dhe praktike.', 'Matematik&euml; 2', 'Isak Hoxha', 5, '2014-04-13', 4),
+(443, 1, 'N&euml; k&euml;t&euml; l&euml;nd&euml; kam m&euml;suar gj&euml;ra t&euml; reja dhe t&euml; dobishme.', 'Matematik&euml; 2', 'Isak Hoxha', 5, '2014-04-13', 4),
+(444, 1, '&Euml;sht&euml; inkurajuar pjes&euml;marrja dhe bashk&euml;veprimi n&euml; klas&euml;.', 'Matematik&euml; 2', 'Isak Hoxha', 5, '2014-04-13', 4),
+(445, 1, '&Euml;sht&euml; ofruar koh&euml; e mjaftueshme p&euml;r pyetjet e student&euml;ve.', 'Matematik&euml; 2', 'Isak Hoxha', 5, '2014-04-13', 4);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

@@ -97,14 +97,25 @@ if(!empty($_GET['refuzoNot']) AND is_numeric($_GET['refuzoNot'])){
 		$PID = $p['PID'];
 		$nota = $p['nota'];
 		$data = $p['data'];
-
-		if($lidhja->query("UPDATE paraqitjet SET nota=1 WHERE id=$ID")){
-			header('Location: index.php?faqja=paraqitja&mesazhi=refuzonote0');
-			die();
+		if($afati = afatAktiv()){
+			if($lidhja->query("UPDATE paraqitjet SET nota=1 WHERE id=$ID")){
+				header('Location: index.php?faqja=paraqitja&mesazhi=refuzonote0');
+				die();
+			}
+			else{
+				header('Location: index.php?faqja=paraqitja&mesazhi=refuzonote1');
+				die();
+			}
 		}
 		else{
-			header('Location: index.php?faqja=paraqitja&mesazhi=refuzonote1');
-			die();
+			if($lidhja->query("DELETE FROM paraqitjet WHERE id=$ID")){
+				header('Location: index.php?faqja=paraqitja&mesazhi=refuzonote0');
+				die();
+			}
+			else{
+				header('Location: index.php?faqja=paraqitja&mesazhi=refuzonote1');
+				die();
+			}
 		}
 	}
 	else{

@@ -92,6 +92,13 @@ class Studenti{
 	function getSemestri(){
 		return $this->semestri;
 	}
+	function getFakulteti(){
+		global $lidhja;
+		$drejtimi = $this->drejtimi;
+		$fk_id = $lidhja->query("SELECT f_id from drejtimet WHERE id=$drejtimi");
+		$fk_id = $fk_id->fetch_assoc();
+		return $fk_id['f_id'];
+	}
 	/*
 	* 	Funksion i vogel qe kallxon ncilin vit osht studenti
 	*/
@@ -105,8 +112,11 @@ class Studenti{
 		elseif($this->semestri==5 OR $this->semestri==6){
 			$this->viti=3;
 		}
-		else{
+		elseif($this->semestri==7 OR $this->semestri==8){
 			$this->viti=4;
+		}
+		else{
+			$this->viti=5;
 		}
 		return $this->viti;
 	}

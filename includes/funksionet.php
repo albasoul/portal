@@ -44,6 +44,26 @@
 			$_SESSION['perdorues'] = TRUE;
 			return TRUE;
 		}
+		else{
+			return FALSE;
+		}
+	}
+	/*
+	*	Verifikimi i profesorit per kyqje
+	*	Kontrollon username apo email dhe Fjalekalimin
+	*/
+	function verifikojeProfesorin($e,$p){
+		global $lidhja;
+		$profesor = $lidhja->query("SELECT id FROM profesoret WHERE email='$e' AND password='$p' LIMIT 1") or die('Kontrolloni databasen e profesoreve!');
+		if($profesor->num_rows == 1){
+			$prof = $profesor->fetch_assoc();
+			$_SESSION['profesori'] = $prof['id'];
+			$_SESSION['prof_in'] = TRUE;
+			return TRUE;
+		}
+		else{
+			return FALSE;
+		}
 	}
 	/*
 	* Funksioni qe kthen te gjitha lendet (si array) me semestrin e caktuar, kthen vetem ID e lendeve

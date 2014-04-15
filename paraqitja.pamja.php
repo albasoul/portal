@@ -45,15 +45,19 @@
 	</nav>
 	</div>
     <div class="container">
-		<div class="clearfix"></div><br/>
+		<div class="clearfix"></div>
+		<div class="col-md-12">
 		<?php
-			if($afati = afatAktiv()){
-				$data = date('Y-m-d');
-				echo '<h3 class="text-center"><i class="fa fa-check-square-o"></i> <strong><em>'.$afati['emri'].'</em></strong></h3>';
-				echo '<div class="well well-lg col-md-6 statusi-lendeve">';
+		$afati = afatAktiv();
+		if($afati){
+			echo '<h3 class="text-center"><i class="fa fa-check-square-o"></i> <strong><em>'.$afati['emri'].'</em></strong></h3>';
+		}
+			
+			echo '<div class="well well-lg col-md-6 statusi-lendeve">';
 						paraqitStatusinLendeve($studenti);
 				echo '</div>';
-
+			if($afati){
+				$data = date('Y-m-d');
 				echo '<div class="col-md-6 paraqitja-provimeve">';
 				if(paraqitjaPerfundoi($studenti)){
 					echo '<h4 class="bg-primary text-center" style="padding:10px;"> Paraqitja e l&euml;nd&euml;ve &euml;sht&euml; kryer me sukses! </h4>';
@@ -80,19 +84,23 @@
 				
 			}
 			else{
-				echo '<h4 class="bg-primary text-center" style="padding:10px;"> Nuk ka afat aktiv t&euml; provimeve! </h4>';
+				echo '<div class="col-md-6"><h4 class="bg-primary text-center" style="padding:10px;"> Nuk ka afat aktiv t&euml; provimeve! </h4></div>';
 			}
 		?>
-		<div class="row">
 		</div>
-		
+		<div class="col-md-12">
+			<div class="panel panel-primary col-md-6">
+			</div>
+		</div>
 		<!-- FOOTER -->
-		<div class="well well-md text-left">
-			<span><?php echo $page->getFooter(); ?></span>
-			<div class="visible-xs"><div class="clearfix"></div></div>
-			<span class="pull-right">
-				<?php $page->footerLinks(); ?>
-			</span>
+		<div class="col-md-12">
+			<div class="well well-md text-left">
+				<span><?php echo $page->getFooter(); ?></span>
+				<div class="visible-xs"><div class="clearfix"></div></div>
+				<span class="pull-right">
+					<?php $page->footerLinks(); ?>
+				</span>
+			</div>
 		</div>
     </div>
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
