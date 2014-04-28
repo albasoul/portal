@@ -677,7 +677,7 @@
 			}
 		}
 		else{
-			$s = semestriNgaViti($viti_studentit-1);
+			$s = semestriNgaViti($viti-1);
 			$lendet = $lidhja->query("SELECT id FROM lendet WHERE drejtimi=$drejtimi_studentit AND (semestri<$s OR semestri=$s)");
 		}
 		$total = $lendet->num_rows; // numri total i lendeve qe do testohen se a jane te paraqitura ose a kane note
